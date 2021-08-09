@@ -3,19 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061F5854FC692281E20C6004 /* Pods_PadelLessonLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C196913205FAB00EEB9330D /* Pods_PadelLessonLog.framework */; };
+		9692778A99569CDB7E04F9A7 /* Pods_PadelLessonLog_PadelLessonLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7F650C00DC48FA2E617E08 /* Pods_PadelLessonLog_PadelLessonLogUITests.framework */; };
+		AE9173774A73DF8BCC385D69 /* Pods_PadelLessonLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D1F17C9292B9D7B9571349 /* Pods_PadelLessonLogTests.framework */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
 		E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */; };
-		E41F345026BE67A8001B24A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* ViewController.swift */; };
+		E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* MainViewController.swift */; };
 		E41F345326BE67A8001B24A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F345126BE67A8001B24A2 /* Main.storyboard */; };
 		E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E41F345426BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld */; };
 		E41F345826BE67B3001B24A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41F345726BE67B3001B24A2 /* Assets.xcassets */; };
 		E41F345B26BE67B3001B24A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */; };
 		E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */; };
 		E41F347126BE67B3001B24A2 /* PadelLessonLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */; };
+		E41F349326BE6A9A001B24A2 /* MainFeatureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */; };
+		E41F34B426BE7BE3001B24A2 /* Lesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */; };
+		E41F34BA26BE7CAA001B24A2 /* Technique.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B826BE7CAA001B24A2 /* Technique.storyboard */; };
+		E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */; };
+		E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */; };
+		E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */; };
+		E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D326BFA1C6001B24A2 /* DrawingView.swift */; };
+		E41F34D926BFB02A001B24A2 /* PinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D826BFB02A001B24A2 /* PinImageView.swift */; };
+		E41F34DE26BFB5EA001B24A2 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +48,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2FF6567659852CA561BCF5C0 /* Pods-PadelLessonLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLog.release.xcconfig"; path = "Target Support Files/Pods-PadelLessonLog/Pods-PadelLessonLog.release.xcconfig"; sourceTree = "<group>"; };
+		34B2E34066A97E8ECE4FC155 /* Pods-PadelLessonLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLog.debug.xcconfig"; path = "Target Support Files/Pods-PadelLessonLog/Pods-PadelLessonLog.debug.xcconfig"; sourceTree = "<group>"; };
+		4780E90FA52D8A2EF21C8CFB /* Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig"; path = "Target Support Files/Pods-PadelLessonLog-PadelLessonLogUITests/Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6B7F650C00DC48FA2E617E08 /* Pods_PadelLessonLog_PadelLessonLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadelLessonLog_PadelLessonLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C196913205FAB00EEB9330D /* Pods_PadelLessonLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadelLessonLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C38EEB744381022868338E /* Pods-PadelLessonLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLogTests.release.xcconfig"; path = "Target Support Files/Pods-PadelLessonLogTests/Pods-PadelLessonLogTests.release.xcconfig"; sourceTree = "<group>"; };
+		99D1F17C9292B9D7B9571349 /* Pods_PadelLessonLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PadelLessonLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C467DA1DDADB520470D958 /* Pods-PadelLessonLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLogTests.debug.xcconfig"; path = "Target Support Files/Pods-PadelLessonLogTests/Pods-PadelLessonLogTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3B66B3566CF342B2365AB30 /* Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-PadelLessonLog-PadelLessonLogUITests/Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F344B26BE67A8001B24A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E41F344F26BE67A8001B24A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E41F344F26BE67A8001B24A2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E41F345226BE67A8001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E41F345526BE67A8001B24A2 /* PadelLessonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PadelLessonLog.xcdatamodel; sourceTree = "<group>"; };
 		E41F345726BE67B3001B24A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +72,15 @@
 		E41F346C26BE67B3001B24A2 /* PadelLessonLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadelLessonLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelLessonLogUITests.swift; sourceTree = "<group>"; };
 		E41F347226BE67B3001B24A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeatureTest.swift; sourceTree = "<group>"; };
+		E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lesson.storyboard; path = PadelLessonLog/Screen/Lesson/Lesson.storyboard; sourceTree = SOURCE_ROOT; };
+		E41F34B926BE7CAA001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Technique.storyboard; sourceTree = "<group>"; };
+		E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewLesson.storyboard; sourceTree = "<group>"; };
+		E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewController.swift; sourceTree = "<group>"; };
+		E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewModel.swift; sourceTree = "<group>"; };
+		E41F34D326BFA1C6001B24A2 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		E41F34D826BFB02A001B24A2 /* PinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinImageView.swift; sourceTree = "<group>"; };
+		E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				061F5854FC692281E20C6004 /* Pods_PadelLessonLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9173774A73DF8BCC385D69 /* Pods_PadelLessonLogTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +104,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9692778A99569CDB7E04F9A7 /* Pods_PadelLessonLog_PadelLessonLogUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27F4592BCA97DEF1A7A07023 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34B2E34066A97E8ECE4FC155 /* Pods-PadelLessonLog.debug.xcconfig */,
+				2FF6567659852CA561BCF5C0 /* Pods-PadelLessonLog.release.xcconfig */,
+				A3B66B3566CF342B2365AB30 /* Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig */,
+				4780E90FA52D8A2EF21C8CFB /* Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig */,
+				A2C467DA1DDADB520470D958 /* Pods-PadelLessonLogTests.debug.xcconfig */,
+				84C38EEB744381022868338E /* Pods-PadelLessonLogTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9736E917196DE2A48FAF5ADF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C196913205FAB00EEB9330D /* Pods_PadelLessonLog.framework */,
+				6B7F650C00DC48FA2E617E08 /* Pods_PadelLessonLog_PadelLessonLogUITests.framework */,
+				99D1F17C9292B9D7B9571349 /* Pods_PadelLessonLogTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E41F343F26BE67A8001B24A2 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +141,8 @@
 				E41F346426BE67B3001B24A2 /* PadelLessonLogTests */,
 				E41F346F26BE67B3001B24A2 /* PadelLessonLogUITests */,
 				E41F344926BE67A8001B24A2 /* Products */,
+				27F4592BCA97DEF1A7A07023 /* Pods */,
+				9736E917196DE2A48FAF5ADF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,12 +161,17 @@
 			children = (
 				E41F344B26BE67A8001B24A2 /* AppDelegate.swift */,
 				E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */,
-				E41F344F26BE67A8001B24A2 /* ViewController.swift */,
-				E41F345126BE67A8001B24A2 /* Main.storyboard */,
-				E41F345726BE67B3001B24A2 /* Assets.xcassets */,
-				E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */,
+				E41F349726BE6CCA001B24A2 /* Screen */,
+				E41F349F26BE6D63001B24A2 /* ViewParts */,
+				E41F349A26BE6D20001B24A2 /* Service */,
+				E41F349826BE6CDA001B24A2 /* API */,
+				E41F349E26BE6D56001B24A2 /* Entity */,
+				E41F349926BE6D00001B24A2 /* Repository */,
+				E41F349D26BE6D48001B24A2 /* Categories */,
+				E41F349B26BE6D28001B24A2 /* Common */,
+				E41F349C26BE6D31001B24A2 /* Supporting Files */,
+				E41F34A026BE6D7A001B24A2 /* Resources */,
 				E41F345C26BE67B3001B24A2 /* Info.plist */,
-				E41F345426BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld */,
 			);
 			path = PadelLessonLog;
 			sourceTree = "<group>";
@@ -118,6 +181,7 @@
 			children = (
 				E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */,
 				E41F346726BE67B3001B24A2 /* Info.plist */,
+				E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */,
 			);
 			path = PadelLessonLogTests;
 			sourceTree = "<group>";
@@ -131,6 +195,153 @@
 			path = PadelLessonLogUITests;
 			sourceTree = "<group>";
 		};
+		E41F349726BE6CCA001B24A2 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E41F345126BE67A8001B24A2 /* Main.storyboard */,
+				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
+				E41F34BF26BF8A7C001B24A2 /* Lesson */,
+				E41F34BE26BF8A6D001B24A2 /* Technique */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		E41F349826BE6CDA001B24A2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34A126BE6E63001B24A2 /* Base */,
+				E41F34A226BE6E6B001B24A2 /* Request */,
+				E41F34A326BE6E7A001B24A2 /* Response */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E41F349926BE6D00001B24A2 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E41F349A26BE6D20001B24A2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E41F349B26BE6D28001B24A2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E41F349C26BE6D31001B24A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E41F349D26BE6D48001B24A2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		E41F349E26BE6D56001B24A2 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34A426BE6EB2001B24A2 /* Additions */,
+				E41F34A526BE6EBA001B24A2 /* CoreDataProperties */,
+				E41F345426BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		E41F349F26BE6D63001B24A2 /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34D326BFA1C6001B24A2 /* DrawingView.swift */,
+				E41F34D826BFB02A001B24A2 /* PinImageView.swift */,
+			);
+			path = ViewParts;
+			sourceTree = "<group>";
+		};
+		E41F34A026BE6D7A001B24A2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */,
+				E41F345726BE67B3001B24A2 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E41F34A126BE6E63001B24A2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		E41F34A226BE6E6B001B24A2 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		E41F34A326BE6E7A001B24A2 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		E41F34A426BE6EB2001B24A2 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		E41F34A526BE6EBA001B24A2 /* CoreDataProperties */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataProperties;
+			sourceTree = "<group>";
+		};
+		E41F34BE26BF8A6D001B24A2 /* Technique */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34B826BE7CAA001B24A2 /* Technique.storyboard */,
+			);
+			path = Technique;
+			sourceTree = "<group>";
+		};
+		E41F34BF26BF8A7C001B24A2 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */,
+				E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */,
+				E41F34C326BF982E001B24A2 /* AddNewLesson */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		E41F34C326BF982E001B24A2 /* AddNewLesson */ = {
+			isa = PBXGroup;
+			children = (
+				E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */,
+				E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */,
+				E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */,
+			);
+			path = AddNewLesson;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +349,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E41F347526BE67B3001B24A2 /* Build configuration list for PBXNativeTarget "PadelLessonLog" */;
 			buildPhases = (
+				637E8AE6C2669DFD765FCB5D /* [CP] Check Pods Manifest.lock */,
 				E41F344426BE67A8001B24A2 /* Sources */,
 				E41F344526BE67A8001B24A2 /* Frameworks */,
 				E41F344626BE67A8001B24A2 /* Resources */,
@@ -155,9 +367,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E41F347826BE67B3001B24A2 /* Build configuration list for PBXNativeTarget "PadelLessonLogTests" */;
 			buildPhases = (
+				187D3D5D96564E3E4ABB0D9C /* [CP] Check Pods Manifest.lock */,
 				E41F345D26BE67B3001B24A2 /* Sources */,
 				E41F345E26BE67B3001B24A2 /* Frameworks */,
 				E41F345F26BE67B3001B24A2 /* Resources */,
+				025B0BD6C824009CC6E57882 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,6 +387,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E41F347B26BE67B3001B24A2 /* Build configuration list for PBXNativeTarget "PadelLessonLogUITests" */;
 			buildPhases = (
+				D018D486EA908E5A336EC331 /* [CP] Check Pods Manifest.lock */,
 				E41F346826BE67B3001B24A2 /* Sources */,
 				E41F346926BE67B3001B24A2 /* Frameworks */,
 				E41F346A26BE67B3001B24A2 /* Resources */,
@@ -234,6 +449,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E41F34BA26BE7CAA001B24A2 /* Technique.storyboard in Resources */,
+				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
+				E41F34B426BE7BE3001B24A2 /* Lesson.storyboard in Resources */,
 				E41F345B26BE67B3001B24A2 /* LaunchScreen.storyboard in Resources */,
 				E41F345826BE67B3001B24A2 /* Assets.xcassets in Resources */,
 				E41F345326BE67A8001B24A2 /* Main.storyboard in Resources */,
@@ -256,14 +474,105 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		025B0BD6C824009CC6E57882 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PadelLessonLogTests/Pods-PadelLessonLogTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PadelLessonLogTests/Pods-PadelLessonLogTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PadelLessonLogTests/Pods-PadelLessonLogTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		187D3D5D96564E3E4ABB0D9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PadelLessonLogTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		637E8AE6C2669DFD765FCB5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PadelLessonLog-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D018D486EA908E5A336EC331 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PadelLessonLog-PadelLessonLogUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E41F344426BE67A8001B24A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41F345026BE67A8001B24A2 /* ViewController.swift in Sources */,
+				E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */,
+				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
+				E41F34D926BFB02A001B24A2 /* PinImageView.swift in Sources */,
+				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
+				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
 				E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */,
+				E41F34DE26BFB5EA001B24A2 /* LessonViewController.swift in Sources */,
 				E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */,
+				E41F349326BE6A9A001B24A2 /* MainFeatureTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +624,14 @@
 				E41F345A26BE67B3001B24A2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E41F34B826BE7CAA001B24A2 /* Technique.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E41F34B926BE7CAA001B24A2 /* Base */,
+			);
+			name = Technique.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -370,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -437,6 +755,7 @@
 		};
 		E41F347626BE67B3001B24A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34B2E34066A97E8ECE4FC155 /* Pods-PadelLessonLog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +775,7 @@
 		};
 		E41F347726BE67B3001B24A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FF6567659852CA561BCF5C0 /* Pods-PadelLessonLog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,6 +795,7 @@
 		};
 		E41F347926BE67B3001B24A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2C467DA1DDADB520470D958 /* Pods-PadelLessonLogTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -497,6 +818,7 @@
 		};
 		E41F347A26BE67B3001B24A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84C38EEB744381022868338E /* Pods-PadelLessonLogTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -519,6 +841,7 @@
 		};
 		E41F347C26BE67B3001B24A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3B66B3566CF342B2365AB30 /* Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -539,6 +862,7 @@
 		};
 		E41F347D26BE67B3001B24A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4780E90FA52D8A2EF21C8CFB /* Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
