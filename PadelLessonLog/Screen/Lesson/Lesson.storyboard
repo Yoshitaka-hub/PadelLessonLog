@@ -16,27 +16,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T93-fp-xJQ">
+                                <rect key="frame" x="0.0" y="94" width="414" height="719"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6X9-vZ-Y98">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfc-gE-S8Y">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="nSv-8j-are"/>
                                 </constraints>
-                                <items/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nxX-t3-tVn"/>
+                                    <barButtonItem title="Title Table" id="ww6-lB-XQ1">
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <connections>
+                                            <action selector="titleBarButtonPressed:" destination="fTc-pP-j0C" id="JKF-uz-Pol"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="Oqq-Bg-Rya"/>
+                                    <barButtonItem title="Image Table" id="J2B-sy-dPU">
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <connections>
+                                            <action selector="imageBarButtonPressed:" destination="fTc-pP-j0C" id="UgZ-mz-VfR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BcB-Xm-TtO"/>
+                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="EmL-oC-bLJ"/>
+                                    <barButtonItem systemItem="add" id="3jM-Cc-SE0">
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="fTc-pP-j0C" id="F5y-Xq-3Rt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
                             </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IzJ-x4-pPF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="bottom" secondItem="T93-fp-xJQ" secondAttribute="bottom" id="KHV-yf-oqE"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="trailing" secondItem="IzJ-x4-pPF" secondAttribute="trailing" id="Lld-kL-Aew"/>
+                            <constraint firstItem="T93-fp-xJQ" firstAttribute="top" secondItem="zfc-gE-S8Y" secondAttribute="bottom" id="Q8j-2i-YV6"/>
+                            <constraint firstItem="T93-fp-xJQ" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="ilp-iz-smj"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="top" secondItem="IzJ-x4-pPF" secondAttribute="top" id="tkp-6o-b8r"/>
+                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="T93-fp-xJQ" secondAttribute="trailing" id="uHc-Qt-YN0"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="uV4-lc-MgT"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lesson" image="pencil" catalog="system" id="HQ7-FW-Zrk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="customCollectionView" destination="T93-fp-xJQ" id="2dP-PN-Hun"/>
                         <outlet property="customToolbar" destination="zfc-gE-S8Y" id="pTF-Hv-eWI"/>
+                        <outlet property="imageBarButton" destination="J2B-sy-dPU" id="uUI-2l-bVk"/>
+                        <outlet property="titleBarButton" destination="ww6-lB-XQ1" id="Awn-GI-vpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpd-FR-CsK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -46,6 +86,9 @@
     </scenes>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

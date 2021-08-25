@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ImageCollectionViewCell" customModule="PadelLessonLog" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2E-wg-E8F">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボレーボレー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2Y-pe-yPM">
+                                <rect key="frame" x="20" y="10" width="260" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="W2Y-pe-yPM" secondAttribute="bottom" constant="10" id="1Xx-bj-4ga"/>
+                            <constraint firstAttribute="height" constant="60" id="Ast-dd-3l5"/>
+                            <constraint firstAttribute="trailing" secondItem="W2Y-pe-yPM" secondAttribute="trailing" constant="20" id="Nea-1H-Gif"/>
+                            <constraint firstItem="W2Y-pe-yPM" firstAttribute="leading" secondItem="G2E-wg-E8F" secondAttribute="leading" constant="20" id="OA6-UR-ybi"/>
+                            <constraint firstItem="W2Y-pe-yPM" firstAttribute="top" secondItem="G2E-wg-E8F" secondAttribute="top" constant="10" id="cK6-zZ-qhf"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FI3-EG-2EE">
+                        <rect key="frame" x="0.0" y="60" width="300" height="440"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fII-ve-AD0">
+                                <rect key="frame" x="10" y="10" width="280" height="420"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fII-ve-AD0" firstAttribute="leading" secondItem="FI3-EG-2EE" secondAttribute="leading" constant="10" id="YK8-6Q-Hoe"/>
+                            <constraint firstAttribute="trailing" secondItem="fII-ve-AD0" secondAttribute="trailing" constant="10" id="bmX-eY-eq4"/>
+                            <constraint firstItem="fII-ve-AD0" firstAttribute="top" secondItem="FI3-EG-2EE" secondAttribute="top" constant="10" id="g1j-wI-d7i"/>
+                            <constraint firstAttribute="bottom" secondItem="fII-ve-AD0" secondAttribute="bottom" constant="10" id="h1S-hj-YrX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="G2E-wg-E8F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="IDB-tT-mtd"/>
+                <constraint firstItem="G2E-wg-E8F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eZr-yt-vQO"/>
+                <constraint firstAttribute="trailing" secondItem="G2E-wg-E8F" secondAttribute="trailing" id="gna-Wl-NC2"/>
+                <constraint firstAttribute="bottom" secondItem="FI3-EG-2EE" secondAttribute="bottom" id="h9v-Pu-inN"/>
+                <constraint firstAttribute="trailing" secondItem="FI3-EG-2EE" secondAttribute="trailing" id="iNe-p0-MdE"/>
+                <constraint firstItem="FI3-EG-2EE" firstAttribute="top" secondItem="G2E-wg-E8F" secondAttribute="bottom" id="r39-di-WxF"/>
+                <constraint firstItem="FI3-EG-2EE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wmY-NR-Y0r"/>
+            </constraints>
+            <connections>
+                <outlet property="lessonImageView" destination="fII-ve-AD0" id="cAj-dG-APj"/>
+                <outlet property="titleLabel" destination="W2Y-pe-yPM" id="xLv-6o-FFU"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="111"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

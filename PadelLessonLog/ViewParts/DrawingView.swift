@@ -7,17 +7,17 @@
 
 import UIKit
 
-enum LineColor: Int {
-    case red = 0, green, blue
+enum ObjectColor: Int {
+    case yellow = 0, red, blue
 
     func toColor() -> UIColor {
         switch self {
         case .red:
-            return UIColor(red: 0.984, green: 0.000, blue: 0.039, alpha: 1.000)
-        case .green:
-            return UIColor(red: 0.133, green: 0.937, blue: 0.043, alpha: 1.000)
+            return UIColor.systemRed
+        case .yellow:
+            return UIColor.systemYellow
         case .blue:
-            return UIColor(red: 0.133, green: 0.000, blue: 1.000, alpha: 1.000)
+            return UIColor.systemBlue
         }
     }
 
@@ -27,34 +27,53 @@ enum LineColor: Int {
         switch self {
         case .red:
             imageName = baseName + "_pin_red"
-        case .green:
-            imageName = baseName + "_pin_Yellow"
+        case .yellow:
+            imageName = baseName + "_pin_yellow"
         case .blue:
-            imageName = baseName + "_pin_Blue"
+            imageName = baseName + "_pin_blue"
         }
-        let arrowImage = UIImage(named: imageName)!
-        return arrowImage
+        let pinImage = UIImage(named: imageName)!
+        return pinImage
+    }
+    
+    var ballImage: UIImage {
+        let baseName = "img"
+        var imageName = baseName
+        switch self {
+        case .red:
+            imageName = baseName + "_ball_red"
+        case .yellow:
+            imageName = baseName + "_ball_yellow"
+        case .blue:
+            imageName = baseName + "_ball_blue"
+        }
+        let ballImage = UIImage(named: imageName)!
+        return ballImage
+    }
+    
+    static func defaultValue() -> ObjectColor {
+        return ObjectColor.yellow
     }
 }
 
-enum EditingMode: Int {
-    case line = 0, pin
+enum ObjectType: Int {
+    case line = 0, pin, ball
 
-    static func defaultValue() -> EditingMode {
-        return EditingMode.pin
+    static func defaultValue() -> ObjectType {
+        return ObjectType.pin
     }
 }
 
 class DrawingView: UIView, UIGestureRecognizerDelegate {
-    var lineWeight = 8.0
-    var lineColor = LineColor.red
-    var editingMode: EditingMode = .defaultValue()
+    var lineWeight = 5.0
+    var objectColor: ObjectColor = .defaultValue()
+    var objectType: ObjectType = .defaultValue()
 
     var touchedPoints = [CGPoint]()
 
     let drawnImageView = UIImageView()
     let drawingImageView = UIImageView()
-    var arrowViews = [PinImageView]()
+    var objectViews = [ObjectImageView]()
 
     var panGestureRecognizer: UIPanGestureRecognizer!
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -91,9 +110,9 @@ class DrawingView: UIView, UIGestureRecognizerDelegate {
 
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isKind(of: UITapGestureRecognizer.self) {
-            return editingMode == .pin
+            return objectType == .pin || objectType == .ball
         } else if gestureRecognizer.isKind(of: UIPanGestureRecognizer.self) {
-            return editingMode == .line
+            return objectType == .line
         } else {
             return super.gestureRecognizerShouldBegin(gestureRecognizer)
         }
@@ -140,10 +159,10 @@ class DrawingView: UIView, UIGestureRecognizerDelegate {
     }
 
     @objc func drawingViewTapped() {
-        let arrowView = PinImageView(lineColor: lineColor)
-        arrowView.frame.origin = tapGestureRecognizer.location(in: self)
-        addSubview(arrowView)
-        arrowViews.append(arrowView)
+        let objectView = ObjectImageView(objectColor: objectColor, objectType: objectType)
+        objectView.frame.origin = tapGestureRecognizer.location(in: self)
+        addSubview(objectView)
+        objectViews.append(objectView)
     }
 
     // MARK: drawing methods
@@ -151,8 +170,8 @@ class DrawingView: UIView, UIGestureRecognizerDelegate {
     func setupDrawingContext(scale: CGFloat) {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
         UIGraphicsGetCurrentContext()!.setLineCap(CGLineCap.round)
-        UIGraphicsGetCurrentContext()!.setLineWidth(8.0)
-        UIGraphicsGetCurrentContext()!.setStrokeColor(lineColor.toColor().cgColor)
+        UIGraphicsGetCurrentContext()!.setLineWidth(5.0)
+        UIGraphicsGetCurrentContext()!.setStrokeColor(objectColor.toColor().cgColor)
     }
 
     func drawLine(from fromPoint: CGPoint, to toPoint: CGPoint) {
@@ -184,7 +203,7 @@ class DrawingView: UIView, UIGestureRecognizerDelegate {
         drawingRect = drawingRect.offsetBy(dx: rect.midX - drawingRect.width / 2, dy: rect.midY - drawingRect.height / 2).integral
         image.draw(in: rect)
         drawnImageView.image?.draw(in: drawingRect)
-        for arrow in arrowViews {
+        for arrow in objectViews {
             let arrowRect = arrow.frame
             let image = arrow.rotatedImage()
             let marginX = (image.size.width - arrowRect.width) / 2

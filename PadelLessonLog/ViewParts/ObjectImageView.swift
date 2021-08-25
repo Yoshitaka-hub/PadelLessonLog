@@ -6,12 +6,12 @@
 //
 
 import UIKit
-class PinImageView: UIImageView, UIGestureRecognizerDelegate {
+class ObjectImageView: UIImageView, UIGestureRecognizerDelegate {
     var origin = CGPoint.zero
     var originalTransform: CGAffineTransform = .identity
 
-    init(lineColor color: LineColor) {
-        let image = color.pinImage
+    init(objectColor color: ObjectColor, objectType type: ObjectType ) {
+        let image = type == .pin ? color.pinImage : color.ballImage
         super.init(image: image)
 
         isUserInteractionEnabled = true
