@@ -1,5 +1,5 @@
 //
-//  LessonDataManager.swift
+//  LessonImageDataManager.swift
 //  PadelLessonLog
 //
 //  Created by Yoshitaka on 2021/08/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LessonDataManager {
+class LessonImageDataManager {
     
     private let fileNameFormat = "yyyyMMddHHmmss"
     let fileManager = FileManager.default
@@ -46,5 +46,15 @@ class LessonDataManager {
             print("Unresolved Error \(error)")
             abort()
         }
+    }
+    
+    func loadLessonImage(imagePath: String) -> UIImage? {
+        guard let image = UIImage(contentsOfFile: imagePath) else {
+            return nil
+        }
+        guard let safeImage = image.jpegData(compressionQuality: 0.5) else {
+            return image
+        }
+        return UIImage(data: safeImage)
     }
 }

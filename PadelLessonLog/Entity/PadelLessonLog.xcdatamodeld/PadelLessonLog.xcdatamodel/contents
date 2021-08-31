@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Lesson" representedClassName="Lesson" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="imageOrientation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonSteps" inverseName="lessonID" inverseEntity="LessonSteps"/>
+    </entity>
+    <entity name="LessonSteps" representedClassName="LessonSteps" syncable="YES">
+        <attribute name="explication" optional="YES" attributeType="String"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="lessonID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="steps" inverseEntity="Lesson"/>
+    </entity>
+    <elements>
+        <element name="Lesson" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="LessonSteps" positionX="-54" positionY="9" width="128" height="74"/>
+    </elements>
 </model>

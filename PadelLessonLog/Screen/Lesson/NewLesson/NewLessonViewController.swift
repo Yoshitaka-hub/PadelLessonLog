@@ -22,6 +22,8 @@ class NewLessonViewController: BaseViewController {
  
     private var cancellables = Set<AnyCancellable>()
     
+    var lessonData: Lesson?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lessonNameTextField.delegate = self

@@ -16,6 +16,7 @@ class LessonViewController: UIViewController {
     @IBOutlet weak var customCollectionView: UICollectionView!
     
     private var mode: Bool = false
+    private var coreDataMangaer = CoreDataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,9 @@ class LessonViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+        if let newLessonVC = vc as? NewLessonViewController {
+            newLessonVC.lessonData = coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
