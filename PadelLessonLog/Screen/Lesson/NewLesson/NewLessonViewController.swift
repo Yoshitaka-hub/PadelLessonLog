@@ -19,6 +19,7 @@ class NewLessonViewController: BaseViewController {
     
     private let viewModel = NewLessonViewModel()
     private let validationManager = ValidationManager.shared
+    private var coreDataMangaer = CoreDataManager.shared
  
     private var cancellables = Set<AnyCancellable>()
     
@@ -40,6 +41,7 @@ class NewLessonViewController: BaseViewController {
         notificationCenter.addObserver(self, selector: #selector(self.adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(self.adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+        self.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: .remove, select: #selector(deleteData))
         self.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: .checkmark, select: #selector(save))
         
         viewModel.$addImageButtonIsSelected
@@ -49,23 +51,33 @@ class NewLessonViewController: BaseViewController {
                 addImageButton.tintColor = isSelected ? .systemRed : .systemBlue
                 editImageButton.isHidden = !addImageButton.isSelected
                 if isSelected {
-                    let storyboard = UIStoryboard(name: "AddNewLesson", bundle: nil)
-                    let vc = storyboard.instantiateViewController(identifier: "AddNewLesson")
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    pushToAddNewLessonVC()
                 } else {
-                    infoAlertViewWithTitle(title: "画像を削除しました")
+                    guard let id = lessonData?.id?.uuidString else { return }
+                    let isSaved = coreDataMangaer.resetLessonImage(lessonID: id, image: UIImage(named: "img_court")!)
+                    if isSaved {
+                        lessonData = coreDataMangaer.loadLessonData(lessonID: id)
+                        infoAlertViewWithTitle(title: "Image deleted")
+                    } else {
+                        fatalError("画像が更新できない")
+                    }
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let flag = lessonData?.imageSaved else { return }
+        addImageButton.isSelected = flag
+        addImageButton.tintColor = flag ? .systemRed : .systemBlue
+        editImageButton.isHidden = !flag
     }
 
     @IBAction func addImageButtonPressed(_ sender: UIButton) {
         viewModel.addImageButtonIsSelected = !addImageButton.isSelected
     }
     @IBAction func editImageButtonPressed(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "AddNewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "AddNewLesson")
-        self.navigationController?.pushViewController(vc, animated: true)
+        pushToAddNewLessonVC()
     }
     @IBAction func addStepButtonPressed(_ sender: UIButton) {
         viewModel.tableViewCellNum += 1
@@ -79,12 +91,46 @@ class NewLessonViewController: BaseViewController {
         editStepButton.isSelected = !editStepButton.isSelected
         mainTableView.setEditing(!mainTableView.isEditing, animated: true)
     }
+    @objc
+    func deleteData() {
+        guard let id = lessonData?.id?.uuidString else { return }
+        if coreDataMangaer.deleteLessonData(lessonID: id) {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            fatalError("fail to delete")
+        }
+    }
     
     @objc
     func save() {
-        self.navigationController?.popViewController(animated: true)
+        guard let id = lessonData?.id?.uuidString else { return }
+        let title = lessonNameTextField.text ?? ""
+        var array: [String] = []
+        let num = mainTableView.visibleCells.count
+        for i in 0..<num {
+            let cell = mainTableView.visibleCells[i]
+            let textView = cell.contentView.viewWithTag(2) as? UITextView
+            array.append(textView?.text ?? "")
+        }
+        if coreDataMangaer.updateLessonTitleAndSteps(lessonID: id, title: title, steps: array) {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            fatalError("steps saving failed")
+        }
     }
-    
+}
+
+extension NewLessonViewController {
+    func pushToAddNewLessonVC() {
+        let storyboard = UIStoryboard(name: "AddNewLesson", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "AddNewLesson")
+        if let addNewLessonVC = vc as? AddNewLessonViewController {
+            guard let data = lessonData else { return }
+            addNewLessonVC.lessonImage = data.getImage()
+            addNewLessonVC.lessonID = data.id?.uuidString
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension NewLessonViewController: UITextFieldDelegate {

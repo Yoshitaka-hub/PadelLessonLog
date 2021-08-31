@@ -15,8 +15,13 @@ class AddNewLessonViewController: UIViewController {
     
     private var viewModel = AddNewLessonViewModel()
     
+    private var coreDataMangaer = CoreDataManager.shared
+    var lessonID: String?
+    var lessonImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        courtImageView.image = lessonImage
         configureToolbar()
     }
     
@@ -51,6 +56,15 @@ class AddNewLessonViewController: UIViewController {
     
     @objc
     func save() {
+        guard let id = lessonID else { return }
+        guard let image = courtImageView.image else { return }
+        let savingImage = drawingView.drawIntoImage(image: image)
+        let isSaved = coreDataMangaer.updateLessonImage(lessonID: id, image: savingImage)
+        if isSaved {
+            navigationController?.popViewController(animated: true)
+        } else {
+            fatalError("画像が更新できない")
+        }
     }
     @objc
     func comment() {

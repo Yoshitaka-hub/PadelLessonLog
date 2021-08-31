@@ -12,10 +12,6 @@
 		AE9173774A73DF8BCC385D69 /* Pods_PadelLessonLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D1F17C9292B9D7B9571349 /* Pods_PadelLessonLogTests.framework */; };
 		E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D5F626D6891100C36429 /* LessonImageDataManager.swift */; };
 		E403D5FC26D68C1D00C36429 /* Date+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D5FB26D68C1D00C36429 /* Date+format.swift */; };
-		E403D60426D74B0300C36429 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60026D74B0300C36429 /* Lesson+CoreDataClass.swift */; };
-		E403D60526D74B0300C36429 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60126D74B0300C36429 /* Lesson+CoreDataProperties.swift */; };
-		E403D60626D74B0300C36429 /* LessonSteps+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60226D74B0300C36429 /* LessonSteps+CoreDataClass.swift */; };
-		E403D60726D74B0300C36429 /* LessonSteps+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60326D74B0300C36429 /* LessonSteps+CoreDataProperties.swift */; };
 		E403D60F26D74DF600C36429 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60E26D74DF600C36429 /* CoreDataManager.swift */; };
 		E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
@@ -56,6 +52,11 @@
 		E48E65BA26C216F500A88860 /* ColorTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E48E65B926C216F500A88860 /* ColorTable.storyboard */; };
 		E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65BE26C2172100A88860 /* ColorTableViewController.swift */; };
 		E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65C326C2173500A88860 /* ObjectTableViewController.swift */; };
+		E4D0D17826DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17426DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift */; };
+		E4D0D17926DE4200006C5A39 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17526DE4200006C5A39 /* Lesson+CoreDataClass.swift */; };
+		E4D0D17A26DE4200006C5A39 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17626DE4200006C5A39 /* Lesson+CoreDataProperties.swift */; };
+		E4D0D17B26DE4200006C5A39 /* LessonSteps+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17726DE4200006C5A39 /* LessonSteps+CoreDataClass.swift */; };
+		E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,10 +88,6 @@
 		A3B66B3566CF342B2365AB30 /* Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-PadelLessonLog-PadelLessonLogUITests/Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E403D5F626D6891100C36429 /* LessonImageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageDataManager.swift; sourceTree = "<group>"; };
 		E403D5FB26D68C1D00C36429 /* Date+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+format.swift"; sourceTree = "<group>"; };
-		E403D60026D74B0300C36429 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		E403D60126D74B0300C36429 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		E403D60226D74B0300C36429 /* LessonSteps+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonSteps+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		E403D60326D74B0300C36429 /* LessonSteps+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonSteps+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		E403D60E26D74DF600C36429 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPresistentContainerExtension.swift; sourceTree = "<group>"; };
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +134,11 @@
 		E48E65B926C216F500A88860 /* ColorTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorTable.storyboard; sourceTree = "<group>"; };
 		E48E65BE26C2172100A88860 /* ColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewController.swift; sourceTree = "<group>"; };
 		E48E65C326C2173500A88860 /* ObjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewController.swift; sourceTree = "<group>"; };
+		E4D0D17426DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LessonSteps+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E4D0D17526DE4200006C5A39 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E4D0D17626DE4200006C5A39 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E4D0D17726DE4200006C5A39 /* LessonSteps+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LessonSteps+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +373,7 @@
 		E41F34A426BE6EB2001B24A2 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -378,10 +381,10 @@
 		E41F34A526BE6EBA001B24A2 /* CoreDataProperties */ = {
 			isa = PBXGroup;
 			children = (
-				E403D60026D74B0300C36429 /* Lesson+CoreDataClass.swift */,
-				E403D60126D74B0300C36429 /* Lesson+CoreDataProperties.swift */,
-				E403D60226D74B0300C36429 /* LessonSteps+CoreDataClass.swift */,
-				E403D60326D74B0300C36429 /* LessonSteps+CoreDataProperties.swift */,
+				E4D0D17526DE4200006C5A39 /* Lesson+CoreDataClass.swift */,
+				E4D0D17626DE4200006C5A39 /* Lesson+CoreDataProperties.swift */,
+				E4D0D17726DE4200006C5A39 /* LessonSteps+CoreDataClass.swift */,
+				E4D0D17426DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift */,
 			);
 			path = CoreDataProperties;
 			sourceTree = "<group>";
@@ -713,22 +716,23 @@
 				E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
 				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
+				E4D0D17926DE4200006C5A39 /* Lesson+CoreDataClass.swift in Sources */,
 				E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */,
 				E41F34D926BFB02A001B24A2 /* ObjectImageView.swift in Sources */,
-				E403D60726D74B0300C36429 /* LessonSteps+CoreDataProperties.swift in Sources */,
 				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
+				E4D0D17B26DE4200006C5A39 /* LessonSteps+CoreDataClass.swift in Sources */,
 				E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */,
 				E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */,
 				E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */,
-				E403D60626D74B0300C36429 /* LessonSteps+CoreDataClass.swift in Sources */,
-				E403D60426D74B0300C36429 /* Lesson+CoreDataClass.swift in Sources */,
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
 				E48E65A926C214C600A88860 /* Const.swift in Sources */,
 				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
+				E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */,
+				E4D0D17826DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift in Sources */,
 				E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */,
-				E403D60526D74B0300C36429 /* Lesson+CoreDataProperties.swift in Sources */,
 				E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */,
+				E4D0D17A26DE4200006C5A39 /* Lesson+CoreDataProperties.swift in Sources */,
 				E403D60F26D74DF600C36429 /* CoreDataManager.swift in Sources */,
 				E403D5FC26D68C1D00C36429 /* Date+format.swift in Sources */,
 				E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */,

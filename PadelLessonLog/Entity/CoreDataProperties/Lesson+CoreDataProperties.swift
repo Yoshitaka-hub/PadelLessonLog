@@ -2,7 +2,7 @@
 //  Lesson+CoreDataProperties.swift
 //  PadelLessonLog
 //
-//  Created by Yoshitaka on 2021/08/31.
+//  Created by Yoshitaka on 2021/09/01.
 //
 //
 
@@ -19,6 +19,8 @@ extension Lesson {
     @NSManaged public var id: UUID?
     @NSManaged public var image: Data?
     @NSManaged public var imageOrientation: Int16
+    @NSManaged public var imageSaved: Bool
+    @NSManaged public var title: String?
     @NSManaged public var steps: NSSet?
 
 }

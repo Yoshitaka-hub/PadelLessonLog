@@ -29,7 +29,7 @@ extension CoreDataManager {
         lesson.id = UUID()
         
         //UIImageをNSDataに変換
-        let imageData = image.jpegData(compressionQuality: 1.0)
+        let imageData = image.pngData()
         
         //UIImageの方向を確認
         var imageOrientation:Int = 0
@@ -42,18 +42,149 @@ extension CoreDataManager {
         lesson.setValue(imageData, forKey: "image")
         lesson.setValue(imageOrientation, forKey: "imageOrientation")
     
-        var lessonStepsArray = [LessonSteps]()
         if !steps.isEmpty {
             for (index, step) in steps.enumerated() {
                 let lessonStep = createNewObject(objecteType: .lessonSteps) as! LessonSteps
+                lessonStep.lessonID = lesson.id
                 lessonStep.number = Int16(index)
                 lessonStep.explication = step
-                lessonStepsArray.append(lessonStep)
+                lesson.addToSteps(lessonStep)
             }
-            lesson.setValue(lessonStepsArray, forKey: "steps")
         }
         saveContext()
         return lesson
+    }
+    
+    func loadLessonData(lessonID: String) -> Lesson? {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            return lessons.first
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func deleteLessonData(lessonID: String) -> Bool {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return false }
+            managerObjectContext.delete(lesson)
+            saveContext()
+            return true
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func resetLessonImage(lessonID: String, image: UIImage) -> Bool {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return false }
+            //UIImageをNSDataに変換
+            let imageData = image.pngData()
+            
+            //UIImageの方向を確認
+            var imageOrientation:Int = 0
+            if (image.imageOrientation == UIImage.Orientation.down){
+                imageOrientation = 2
+            }else{
+                imageOrientation = 1
+            }
+            
+            lesson.setValue(imageData, forKey: "image")
+            lesson.setValue(imageOrientation, forKey: "imageOrientation")
+            lesson.imageSaved = false
+            
+            saveContext()
+            return true
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func updateLessonTitleAndSteps(lessonID: String, title: String, steps: [String]) -> Bool {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return false }
+            lesson.title = title
+            deleteAllSteps(lessonID: lessonID)
+            if !steps.isEmpty {
+                for (index, step) in steps.enumerated() {
+                    let lessonStep = createNewObject(objecteType: .lessonSteps) as! LessonSteps
+                    lessonStep.lessonID = lesson.id
+                    lessonStep.number = Int16(index)
+                    lessonStep.explication = step
+                    lesson.addToSteps(lessonStep)
+                }
+            }
+            saveContext()
+            return true
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func deleteAllSteps(lessonID: String) {
+        let fetchRequest = createRequest(objecteType: .lessonSteps)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonSteps]
+            if !lessonSteps.isEmpty {
+                lessonSteps.forEach {
+                    managerObjectContext.delete($0)
+                }
+            }
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func updateLessonImage(lessonID: String, image: UIImage) -> Bool {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return false }
+            //UIImageをNSDataに変換
+            let imageData = image.pngData()
+            
+            //UIImageの方向を確認
+            var imageOrientation:Int = 0
+            if (image.imageOrientation == UIImage.Orientation.down){
+                imageOrientation = 2
+            }else{
+                imageOrientation = 1
+            }
+            
+            lesson.setValue(imageData, forKey: "image")
+            lesson.setValue(imageOrientation, forKey: "imageOrientation")
+            lesson.imageSaved = true
+            
+            saveContext()
+            return true
+        } catch {
+            fatalError("loadData error")
+        }
     }
     
     func createRequest(objecteType: CoreDataObjectType) -> NSFetchRequest<NSFetchRequestResult> {

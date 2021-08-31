@@ -1,8 +1,8 @@
 //
 //  Lesson+CoreDataClass.swift
-//  PadelLessonLog
+//  
 //
-//  Created by Yoshitaka on 2021/08/26.
+//  Created by Yoshitaka on 2021/08/31.
 //
 //
 
