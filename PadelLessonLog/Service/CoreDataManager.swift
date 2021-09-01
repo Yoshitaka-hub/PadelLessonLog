@@ -68,6 +68,17 @@ extension CoreDataManager {
         }
     }
     
+    func loadAllLessonData() -> [Lesson] {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            return lessons
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
     func deleteLessonData(lessonID: String) -> Bool {
         let fetchRequest = createRequest(objecteType: .lesson)
         let uuid = NSUUID(uuidString: lessonID)
