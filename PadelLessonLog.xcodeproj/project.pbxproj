@@ -24,26 +24,27 @@
 		E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */; };
 		E41F347126BE67B3001B24A2 /* PadelLessonLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */; };
 		E41F349326BE6A9A001B24A2 /* MainFeatureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */; };
-		E41F34B426BE7BE3001B24A2 /* Lesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */; };
-		E41F34BA26BE7CAA001B24A2 /* Technique.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B826BE7CAA001B24A2 /* Technique.storyboard */; };
+		E41F34B426BE7BE3001B24A2 /* LessonImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */; };
+		E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */; };
 		E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */; };
 		E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */; };
 		E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */; };
 		E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D326BFA1C6001B24A2 /* DrawingView.swift */; };
 		E41F34D926BFB02A001B24A2 /* ObjectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D826BFB02A001B24A2 /* ObjectImageView.swift */; };
-		E41F34DE26BFB5EA001B24A2 /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */; };
+		E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */; };
 		E4536BDC26C34A19000A308C /* NewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4536BDB26C34A19000A308C /* NewLesson.storyboard */; };
 		E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE026C34A46000A308C /* NewLessonViewController.swift */; };
 		E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE526C36966000A308C /* NewLessonViewModel.swift */; };
-		E4536BEB26C3A3A1000A308C /* TechniqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* TechniqueViewController.swift */; };
+		E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */; };
 		E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */; };
 		E4536BF526C3ABF3000A308C /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4536BF326C3ABF3000A308C /* ImageCollectionViewCell.xib */; };
-		E4536BFB26C3AC0A000A308C /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BF926C3AC0A000A308C /* TitleCollectionViewCell.swift */; };
-		E4536BFC26C3AC0A000A308C /* TitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4536BFA26C3AC0A000A308C /* TitleCollectionViewCell.xib */; };
 		E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0026C4AE17000A308C /* ValidationManager.swift */; };
 		E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0626C4B6F4000A308C /* BaseViewController.swift */; };
 		E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidationTest.swift */; };
 		E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C1326C8D6AF000A308C /* SettingConst.swift */; };
+		E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FEA526E1143900785BB7 /* DataTableViewCell.swift */; };
+		E465FEA826E1143900785BB7 /* DataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E465FEA626E1143900785BB7 /* DataTableViewCell.xib */; };
+		E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */; };
 		E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E659E26C2141B00A88860 /* UIViewController+Common.swift */; };
 		E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */; };
 		E48E65A926C214C600A88860 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65A826C214C600A88860 /* Const.swift */; };
@@ -106,26 +107,27 @@
 		E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelLessonLogUITests.swift; sourceTree = "<group>"; };
 		E41F347226BE67B3001B24A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeatureTest.swift; sourceTree = "<group>"; };
-		E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Lesson.storyboard; path = PadelLessonLog/Screen/Lesson/Lesson.storyboard; sourceTree = SOURCE_ROOT; };
-		E41F34B926BE7CAA001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Technique.storyboard; sourceTree = "<group>"; };
+		E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LessonImage.storyboard; path = PadelLessonLog/Screen/LessonImage/LessonImage.storyboard; sourceTree = SOURCE_ROOT; };
+		E41F34B926BE7CAA001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LessonData.storyboard; sourceTree = "<group>"; };
 		E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewLesson.storyboard; sourceTree = "<group>"; };
 		E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewController.swift; sourceTree = "<group>"; };
 		E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewModel.swift; sourceTree = "<group>"; };
 		E41F34D326BFA1C6001B24A2 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		E41F34D826BFB02A001B24A2 /* ObjectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectImageView.swift; sourceTree = "<group>"; };
-		E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewController.swift; sourceTree = "<group>"; };
 		E4536BDB26C34A19000A308C /* NewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewLesson.storyboard; sourceTree = "<group>"; };
 		E4536BE026C34A46000A308C /* NewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		E4536BE526C36966000A308C /* NewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModel.swift; sourceTree = "<group>"; };
-		E4536BEA26C3A3A1000A308C /* TechniqueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueViewController.swift; sourceTree = "<group>"; };
+		E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewController.swift; sourceTree = "<group>"; };
 		E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4536BF326C3ABF3000A308C /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		E4536BF926C3AC0A000A308C /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
-		E4536BFA26C3AC0A000A308C /* TitleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleCollectionViewCell.xib; sourceTree = "<group>"; };
 		E4536C0026C4AE17000A308C /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		E4536C0626C4B6F4000A308C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4536C0E26C512E6000A308C /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
 		E4536C1326C8D6AF000A308C /* SettingConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConst.swift; sourceTree = "<group>"; };
+		E465FEA526E1143900785BB7 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
+		E465FEA626E1143900785BB7 /* DataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataTableViewCell.xib; sourceTree = "<group>"; };
+		E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		E48E659E26C2141B00A88860 /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAleartControllerExtension.swift; sourceTree = "<group>"; };
 		E48E65A826C214C600A88860 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
@@ -260,8 +262,8 @@
 			children = (
 				E41F345126BE67A8001B24A2 /* Main.storyboard */,
 				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
-				E41F34BF26BF8A7C001B24A2 /* Lesson */,
-				E41F34BE26BF8A6D001B24A2 /* Technique */,
+				E41F34BF26BF8A7C001B24A2 /* LessonImage */,
+				E41F34BE26BF8A6D001B24A2 /* LessonData */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -316,6 +318,7 @@
 				E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */,
 				E403D5FB26D68C1D00C36429 /* Date+format.swift */,
 				E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */,
+				E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 		E41F349F26BE6D63001B24A2 /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
+				E4536BEF26C3AB99000A308C /* LessonViewCell */,
 				E41F34D326BFA1C6001B24A2 /* DrawingView.swift */,
 				E41F34D826BFB02A001B24A2 /* ObjectImageView.swift */,
 				E48E65AD26C2154700A88860 /* InfoAlertView.swift */,
@@ -389,25 +393,24 @@
 			path = CoreDataProperties;
 			sourceTree = "<group>";
 		};
-		E41F34BE26BF8A6D001B24A2 /* Technique */ = {
+		E41F34BE26BF8A6D001B24A2 /* LessonData */ = {
 			isa = PBXGroup;
 			children = (
-				E41F34B826BE7CAA001B24A2 /* Technique.storyboard */,
-				E4536BEA26C3A3A1000A308C /* TechniqueViewController.swift */,
+				E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */,
+				E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */,
 			);
-			path = Technique;
+			path = LessonData;
 			sourceTree = "<group>";
 		};
-		E41F34BF26BF8A7C001B24A2 /* Lesson */ = {
+		E41F34BF26BF8A7C001B24A2 /* LessonImage */ = {
 			isa = PBXGroup;
 			children = (
-				E4536BEF26C3AB99000A308C /* LessonCollectionViewCell */,
-				E41F34B326BE7BE3001B24A2 /* Lesson.storyboard */,
-				E41F34DD26BFB5EA001B24A2 /* LessonViewController.swift */,
+				E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */,
+				E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */,
 				E4536BDA26C33F06000A308C /* NewLesson */,
 				E41F34C326BF982E001B24A2 /* AddNewLessonImage */,
 			);
-			path = Lesson;
+			path = LessonImage;
 			sourceTree = "<group>";
 		};
 		E41F34C326BF982E001B24A2 /* AddNewLessonImage */ = {
@@ -432,22 +435,13 @@
 			path = NewLesson;
 			sourceTree = "<group>";
 		};
-		E4536BEF26C3AB99000A308C /* LessonCollectionViewCell */ = {
+		E4536BEF26C3AB99000A308C /* LessonViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				E465FE9E26E1140C00785BB7 /* DataTable Cell */,
 				E4536BF126C3ABBE000A308C /* Image Cell */,
-				E4536BF026C3ABB2000A308C /* Title Cell */,
 			);
-			path = LessonCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		E4536BF026C3ABB2000A308C /* Title Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E4536BF926C3AC0A000A308C /* TitleCollectionViewCell.swift */,
-				E4536BFA26C3AC0A000A308C /* TitleCollectionViewCell.xib */,
-			);
-			path = "Title Cell";
+			path = LessonViewCell;
 			sourceTree = "<group>";
 		};
 		E4536BF126C3ABBE000A308C /* Image Cell */ = {
@@ -465,6 +459,15 @@
 				E4536C0626C4B6F4000A308C /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E465FE9E26E1140C00785BB7 /* DataTable Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E465FEA526E1143900785BB7 /* DataTableViewCell.swift */,
+				E465FEA626E1143900785BB7 /* DataTableViewCell.xib */,
+			);
+			path = "DataTable Cell";
 			sourceTree = "<group>";
 		};
 		E48E65B226C216AF00A88860 /* ColorTable */ = {
@@ -592,13 +595,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41F34BA26BE7CAA001B24A2 /* Technique.storyboard in Resources */,
-				E4536BFC26C3AC0A000A308C /* TitleCollectionViewCell.xib in Resources */,
+				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
 				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
+				E465FEA826E1143900785BB7 /* DataTableViewCell.xib in Resources */,
 				E48E65B526C216E600A88860 /* ObjectTable.storyboard in Resources */,
 				E48E65BA26C216F500A88860 /* ColorTable.storyboard in Resources */,
 				E4536BF526C3ABF3000A308C /* ImageCollectionViewCell.xib in Resources */,
-				E41F34B426BE7BE3001B24A2 /* Lesson.storyboard in Resources */,
+				E41F34B426BE7BE3001B24A2 /* LessonImage.storyboard in Resources */,
 				E41F345B26BE67B3001B24A2 /* LaunchScreen.storyboard in Resources */,
 				E41F345826BE67B3001B24A2 /* Assets.xcassets in Resources */,
 				E4536BDC26C34A19000A308C /* NewLesson.storyboard in Resources */,
@@ -728,6 +731,7 @@
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
 				E48E65A926C214C600A88860 /* Const.swift in Sources */,
 				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
+				E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */,
 				E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */,
 				E4D0D17826DE4200006C5A39 /* LessonSteps+CoreDataProperties.swift in Sources */,
 				E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */,
@@ -737,13 +741,13 @@
 				E403D5FC26D68C1D00C36429 /* Date+format.swift in Sources */,
 				E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */,
 				E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */,
-				E41F34DE26BFB5EA001B24A2 /* LessonViewController.swift in Sources */,
+				E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */,
 				E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */,
 				E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */,
-				E4536BEB26C3A3A1000A308C /* TechniqueViewController.swift in Sources */,
+				E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */,
 				E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */,
-				E4536BFB26C3AC0A000A308C /* TitleCollectionViewCell.swift in Sources */,
 				E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */,
+				E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */,
 				E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,12 +802,12 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		E41F34B826BE7CAA001B24A2 /* Technique.storyboard */ = {
+		E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E41F34B926BE7CAA001B24A2 /* Base */,
 			);
-			name = Technique.storyboard;
+			name = LessonData.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class LessonViewController: UIViewController {
+class LessonImageViewController: UIViewController {
 
     @IBOutlet weak var customToolbar: UIToolbar!
-    @IBOutlet weak var titleBarButton: UIBarButtonItem!
-    @IBOutlet weak var imageBarButton: UIBarButtonItem!
+    @IBOutlet weak var allBarButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
     @IBOutlet weak var customCollectionView: UICollectionView!
     
@@ -20,30 +20,45 @@ class LessonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lessonsArray = coreDataMangaer.loadAllLessonData()
         
         customToolbar.isTranslucent = false
         customToolbar.barTintColor = UIColor.systemBackground
         customToolbar.barStyle = .default
+        allBarButton.tintColor = .blue
+        allBarButton.style = .done
+        favoriteBarButton.tintColor = .lightGray
+        favoriteBarButton.style = .plain
         
         customCollectionView.delegate = self
         customCollectionView.dataSource = self
         
-        customCollectionView.register(UINib(nibName: "TitleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TitleCell")
         customCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         customCollectionView.setCollectionViewLayout(layout, animated: true)
+        
+        if let tabBarCon = parent as? UITabBarController {
+            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "gearshape")!, select: #selector(setting))
+            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "pencil.tip.crop.circle.badge.plus")!, select: #selector(addNewLesson))
+        }
     }
-    @IBAction func titleBarButtonPressed(_ sender: UIBarButtonItem) {
-     
-    }
-    @IBAction func imageBarButtonPressed(_ sender: UIBarButtonItem) {
-     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        lessonsArray = coreDataMangaer.loadAllLessonData()
+        customCollectionView.reloadData()
+        allBarButton.tintColor = .blue
+        favoriteBarButton.tintColor = .lightGray
     }
     
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+    @objc
+    func setting() {
+      
+    }
+    
+    @objc
+    func addNewLesson() {
         let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NewLesson")
         if let newLessonVC = vc as? NewLessonViewController {
@@ -51,9 +66,22 @@ class LessonViewController: UIViewController {
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
+        lessonsArray = coreDataMangaer.loadAllLessonData()
+        customCollectionView.reloadData()
+        allBarButton.tintColor = .systemBlue
+        favoriteBarButton.tintColor = .lightGray
+    }
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
+        customCollectionView.reloadData()
+        favoriteBarButton.tintColor = .systemBlue
+        allBarButton.tintColor = .lightGray
+    }
 }
 
-extension LessonViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return lessonsArray.count
@@ -81,5 +109,4 @@ extension LessonViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 2.0
     }
-    
 }

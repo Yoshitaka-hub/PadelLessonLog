@@ -3,15 +3,17 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Lesson-->
+        <!--LessonImage-->
         <scene sceneID="CeM-Rn-Taf">
             <objects>
-                <viewController id="fTc-pP-j0C" customClass="LessonViewController" customModule="PadelLessonLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fTc-pP-j0C" userLabel="LessonImage" customClass="LessonImageViewController" customModule="PadelLessonLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p5c-N7-vcC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,48 +37,54 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nxX-t3-tVn"/>
-                                    <barButtonItem title="Title Table" id="ww6-lB-XQ1">
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                    <barButtonItem title="All" id="ww6-lB-XQ1">
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
-                                            <action selector="titleBarButtonPressed:" destination="fTc-pP-j0C" id="JKF-uz-Pol"/>
+                                            <action selector="allButtonPressed:" destination="fTc-pP-j0C" id="JKF-uz-Pol"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="Oqq-Bg-Rya"/>
-                                    <barButtonItem title="Image Table" id="J2B-sy-dPU">
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EAc-xu-nKS"/>
+                                    <barButtonItem title="Stars" id="J2B-sy-dPU">
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
-                                            <action selector="imageBarButtonPressed:" destination="fTc-pP-j0C" id="UgZ-mz-VfR"/>
+                                            <action selector="favoriteButtonPressed:" destination="fTc-pP-j0C" id="UgZ-mz-VfR"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="BcB-Xm-TtO"/>
-                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="EmL-oC-bLJ"/>
-                                    <barButtonItem systemItem="add" id="3jM-Cc-SE0">
-                                        <connections>
-                                            <action selector="addButtonPressed:" destination="fTc-pP-j0C" id="F5y-Xq-3Rt"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-pX-aZV">
+                                <rect key="frame" x="354" y="753" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5LS-Dq-woP"/>
+                                    <constraint firstAttribute="width" constant="30" id="DOJ-gU-k7Q"/>
+                                </constraints>
+                                <state key="normal">
+                                    <imageReference key="image" image="text.bubble.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IzJ-x4-pPF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="ggU-pX-aZV" secondAttribute="trailing" constant="30" id="78J-Xd-W0O"/>
                             <constraint firstItem="IzJ-x4-pPF" firstAttribute="bottom" secondItem="T93-fp-xJQ" secondAttribute="bottom" id="KHV-yf-oqE"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="trailing" secondItem="IzJ-x4-pPF" secondAttribute="trailing" id="Lld-kL-Aew"/>
                             <constraint firstItem="T93-fp-xJQ" firstAttribute="top" secondItem="zfc-gE-S8Y" secondAttribute="bottom" id="Q8j-2i-YV6"/>
+                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="bottom" secondItem="ggU-pX-aZV" secondAttribute="bottom" constant="30" id="hC3-PF-cfl"/>
                             <constraint firstItem="T93-fp-xJQ" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="ilp-iz-smj"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="top" secondItem="IzJ-x4-pPF" secondAttribute="top" id="tkp-6o-b8r"/>
                             <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="T93-fp-xJQ" secondAttribute="trailing" id="uHc-Qt-YN0"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="uV4-lc-MgT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lesson" image="pencil" catalog="system" id="HQ7-FW-Zrk"/>
+                    <tabBarItem key="tabBarItem" title="Lesson Image" image="pencil" catalog="system" id="HQ7-FW-Zrk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="allBarButton" destination="ww6-lB-XQ1" id="Awn-GI-vpD"/>
                         <outlet property="customCollectionView" destination="T93-fp-xJQ" id="2dP-PN-Hun"/>
                         <outlet property="customToolbar" destination="zfc-gE-S8Y" id="pTF-Hv-eWI"/>
-                        <outlet property="imageBarButton" destination="J2B-sy-dPU" id="uUI-2l-bVk"/>
-                        <outlet property="titleBarButton" destination="ww6-lB-XQ1" id="Awn-GI-vpD"/>
+                        <outlet property="favoriteBarButton" destination="J2B-sy-dPU" id="uUI-2l-bVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpd-FR-CsK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,9 +94,10 @@
     </scenes>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -68,6 +68,18 @@ extension CoreDataManager {
         }
     }
     
+    func loadAllFavoriteLessonData() -> [Lesson] {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let predicate = NSPredicate(format: "%K == %@", "favorite", NSNumber(value: true))
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            return lessons
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
     func loadAllLessonData() -> [Lesson] {
         let fetchRequest = createRequest(objecteType: .lesson)
         
@@ -146,6 +158,22 @@ extension CoreDataManager {
             }
             saveContext()
             return true
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func updateLessonFavorite(lessonID: String, favorite: Bool) {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let uuid = NSUUID(uuidString: lessonID)
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return }
+            lesson.favorite = favorite
+            deleteAllSteps(lessonID: lessonID)
+            saveContext()
         } catch {
             fatalError("loadData error")
         }

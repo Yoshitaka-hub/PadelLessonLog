@@ -31,6 +31,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Jhd-OG-ZC9"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hBX-tT-jov">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -43,20 +44,20 @@
             </objects>
             <point key="canvasLocation" x="966.66666666666674" y="93.75"/>
         </scene>
-        <!--Lesson-->
+        <!--LessonImage-->
         <scene sceneID="tgF-B4-5Sd">
             <objects>
-                <viewControllerPlaceholder storyboardName="Lesson" id="gf6-LE-gwn" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="LessonImage" id="gf6-LE-gwn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="WP9-Mz-8Dm"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxa-GU-I6W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="491" y="558"/>
         </scene>
-        <!--Technique-->
+        <!--LessonData-->
         <scene sceneID="pwE-b4-ZHv">
             <objects>
-                <viewControllerPlaceholder storyboardName="Technique" id="YxX-m9-Kcx" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="LessonData" id="YxX-m9-Kcx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="nYa-e5-iRq"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SnX-gl-ntX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
