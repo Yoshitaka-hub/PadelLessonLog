@@ -83,6 +83,7 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = storyboard.instantiateViewController(identifier: "Detail")
         if let detailVC = vc as? DetailViewController {
             detailVC.lessonData = lessonsArray[indexPath.row]
+            detailVC.delegate = self
         }
         let nvc = UINavigationController.init(rootViewController: vc)
         self.present(nvc, animated: true)
@@ -91,8 +92,7 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
         return tableMode == .allTableView ?  true : false
     }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: sourceIndexPath) as! DataTableViewCell
-        guard let lesson = cell.lesson else { return }
+        let lesson = lessonsArray[sourceIndexPath.row]
         lessonsArray.remove(at: sourceIndexPath.row)
         lessonsArray.insert(lesson, at: destinationIndexPath.row)
         coreDataMangaer.updateLessonOrder(lessonArray: lessonsArray)
@@ -104,5 +104,16 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+}
+
+extension LessonDataViewController: DetailViewControllerDelegate {
+    func pushToEditView(lesson: Lesson) {
+        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+        if let newLessonVC = vc as? NewLessonViewController {
+            newLessonVC.lessonData = lesson
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

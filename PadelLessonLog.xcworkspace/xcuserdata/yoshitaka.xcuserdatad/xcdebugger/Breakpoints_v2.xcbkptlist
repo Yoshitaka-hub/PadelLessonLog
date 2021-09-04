@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "307FF30B-437E-4E3F-B94F-4EE7769F4B29"
+            uuid = "30F24743-1A7B-4B88-A910-C0F4522F8797"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PadelLessonLog/Screen/DataOrganize/NewLesson/NewLessonViewController.swift"
+            filePath = "PadelLessonLog/Screen/LessonData/LessonDataViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "tableView(_:commit:forRowAt:)"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "pushToEditView(lesson:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -60,8 +60,11 @@
                                     <constraint firstAttribute="width" constant="30" id="DOJ-gU-k7Q"/>
                                 </constraints>
                                 <state key="normal">
-                                    <imageReference key="image" image="text.bubble.fill" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="detailButtonPressed:" destination="fTc-pP-j0C" eventType="touchUpInside" id="Vvu-9U-Snf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IzJ-x4-pPF"/>
@@ -93,8 +96,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="text.bubble.fill" catalog="system" width="128" height="110"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

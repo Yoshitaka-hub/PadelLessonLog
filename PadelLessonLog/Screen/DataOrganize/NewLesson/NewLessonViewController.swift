@@ -45,6 +45,17 @@ class NewLessonViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: .remove, select: #selector(deleteData))
         self.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: .checkmark, select: #selector(save))
         
+        if let lesson = lessonData {
+            lessonNameTextField.text = lesson.title
+            let steps = coreDataMangaer.featchSteps(lessonID: lesson.id!.uuidString)
+            viewModel.tableViewCellNum = steps.count
+            if !steps.isEmpty {
+                for step in steps {
+                    viewModel.tableViewCellString.append(step.explication ?? "")
+                }
+            }
+        }
+        
         viewModel.$addImageButtonIsSelected
             .sink { [self] (isSelected) in
                 guard isSelected != addImageButton.isSelected else { return }
@@ -84,6 +95,7 @@ class NewLessonViewController: BaseViewController {
         guard let lesson = lessonData else { return }
         coreDataMangaer.createStep(lesson: lesson)
         viewModel.tableViewCellNum += 1
+        viewModel.tableViewCellString.append("")
         mainTableView.reloadData()
         if editStepButton.isSelected {
             editStepButton.isSelected = false
@@ -165,9 +177,9 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StepCell", for: indexPath) as! StepTableViewCell
         cell.delegate = self
-        cell.cellLabel.text = String(indexPath.row + 1)
         cell.index = indexPath.row
-
+        cell.cellLabel.text = String(indexPath.row + 1)
+        cell.stepTextView.text = viewModel.tableViewCellString[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -183,8 +195,9 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
             coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: safeSteps)
         }
         viewModel.tableViewCellNum -= 1
+        viewModel.tableViewCellString.remove(at: indexPath.row)
         
-        mainTableView.deleteRows(at: [indexPath], with: .automatic)
+//        mainTableView.deleteRows(at: [indexPath], with: .automatic)
         mainTableView.reloadData()
     }
 }

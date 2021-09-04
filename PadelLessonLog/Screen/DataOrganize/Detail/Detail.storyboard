@@ -56,11 +56,22 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lesson title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7s-hJ-mmW">
-                                        <rect key="frame" x="70" y="10" width="334" height="20.5"/>
+                                        <rect key="frame" x="70" y="10" width="304" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcq-jy-yeB">
+                                        <rect key="frame" x="379" y="5" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Kbq-oi-3EK"/>
+                                            <constraint firstAttribute="height" constant="30" id="TYt-WQ-ieQ"/>
+                                        </constraints>
+                                        <state key="normal" image="photo" catalog="system"/>
+                                        <connections>
+                                            <action selector="imageButtonPressed:" destination="AiS-EP-2BY" eventType="touchUpInside" id="G7E-GO-hof"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -68,7 +79,9 @@
                                     <constraint firstItem="m7s-hJ-mmW" firstAttribute="centerY" secondItem="J4M-NG-fhS" secondAttribute="centerY" id="FcQ-QT-nua"/>
                                     <constraint firstItem="MFj-Dk-LBI" firstAttribute="centerY" secondItem="J4M-NG-fhS" secondAttribute="centerY" id="ZeG-3G-uP2"/>
                                     <constraint firstItem="MFj-Dk-LBI" firstAttribute="leading" secondItem="J4M-NG-fhS" secondAttribute="leading" constant="10" id="c91-ew-gQ1"/>
-                                    <constraint firstAttribute="trailing" secondItem="m7s-hJ-mmW" secondAttribute="trailing" constant="10" id="iZp-C2-HE3"/>
+                                    <constraint firstItem="Hcq-jy-yeB" firstAttribute="centerY" secondItem="J4M-NG-fhS" secondAttribute="centerY" id="fDw-aw-Hrn"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hcq-jy-yeB" secondAttribute="trailing" constant="5" id="iHE-sn-xJD"/>
+                                    <constraint firstItem="Hcq-jy-yeB" firstAttribute="leading" secondItem="m7s-hJ-mmW" secondAttribute="trailing" constant="5" id="iZp-C2-HE3"/>
                                     <constraint firstItem="m7s-hJ-mmW" firstAttribute="leading" secondItem="MFj-Dk-LBI" secondAttribute="trailing" id="lhu-af-exF"/>
                                 </constraints>
                             </view>
@@ -86,6 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageButton" destination="Hcq-jy-yeB" id="FDt-pY-vui"/>
                         <outlet property="lessonTitleLabel" destination="m7s-hJ-mmW" id="uy8-Kd-xQW"/>
                         <outlet property="stepTableView" destination="mat-vN-wI2" id="nYl-gQ-MEW"/>
                     </connections>
@@ -96,6 +110,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

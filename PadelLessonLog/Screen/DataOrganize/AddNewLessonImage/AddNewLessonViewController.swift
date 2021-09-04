@@ -23,6 +23,8 @@ class AddNewLessonViewController: UIViewController {
         super.viewDidLoad()
         courtImageView.image = lessonImage
         configureToolbar()
+        
+        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
     }
     
     override func viewWillLayoutSubviews() {
@@ -52,6 +54,11 @@ class AddNewLessonViewController: UIViewController {
         buttonItems.append(flexibleSpace)
         
         customToolbar.setItems(buttonItems, animated: true)
+    }
+    
+    @objc
+    func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

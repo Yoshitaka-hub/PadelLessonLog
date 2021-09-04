@@ -36,7 +36,6 @@
                         <constraints>
                             <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="O2C-m7-f04" secondAttribute="bottom" id="18E-30-qVq"/>
                             <constraint firstItem="vn5-iB-fWo" firstAttribute="trailing" secondItem="O2C-m7-f04" secondAttribute="trailing" id="1pr-aw-FdK"/>
-                            <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="WTH-EL-XDW" secondAttribute="bottom" id="2S1-hd-ioa"/>
                             <constraint firstItem="O2C-m7-f04" firstAttribute="top" secondItem="vn5-iB-fWo" secondAttribute="top" id="Bew-KQ-kBY"/>
                             <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="WTH-EL-XDW" secondAttribute="bottom" symbolic="YES" id="GCR-Nn-ZYW"/>
                             <constraint firstItem="7VU-rp-PQt" firstAttribute="leading" secondItem="vn5-iB-fWo" secondAttribute="leading" id="O1C-v5-RPg"/>

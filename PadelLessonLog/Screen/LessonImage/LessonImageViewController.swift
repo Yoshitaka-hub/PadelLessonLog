@@ -79,6 +79,19 @@ class LessonImageViewController: UIViewController {
         favoriteBarButton.tintColor = .systemBlue
         allBarButton.tintColor = .lightGray
     }
+    @IBAction func detailButtonPressed(_ sender: UIButton) {
+        let cell = customCollectionView.visibleCells.first as? ImageCollectionViewCell
+        guard let safeCell = cell else { return }
+        guard let lesson = safeCell.lesson else { return }
+        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "Detail")
+        if let detailVC = vc as? DetailViewController {
+            detailVC.lessonData = lesson
+            detailVC.delegate = self
+        }
+        let nvc = UINavigationController.init(rootViewController: vc)
+        self.present(nvc, animated: true)
+    }
 }
 
 extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -90,8 +103,7 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath)
         guard let imageCell = customCell as? ImageCollectionViewCell else { return customCell }
-        imageCell.titleLabel.text = lessonsArray[indexPath.row].title
-        imageCell.lessonImageView.image = lessonsArray[indexPath.row].getImage()
+        imageCell.setLessonData(lesson: lessonsArray[indexPath.row])
         return imageCell
     }
     
@@ -110,3 +122,15 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
         return 2.0
     }
 }
+
+extension LessonImageViewController: DetailViewControllerDelegate {
+    func pushToEditView(lesson: Lesson) {
+        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+        if let newLessonVC = vc as? NewLessonViewController {
+            newLessonVC.lessonData = lesson
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

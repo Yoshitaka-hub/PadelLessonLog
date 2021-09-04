@@ -203,9 +203,9 @@ class DrawingView: UIView, UIGestureRecognizerDelegate {
         drawingRect = drawingRect.offsetBy(dx: rect.midX - drawingRect.width / 2, dy: rect.midY - drawingRect.height / 2).integral
         image.draw(in: rect)
         drawnImageView.image?.draw(in: drawingRect)
-        for arrow in objectViews {
-            let arrowRect = arrow.frame
-            let image = arrow.rotatedImage()
+        for object in objectViews {
+            let arrowRect = object.frame
+            let image = object.rotatedImage()
             let marginX = (image.size.width - arrowRect.width) / 2
             let marginY = (image.size.height - arrowRect.height) / 2
             let arrowDrawingRect = CGRect(x: (arrowRect.minX - marginX) * rate,

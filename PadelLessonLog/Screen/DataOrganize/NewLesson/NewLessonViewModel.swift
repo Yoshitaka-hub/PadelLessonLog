@@ -10,5 +10,6 @@ import Combine
 
 class NewLessonViewModel {
     @Published var tableViewCellNum: Int = 1
+    @Published var tableViewCellString: [String] = []
     @Published var addImageButtonIsSelected: Bool = false
 }
