@@ -30,6 +30,7 @@ class NewLessonViewController: BaseViewController {
         lessonNameTextField.delegate = self
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        mainTableView.register(UINib(nibName: "StepTableViewCell", bundle: nil), forCellReuseIdentifier: "StepCell")
         
         mainTableView.tableFooterView = UIView()
         addImageButton.isSelected = false
@@ -80,6 +81,8 @@ class NewLessonViewController: BaseViewController {
         pushToAddNewLessonVC()
     }
     @IBAction func addStepButtonPressed(_ sender: UIButton) {
+        guard let lesson = lessonData else { return }
+        coreDataMangaer.createStep(lesson: lesson)
         viewModel.tableViewCellNum += 1
         mainTableView.reloadData()
         if editStepButton.isSelected {
@@ -105,14 +108,7 @@ class NewLessonViewController: BaseViewController {
     func save() {
         guard let id = lessonData?.id?.uuidString else { return }
         let title = lessonNameTextField.text ?? ""
-        var array: [String] = []
-        let num = mainTableView.visibleCells.count
-        for i in 0..<num {
-            let cell = mainTableView.visibleCells[i]
-            let textView = cell.contentView.viewWithTag(2) as? UITextView
-            array.append(textView?.text ?? "")
-        }
-        if coreDataMangaer.updateLessonTitleAndSteps(lessonID: id, title: title, steps: array) {
+        if coreDataMangaer.updateLessonTitle(lessonID: id, title: title) {
             self.navigationController?.popViewController(animated: true)
         } else {
             fatalError("steps saving failed")
@@ -137,18 +133,12 @@ extension NewLessonViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let result: ValidationResult = validationManager.validate(textField.text ?? "")
         if result != .valid {
-            self.warningAlertView(withTitle: "グループ名が登録できません")
+            self.warningAlertView(withTitle: "登録できません")
         }
     }
 }
 
 extension NewLessonViewController: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
-        let result: ValidationResult = validationManager.validate(textView.text ?? "")
-        if result != .valid {
-            self.warningAlertView(withTitle: "グループ名が登録できません")
-        }
-    }
     
     @objc
     func adjustForKeyboard(notification: Notification) {
@@ -173,19 +163,46 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewLessonCell", for: indexPath)
-        let numLabel = cell.contentView.viewWithTag(1) as? UILabel
-        let textView = cell.contentView.viewWithTag(2) as? UITextView
-        textView?.delegate = self
-        
-        numLabel?.text = String(indexPath.row + 1)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StepCell", for: indexPath) as! StepTableViewCell
+        cell.delegate = self
+        cell.cellLabel.text = String(indexPath.row + 1)
+        cell.index = indexPath.row
 
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let lesson = lessonData else { return }
+        let stpes = lesson.steps?.allObjects as? [LessonSteps]
+        guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
+        
+        var deleteStep: LessonSteps?
+        for step in safeSteps where step.number == Int16(indexPath.row) {
+            deleteStep = step
+        }
+        if let step = deleteStep {
+            coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: safeSteps)
+        }
         viewModel.tableViewCellNum -= 1
+        
         mainTableView.deleteRows(at: [indexPath], with: .automatic)
         mainTableView.reloadData()
     }
-    
+}
+
+extension NewLessonViewController: InputTextTableCellDelegate {
+    func textViewDidEndEditing(cell: StepTableViewCell, value: String) {
+//        let result: ValidationResult = validationManager.validate(value)
+//        if result != .valid {
+//            self.warningAlertView(withTitle: "保存できません")
+//            return
+//        }
+        guard let lesson = lessonData else { return }
+        let stpes = lesson.steps?.allObjects as? [LessonSteps]
+        guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
+        guard let num = cell.index else { return }
+        for step in safeSteps where step.number == Int16(num) {
+            step.explication = value
+            step.save()
+        }
+    }
 }

@@ -92,7 +92,6 @@ class AddNewLessonViewController: UIViewController {
         }
         openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: 50, y: 0, width: 150, height: 180), arrowDirections: .down, canOverlapSourceViewRect: true)
     }
-    
 }
 
 extension AddNewLessonViewController: ColorTableViewControllerDelegate {
@@ -107,6 +106,4 @@ extension AddNewLessonViewController: ObjectTableViewControllerDelegate {
         drawingView.objectType = didSelectObject
         objectTableViewController.dismiss(animated: true)
     }
-    
-    
 }

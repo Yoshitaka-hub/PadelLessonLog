@@ -31,18 +31,13 @@
                                             <action selector="allButtonPressed:" destination="d3b-jK-jJw" id="yC1-Du-Y8O"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="1UP-K7-84i"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vxi-gV-WHc"/>
                                     <barButtonItem title="Stars" id="CXB-V5-YXq">
                                         <connections>
                                             <action selector="favoriteButtonPressed:" destination="d3b-jK-jJw" id="ps4-Zr-rvY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dek-t4-7Wd"/>
-                                    <barButtonItem style="done" systemItem="edit" id="JAo-0E-f53">
-                                        <connections>
-                                            <action selector="editButtonPressed:" destination="d3b-jK-jJw" id="yOi-of-ylb"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -64,7 +59,6 @@
                         <outlet property="allBarButton" destination="6Fb-dn-Bvp" id="Fnz-du-ZSe"/>
                         <outlet property="customTableView" destination="KtN-T6-Qq6" id="1ma-5o-JjF"/>
                         <outlet property="customToolbar" destination="1Mn-7U-oSg" id="kLy-2m-oX5"/>
-                        <outlet property="editBarButton" destination="JAo-0E-f53" id="hND-zY-PyD"/>
                         <outlet property="favoriteBarButton" destination="CXB-V5-YXq" id="P1F-fn-oqw"/>
                     </connections>
                 </viewController>

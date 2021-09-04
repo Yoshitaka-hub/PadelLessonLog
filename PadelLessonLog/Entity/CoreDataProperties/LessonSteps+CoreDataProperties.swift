@@ -2,7 +2,7 @@
 //  LessonSteps+CoreDataProperties.swift
 //  PadelLessonLog
 //
-//  Created by Yoshitaka on 2021/09/01.
+//  Created by Yoshitaka on 2021/09/04.
 //
 //
 
@@ -17,8 +17,8 @@ extension LessonSteps {
     }
 
     @NSManaged public var explication: String?
-    @NSManaged public var number: Int16
     @NSManaged public var lessonID: UUID?
+    @NSManaged public var number: Int16
     @NSManaged public var lesson: Lesson?
 
 }

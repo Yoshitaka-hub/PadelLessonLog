@@ -16,49 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-OE-xeX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-OE-xeX">
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewLessonCell" rowHeight="80" id="JrV-KN-Cli">
-                                        <rect key="frame" x="16" y="55.5" width="343" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JrV-KN-Cli" id="5co-2U-mr9">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfk-bR-usS">
-                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="XrO-n4-Jma"/>
-                                                        <constraint firstAttribute="height" constant="30" id="kCo-2R-dGT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KUB-ba-gS5">
-                                                    <rect key="frame" x="50" y="10" width="283" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="Wy2-0B-mwd"/>
-                                                    </constraints>
-                                                    <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="KUB-ba-gS5" secondAttribute="trailing" constant="10" id="6dh-cp-FAv"/>
-                                                <constraint firstItem="Bfk-bR-usS" firstAttribute="leading" secondItem="5co-2U-mr9" secondAttribute="leading" constant="10" id="PqX-yI-BMw"/>
-                                                <constraint firstItem="KUB-ba-gS5" firstAttribute="top" secondItem="5co-2U-mr9" secondAttribute="top" constant="10" id="W3H-3a-FaJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="KUB-ba-gS5" secondAttribute="bottom" constant="10" id="XAE-y4-O91"/>
-                                                <constraint firstItem="KUB-ba-gS5" firstAttribute="leading" secondItem="Bfk-bR-usS" secondAttribute="trailing" constant="10" id="ZAO-4X-7sF"/>
-                                                <constraint firstItem="Bfk-bR-usS" firstAttribute="top" secondItem="5co-2U-mr9" secondAttribute="top" constant="10" id="mbt-mb-gvV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVG-TA-KCP" userLabel="Image View">
                                 <rect key="frame" x="0.0" y="60" width="375" height="60"/>
@@ -212,14 +172,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

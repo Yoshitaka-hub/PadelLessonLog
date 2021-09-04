@@ -32,6 +32,10 @@
 		E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D326BFA1C6001B24A2 /* DrawingView.swift */; };
 		E41F34D926BFB02A001B24A2 /* ObjectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34D826BFB02A001B24A2 /* ObjectImageView.swift */; };
 		E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */; };
+		E445D0D226E2F25A005B6FCB /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E445D0D126E2F259005B6FCB /* Detail.storyboard */; };
+		E445D0D726E2F274005B6FCB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445D0D626E2F274005B6FCB /* DetailViewController.swift */; };
+		E445D0DE26E33C03005B6FCB /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */; };
+		E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */; };
 		E4536BDC26C34A19000A308C /* NewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4536BDB26C34A19000A308C /* NewLesson.storyboard */; };
 		E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE026C34A46000A308C /* NewLessonViewController.swift */; };
 		E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE526C36966000A308C /* NewLessonViewModel.swift */; };
@@ -115,6 +119,10 @@
 		E41F34D326BFA1C6001B24A2 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		E41F34D826BFB02A001B24A2 /* ObjectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectImageView.swift; sourceTree = "<group>"; };
 		E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewController.swift; sourceTree = "<group>"; };
+		E445D0D126E2F259005B6FCB /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		E445D0D626E2F274005B6FCB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
+		E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepTableViewCell.xib; sourceTree = "<group>"; };
 		E4536BDB26C34A19000A308C /* NewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewLesson.storyboard; sourceTree = "<group>"; };
 		E4536BE026C34A46000A308C /* NewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		E4536BE526C36966000A308C /* NewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModel.swift; sourceTree = "<group>"; };
@@ -264,6 +272,7 @@
 				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
 				E41F34BF26BF8A7C001B24A2 /* LessonImage */,
 				E41F34BE26BF8A6D001B24A2 /* LessonData */,
+				E445D0D026E2F1BD005B6FCB /* DataOrganize */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -407,8 +416,6 @@
 			children = (
 				E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */,
 				E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */,
-				E4536BDA26C33F06000A308C /* NewLesson */,
-				E41F34C326BF982E001B24A2 /* AddNewLessonImage */,
 			);
 			path = LessonImage;
 			sourceTree = "<group>";
@@ -425,6 +432,34 @@
 			path = AddNewLessonImage;
 			sourceTree = "<group>";
 		};
+		E445D0CF26E2F133005B6FCB /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E445D0D126E2F259005B6FCB /* Detail.storyboard */,
+				E445D0D626E2F274005B6FCB /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		E445D0D026E2F1BD005B6FCB /* DataOrganize */ = {
+			isa = PBXGroup;
+			children = (
+				E4536BDA26C33F06000A308C /* NewLesson */,
+				E41F34C326BF982E001B24A2 /* AddNewLessonImage */,
+				E445D0CF26E2F133005B6FCB /* Detail */,
+			);
+			path = DataOrganize;
+			sourceTree = "<group>";
+		};
+		E445D0DB26E33BD7005B6FCB /* Step Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */,
+				E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */,
+			);
+			path = "Step Cell";
+			sourceTree = "<group>";
+		};
 		E4536BDA26C33F06000A308C /* NewLesson */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,6 +473,7 @@
 		E4536BEF26C3AB99000A308C /* LessonViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				E445D0DB26E33BD7005B6FCB /* Step Cell */,
 				E465FE9E26E1140C00785BB7 /* DataTable Cell */,
 				E4536BF126C3ABBE000A308C /* Image Cell */,
 			);
@@ -597,6 +633,7 @@
 			files = (
 				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
 				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
+				E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */,
 				E465FEA826E1143900785BB7 /* DataTableViewCell.xib in Resources */,
 				E48E65B526C216E600A88860 /* ObjectTable.storyboard in Resources */,
 				E48E65BA26C216F500A88860 /* ColorTable.storyboard in Resources */,
@@ -606,6 +643,7 @@
 				E41F345826BE67B3001B24A2 /* Assets.xcassets in Resources */,
 				E4536BDC26C34A19000A308C /* NewLesson.storyboard in Resources */,
 				E41F345326BE67A8001B24A2 /* Main.storyboard in Resources */,
+				E445D0D226E2F25A005B6FCB /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41F34D426BFA1C6001B24A2 /* DrawingView.swift in Sources */,
+				E445D0D726E2F274005B6FCB /* DetailViewController.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
 				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
 				E4D0D17926DE4200006C5A39 /* Lesson+CoreDataClass.swift in Sources */,
@@ -743,6 +782,7 @@
 				E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */,
 				E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */,
 				E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */,
+				E445D0DE26E33C03005B6FCB /* StepTableViewCell.swift in Sources */,
 				E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */,
 				E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */,
 				E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */,
