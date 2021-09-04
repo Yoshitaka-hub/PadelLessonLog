@@ -1,6 +1,0 @@
-framework module Pods_PadelLessonLogTests {
-  umbrella header "Pods-PadelLessonLogTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
