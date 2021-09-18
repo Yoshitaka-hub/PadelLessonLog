@@ -81,8 +81,9 @@ struct CharacterValidatior: Validator {
 }
 
 class ValidationManager: CompositeValidator {
-    static let shared = ValidationManager()
-    var defMaxNum = 8
+//    static let shared = ValidationManager()
+    private var defMaxNum = 1
+    private var emptyCheck = false
     var maxTextNum: Int {
         get {
             return defMaxNum
@@ -91,9 +92,19 @@ class ValidationManager: CompositeValidator {
             defMaxNum = newValue
         }
     }
-    lazy var validators: [Validator] = [
-        EmptyValidator(),
-        LengthValidator(min: 1, max: maxTextNum),
-        CharacterValidatior()
-    ]
+    var emptyFlag: Bool {
+        get {
+            return emptyCheck
+        }
+        set {
+            emptyCheck = newValue
+        }
+    }
+    lazy var validators = { () -> [Validator] in
+        if emptyCheck {
+            return [EmptyValidator()]
+        } else {
+            return  [LengthValidator(min: 0, max: maxTextNum), CharacterValidatior()]
+        }
+    }()
 }

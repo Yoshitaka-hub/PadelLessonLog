@@ -6,6 +6,7 @@ target 'PadelLessonLog' do
   use_frameworks!
 
   # Pods for PadelLessonLog
+  pod 'Sketch'
 
   target 'PadelLessonLogTests' do
     inherit! :search_paths

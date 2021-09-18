@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum ObjectType: Int {
+    case pen = 0, line, arrow, ball, pin, rect, fill
+
+    static func defaultValue() -> ObjectType {
+        return ObjectType.pen
+    }
+}
+
 protocol ObjectTableViewControllerDelegate: class {
     func ObjectTableViewController(objectTableViewController: ObjectTableViewController, didSelectObject: ObjectType)
 }

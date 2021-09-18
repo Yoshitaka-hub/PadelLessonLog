@@ -53,7 +53,7 @@
                             <constraint firstItem="1Mn-7U-oSg" firstAttribute="trailing" secondItem="uH8-mL-Kh4" secondAttribute="trailing" id="zDa-Q2-h7F"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lesson Data" image="square.and.arrow.up.fill" catalog="system" id="HXV-oH-obI"/>
+                    <tabBarItem key="tabBarItem" title="Title Table" image="chart.bar.doc.horizontal" catalog="system" id="HXV-oH-obI"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="allBarButton" destination="6Fb-dn-Bvp" id="Fnz-du-ZSe"/>
@@ -68,7 +68,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
+        <image name="chart.bar.doc.horizontal" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

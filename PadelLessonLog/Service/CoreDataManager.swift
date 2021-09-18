@@ -10,7 +10,7 @@ import CoreData
 
 enum CoreDataObjectType: String {
     case lesson = "Lesson"
-    case lessonSteps = "LessonSteps"
+    case lessonStep = "LessonStep"
  }
 
 class CoreDataManager {
@@ -45,9 +45,9 @@ extension CoreDataManager {
     
         if !steps.isEmpty {
             for (index, step) in steps.enumerated() {
-                let lessonStep = createNewObject(objecteType: .lessonSteps) as! LessonSteps
+                let lessonStep = createNewObject(objecteType: .lessonStep) as! LessonStep
                 lessonStep.lessonID = lesson.id
-                lessonStep.number = Int16(index)
+                lessonStep.orderNum = Int16(index)
                 lessonStep.explication = step
                 lesson.addToSteps(lessonStep)
             }
@@ -215,15 +215,15 @@ extension CoreDataManager {
     }
     
     //MARK: - Steps - fetch
-    func featchSteps(lessonID: String) -> [LessonSteps] {
-        let fetchRequest = createRequest(objecteType: .lessonSteps)
+    func featchSteps(lessonID: String) -> [LessonStep] {
+        let fetchRequest = createRequest(objecteType: .lessonStep)
         let uuid = NSUUID(uuidString: lessonID)
         let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid!)
         fetchRequest.predicate = predicate
         let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonSteps]
+            let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonStep]
             return lessonSteps
         } catch {
             fatalError("loadData error")
@@ -233,12 +233,12 @@ extension CoreDataManager {
     //MARK: - Steps - create
     
     func createStep(lesson: Lesson) {
-        let steps = lesson.steps?.allObjects as! [LessonSteps]
+        let steps = lesson.steps?.allObjects as! [LessonStep]
         var numbers: [Int16] = []
-        steps.forEach { numbers.append($0.number) }
-        let lessonStep = createNewObject(objecteType: .lessonSteps) as! LessonSteps
+        steps.forEach { numbers.append($0.orderNum) }
+        let lessonStep = createNewObject(objecteType: .lessonStep) as! LessonStep
         lessonStep.lessonID = lesson.id
-        lessonStep.number = (numbers.max() ?? 0) + 1
+        lessonStep.orderNum = (numbers.max() ?? 0) + 1
         lessonStep.explication = ""
         lesson.addToSteps(lessonStep)
         saveContext()
@@ -246,12 +246,12 @@ extension CoreDataManager {
     
     //MARK: - Steps - delete
     func deleteAllSteps(lessonID: String) {
-        let fetchRequest = createRequest(objecteType: .lessonSteps)
+        let fetchRequest = createRequest(objecteType: .lessonStep)
         let uuid = NSUUID(uuidString: lessonID)
         let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid!)
         fetchRequest.predicate = predicate
         do {
-            let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonSteps]
+            let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonStep]
             let lesson = loadLessonData(lessonID: lessonID)
             if !lessonSteps.isEmpty {
                 lessonSteps.forEach {
@@ -264,10 +264,10 @@ extension CoreDataManager {
         }
     }
     
-    func deleteStep(lesson: Lesson, step: LessonSteps, stpes: [LessonSteps]) {
+    func deleteStep(lesson: Lesson, step: LessonStep, stpes: [LessonStep]) {
         stpes.forEach {
-            if $0.number > step.number {
-                $0.number -= 1
+            if $0.orderNum > step.orderNum {
+                $0.orderNum -= 1
             }
         }
         lesson.removeFromSteps(step)

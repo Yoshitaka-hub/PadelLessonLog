@@ -9,18 +9,16 @@
         <attribute name="orderNum" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonSteps" inverseName="lesson" inverseEntity="LessonSteps"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonStep" inverseName="lesson" inverseEntity="LessonStep"/>
     </entity>
-    <entity name="LessonSteps" representedClassName="LessonSteps" syncable="YES">
+    <entity name="LessonStep" representedClassName="LessonStep" syncable="YES">
         <attribute name="explication" optional="YES" attributeType="String"/>
         <attribute name="lessonID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderNum" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="lesson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lesson" inverseName="steps" inverseEntity="Lesson"/>
     </entity>
-    <entity name="Setting" representedClassName="Setting" syncable="YES"/>
     <elements>
         <element name="Lesson" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="LessonSteps" positionX="-54" positionY="9" width="128" height="89"/>
-        <element name="Setting" positionX="-45" positionY="54" width="128" height="29"/>
+        <element name="LessonStep" positionX="160" positionY="192" width="128" height="89"/>
     </elements>
 </model>

@@ -21,10 +21,18 @@ class StepTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     
     var index: Int?
+    var stepData: LessonStep?
     var delegate: InputTextTableCellDelegate?
     
     func textViewDidEndEditing(_ textView: UITextView) {
         self.delegate?.textViewDidEndEditing(cell: self, value: stepTextView.text)
+    }
+
+    func setup(index: Int, stepData: LessonStep) {
+        self.stepData = stepData
+        self.index = index
+        cellLabel.text = String(index + 1)
+        stepTextView.text = stepData.explication
     }
     
     override func awakeFromNib() {

@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0),
+            NSAttributedString.Key.foregroundColor: UIColor.colorNavBarButton!
+        ]
+        UIView.appearance().isExclusiveTouch = true
+
         return true
     }
 

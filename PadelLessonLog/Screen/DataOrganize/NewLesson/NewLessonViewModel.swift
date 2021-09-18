@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class NewLessonViewModel {
-    @Published var tableViewCellNum: Int = 1
-    @Published var tableViewCellString: [String] = []
+    @Published var tableViewCellNum: Int = 0
+    @Published var tableViewCellData: [LessonStep] = []
     @Published var addImageButtonIsSelected: Bool = false
 }

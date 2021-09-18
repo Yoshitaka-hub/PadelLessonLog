@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,20 +16,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="353" height="117"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F48-2n-cRi">
-                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F48-2n-cRi">
+                        <rect key="frame" x="10" y="12" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="CBX-gj-kEa"/>
                             <constraint firstAttribute="width" constant="20" id="nY2-ON-r3l"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lZ-BM-kRd">
                         <rect key="frame" x="40" y="5" width="303" height="107"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="textColor" systemColor="labelColor"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -39,12 +37,13 @@
                     <constraint firstAttribute="bottom" secondItem="4lZ-BM-kRd" secondAttribute="bottom" constant="5" id="Coe-vS-5si"/>
                     <constraint firstItem="F48-2n-cRi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="LWX-rB-8mj"/>
                     <constraint firstAttribute="trailing" secondItem="4lZ-BM-kRd" secondAttribute="trailing" constant="10" id="ehd-XP-WGj"/>
-                    <constraint firstItem="F48-2n-cRi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gWc-dr-cY3"/>
+                    <constraint firstItem="F48-2n-cRi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="gWc-dr-cY3"/>
                     <constraint firstItem="4lZ-BM-kRd" firstAttribute="leading" secondItem="F48-2n-cRi" secondAttribute="trailing" constant="10" id="kD4-Ap-B0u"/>
                     <constraint firstItem="4lZ-BM-kRd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="tPO-B0-jBE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="cellLabel" destination="F48-2n-cRi" id="9xX-wT-jS9"/>
                 <outlet property="stepTextView" destination="4lZ-BM-kRd" id="BEa-ic-hUO"/>
@@ -52,12 +51,4 @@
             <point key="canvasLocation" x="164.49275362318841" y="96.09375"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

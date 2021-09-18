@@ -35,19 +35,17 @@ class LessonDataViewController: UIViewController {
         customToolbar.isTranslucent = false
         customToolbar.barTintColor = UIColor.systemBackground
         customToolbar.barStyle = .default
-        allBarButton.tintColor = .blue
-        favoriteBarButton.tintColor = .lightGray
+        allBarButton.tintColor = .colorButtonOn
+        allBarButton.style = .done
+        favoriteBarButton.tintColor = .colorButtonOff
+        favoriteBarButton.style = .done
         
         customTableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        lessonsArray = coreDataMangaer.loadAllLessonData()
-        customTableView.reloadData()
-        allBarButton.tintColor = .blue
-        favoriteBarButton.tintColor = .lightGray
+        allButtonPressed(allBarButton)
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
@@ -55,16 +53,16 @@ class LessonDataViewController: UIViewController {
         
         lessonsArray = coreDataMangaer.loadAllLessonData()
         customTableView.reloadData()
-        allBarButton.tintColor = .blue
-        favoriteBarButton.tintColor = .lightGray
+        allBarButton.tintColor = .colorButtonOn
+        favoriteBarButton.tintColor = .colorButtonOff
     }
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         tableMode = .favoriteTableView
         
         lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
         customTableView.reloadData()
-        favoriteBarButton.tintColor = .blue
-        allBarButton.tintColor = .lightGray
+        favoriteBarButton.tintColor = .colorButtonOn
+        allBarButton.tintColor = .colorButtonOff
     }
 }
 
@@ -86,6 +84,7 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
             detailVC.delegate = self
         }
         let nvc = UINavigationController.init(rootViewController: vc)
+        tableView.deselectRow(at: indexPath, animated: true)
         self.present(nvc, animated: true)
     }
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -113,6 +112,7 @@ extension LessonDataViewController: DetailViewControllerDelegate {
         let vc = storyboard.instantiateViewController(identifier: "NewLesson")
         if let newLessonVC = vc as? NewLessonViewController {
             newLessonVC.lessonData = lesson
+            newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }

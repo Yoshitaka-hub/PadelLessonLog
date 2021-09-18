@@ -12,12 +12,13 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
         return .none
     }
     
-    func createBarButtonItem(image: UIImage, select: Selector?) -> UIBarButtonItem {
+    func createBarButtonItem(image: UIImage, color: UIColor? = .colorNavBarButton, select: Selector?) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
-        button.tintColor = .darkGray
+        button.tintColor = color
+        button.isExclusiveTouch = true
         if let safeSelect = select {
-            button.addTarget(self, action: safeSelect, for: .touchUpInside)
+            button.addTarget(self, action: safeSelect, for: .touchDown)
         }
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -72,6 +73,17 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
         } else {
             return viewController
         }
+    }
+    func destructiveAlertView(withTitle: String?,
+                               message: String? = nil,
+                               cancelString: String? = nil,
+                               cancelBlock: (() -> Void)? = nil,
+                               destructiveString: String? = nil,
+                               destructiveBlock: (() -> Void)? = nil) {
+        UIAlertController(title: withTitle, message: message, preferredStyle: .alert)
+            .addCancelAction(title: cancelString, handler: cancelBlock)
+            .addDestructiveAction(title: destructiveString, handler: destructiveBlock)
+            .show(in: self)
     }
     
     func confirmationAlertView(withTitle: String?,

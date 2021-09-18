@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T93-fp-xJQ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T93-fp-xJQ">
                                 <rect key="frame" x="0.0" y="94" width="414" height="719"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6X9-vZ-Y98">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3cK-ff-Ess">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -54,13 +54,14 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-pX-aZV">
-                                <rect key="frame" x="354" y="753" width="30" height="30"/>
+                                <rect key="frame" x="374" y="104" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5LS-Dq-woP"/>
                                     <constraint firstAttribute="width" constant="30" id="DOJ-gU-k7Q"/>
                                 </constraints>
+                                <color key="tintColor" name="colorButtonOn"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="medium"/>
                                 </state>
                                 <connections>
                                     <action selector="detailButtonPressed:" destination="fTc-pP-j0C" eventType="touchUpInside" id="Vvu-9U-Snf"/>
@@ -70,23 +71,24 @@
                         <viewLayoutGuide key="safeArea" id="IzJ-x4-pPF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="ggU-pX-aZV" secondAttribute="trailing" constant="30" id="78J-Xd-W0O"/>
+                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="ggU-pX-aZV" secondAttribute="trailing" constant="10" id="78J-Xd-W0O"/>
                             <constraint firstItem="IzJ-x4-pPF" firstAttribute="bottom" secondItem="T93-fp-xJQ" secondAttribute="bottom" id="KHV-yf-oqE"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="trailing" secondItem="IzJ-x4-pPF" secondAttribute="trailing" id="Lld-kL-Aew"/>
                             <constraint firstItem="T93-fp-xJQ" firstAttribute="top" secondItem="zfc-gE-S8Y" secondAttribute="bottom" id="Q8j-2i-YV6"/>
-                            <constraint firstItem="IzJ-x4-pPF" firstAttribute="bottom" secondItem="ggU-pX-aZV" secondAttribute="bottom" constant="30" id="hC3-PF-cfl"/>
                             <constraint firstItem="T93-fp-xJQ" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="ilp-iz-smj"/>
+                            <constraint firstItem="ggU-pX-aZV" firstAttribute="top" secondItem="zfc-gE-S8Y" secondAttribute="bottom" constant="10" id="tC7-pc-joi"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="top" secondItem="IzJ-x4-pPF" secondAttribute="top" id="tkp-6o-b8r"/>
                             <constraint firstItem="IzJ-x4-pPF" firstAttribute="trailing" secondItem="T93-fp-xJQ" secondAttribute="trailing" id="uHc-Qt-YN0"/>
                             <constraint firstItem="zfc-gE-S8Y" firstAttribute="leading" secondItem="IzJ-x4-pPF" secondAttribute="leading" id="uV4-lc-MgT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Lesson Image" image="pencil" catalog="system" id="HQ7-FW-Zrk"/>
+                    <tabBarItem key="tabBarItem" title="Image Table" image="photo.on.rectangle.angled" catalog="system" id="HQ7-FW-Zrk"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="allBarButton" destination="ww6-lB-XQ1" id="Awn-GI-vpD"/>
                         <outlet property="customCollectionView" destination="T93-fp-xJQ" id="2dP-PN-Hun"/>
                         <outlet property="customToolbar" destination="zfc-gE-S8Y" id="pTF-Hv-eWI"/>
+                        <outlet property="detailButton" destination="ggU-pX-aZV" id="JGw-sS-ggH"/>
                         <outlet property="favoriteBarButton" destination="J2B-sy-dPU" id="uUI-2l-bVk"/>
                     </connections>
                 </viewController>
@@ -97,9 +99,12 @@
     </scenes>
     <resources>
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="photo.on.rectangle.angled" catalog="system" width="128" height="101"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorButtonOn">
+            <color red="0.28999999165534973" green="0.74900001287460327" blue="0.67799997329711914" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

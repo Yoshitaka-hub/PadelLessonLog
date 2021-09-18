@@ -7,6 +7,29 @@
 
 import UIKit
 
+
+enum ObjectColor: Int {
+    case black = 0, yellow, red, blue
+
+    func toColor() -> UIColor {
+        switch self {
+        case .black:
+            return UIColor.black
+        case .red:
+            return UIColor.systemRed
+        case .yellow:
+            return UIColor.systemYellow
+        case .blue:
+            return UIColor.systemBlue
+        }
+    }
+
+    static func defaultValue() -> ObjectColor {
+        return ObjectColor.black
+    }
+}
+
+
 protocol ColorTableViewControllerDelegate: class {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor)
 }

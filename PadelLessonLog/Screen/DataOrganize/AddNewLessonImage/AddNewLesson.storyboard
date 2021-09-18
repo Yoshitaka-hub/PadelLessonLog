@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,44 +13,44 @@
             <objects>
                 <viewController storyboardIdentifier="AddNewLesson" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fmn-Cx-UVR" customClass="AddNewLessonViewController" customModule="PadelLessonLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ilS-Ct-K4n">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WTH-EL-XDW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
-                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VU-rp-PQt">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NDJ-H7-fjC"/>
                                 </constraints>
                                 <items/>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2C-m7-f04" customClass="DrawingView" customModule="PadelLessonLog" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNc-Dp-WwY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2C-m7-f04" customClass="SketchView" customModule="Sketch">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vn5-iB-fWo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="O2C-m7-f04" secondAttribute="bottom" id="18E-30-qVq"/>
                             <constraint firstItem="vn5-iB-fWo" firstAttribute="trailing" secondItem="O2C-m7-f04" secondAttribute="trailing" id="1pr-aw-FdK"/>
                             <constraint firstItem="O2C-m7-f04" firstAttribute="top" secondItem="vn5-iB-fWo" secondAttribute="top" id="Bew-KQ-kBY"/>
-                            <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="WTH-EL-XDW" secondAttribute="bottom" symbolic="YES" id="GCR-Nn-ZYW"/>
+                            <constraint firstItem="KNc-Dp-WwY" firstAttribute="top" secondItem="vn5-iB-fWo" secondAttribute="top" id="Cm9-YM-Eah"/>
                             <constraint firstItem="7VU-rp-PQt" firstAttribute="leading" secondItem="vn5-iB-fWo" secondAttribute="leading" id="O1C-v5-RPg"/>
-                            <constraint firstItem="WTH-EL-XDW" firstAttribute="leading" secondItem="vn5-iB-fWo" secondAttribute="leading" id="Y47-7Y-V9c"/>
+                            <constraint firstItem="KNc-Dp-WwY" firstAttribute="leading" secondItem="vn5-iB-fWo" secondAttribute="leading" id="PLX-mn-ctf"/>
+                            <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="KNc-Dp-WwY" secondAttribute="bottom" id="Ugj-JA-ZIi"/>
                             <constraint firstItem="O2C-m7-f04" firstAttribute="leading" secondItem="vn5-iB-fWo" secondAttribute="leading" id="dFN-DB-T7u"/>
                             <constraint firstItem="vn5-iB-fWo" firstAttribute="bottom" secondItem="7VU-rp-PQt" secondAttribute="bottom" id="dr7-V4-JWO"/>
+                            <constraint firstItem="7VU-rp-PQt" firstAttribute="top" secondItem="O2C-m7-f04" secondAttribute="bottom" id="hwX-SB-0JF"/>
                             <constraint firstItem="7VU-rp-PQt" firstAttribute="trailing" secondItem="vn5-iB-fWo" secondAttribute="trailing" id="jUm-Yb-5up"/>
-                            <constraint firstItem="vn5-iB-fWo" firstAttribute="trailing" secondItem="WTH-EL-XDW" secondAttribute="trailing" id="kTF-Dz-r7H"/>
-                            <constraint firstItem="WTH-EL-XDW" firstAttribute="top" secondItem="vn5-iB-fWo" secondAttribute="top" id="lsW-sx-jZR"/>
+                            <constraint firstItem="vn5-iB-fWo" firstAttribute="trailing" secondItem="KNc-Dp-WwY" secondAttribute="trailing" id="yTL-et-13P"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="courtImageView" destination="WTH-EL-XDW" id="UPO-Bu-cRW"/>
                         <outlet property="customToolbar" destination="7VU-rp-PQt" id="6Q1-R1-gN5"/>
-                        <outlet property="drawingView" destination="O2C-m7-f04" id="I5S-Fl-Upr"/>
+                        <outlet property="sketchView" destination="O2C-m7-f04" id="4tt-zG-j6j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6KR-1O-kHi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
