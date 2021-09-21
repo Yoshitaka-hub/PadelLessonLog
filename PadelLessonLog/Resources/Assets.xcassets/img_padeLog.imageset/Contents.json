@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "img_padeLog-1.png",
+      "filename" : "img_padeLog@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "img_padeLog-2.png",
+      "filename" : "img_padeLog@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

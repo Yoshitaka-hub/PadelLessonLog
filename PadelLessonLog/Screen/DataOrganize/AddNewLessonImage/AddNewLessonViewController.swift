@@ -114,7 +114,8 @@ class AddNewLessonViewController: UIViewController {
                 colorTableVC.objectColor = ObjectColor.defaultValue()
             }
         }
-        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: 120, y: 0, width: 150, height: 180), arrowDirections: .down, canOverlapSourceViewRect: true)
+        let screenSize = UIScreen.main.bounds.size
+        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: screenSize.width / 3.2, y: 0, width: screenSize.width / 3, height: screenSize.height / 5), arrowDirections: .down, canOverlapSourceViewRect: true)
     }
     @objc
     func objectTable() {
@@ -137,7 +138,8 @@ class AddNewLessonViewController: UIViewController {
                 objectTableVC.objectType = ObjectType.defaultValue()
             }
         }
-        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: 50, y: 0, width: 150, height: 180), arrowDirections: .down, canOverlapSourceViewRect: true)
+        let screenSize = UIScreen.main.bounds.size
+        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: screenSize.width / 8.3 , y: 0, width: screenSize.width / 3, height: screenSize.height / 4), arrowDirections: .down, canOverlapSourceViewRect: true)
     }
     private func changeStampMode(stampName: String) {
         sketchView.stampImage = UIImage(named: stampName)

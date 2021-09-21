@@ -283,12 +283,14 @@ extension CoreDataManager {
     }
     
     func saveContext() {
+        managerObjectContext.mergePolicy = NSOverwriteMergePolicy
+
         if managerObjectContext.hasChanges {
             do {
                 try managerObjectContext.save()
             } catch let error {
                 print(error)
-                abort()
+//                abort()
             }
         }
     }
