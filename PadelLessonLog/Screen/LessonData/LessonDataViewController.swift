@@ -18,6 +18,8 @@ class LessonDataViewController: BaseViewController {
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     
     private var coreDataMangaer = CoreDataManager.shared
     private var lessonsArray = [Lesson]()
@@ -46,6 +48,9 @@ class LessonDataViewController: BaseViewController {
             tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "gearshape")!, select: #selector(setting))
             tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "plus.circle")!, select: #selector(addNewLesson))
         }
+        searchBar.delegate = self
+        searchBar.isHidden = true
+        searchBar.autocapitalizationType = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +75,13 @@ class LessonDataViewController: BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        searchBar.isHidden = !searchBar.isHidden
+        searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
+        if searchBar.isHidden {
+            tableDataUpdate()
+        }
+    }
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
         tableMode = .allTableView
         
@@ -85,6 +97,16 @@ class LessonDataViewController: BaseViewController {
         customTableView.reloadData()
         favoriteBarButton.tintColor = .colorButtonOn
         allBarButton.tintColor = .colorButtonOff
+    }
+    
+    private func tableDataUpdate() {
+        let isAllflag = allBarButton.tintColor == .colorButtonOn
+        if isAllflag {
+            lessonsArray = coreDataMangaer.loadAllLessonData()
+        } else {
+            lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
+        }
+        customTableView.reloadData()
     }
 }
 
@@ -137,6 +159,20 @@ extension LessonDataViewController: DetailViewControllerDelegate {
             newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension LessonDataViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        tableDataUpdate()
+        guard let text = searchBar.text else { return }
+        if !text.isEmpty {
+            lessonsArray = lessonsArray.filter {
+                guard let titel = $0.title else { return false }
+                return titel.contains(text)
+            }
+            customTableView.reloadData()
+        }
     }
 }
 
