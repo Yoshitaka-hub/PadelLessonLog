@@ -53,7 +53,7 @@ class LessonImageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        lessonsArray = coreDataMangaer.loadAllLessonData()
+        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
         allBarButton.tintColor = .colorButtonOn
         favoriteBarButton.tintColor = .colorButtonOff
@@ -79,13 +79,13 @@ class LessonImageViewController: UIViewController {
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllLessonData()
+        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
         allBarButton.tintColor = .colorButtonOn
         favoriteBarButton.tintColor = .colorButtonOff
     }
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
+        lessonsArray = coreDataMangaer.loadAllFavoriteLessonDataWithImage()
         customCollectionView.reloadData()
         favoriteBarButton.tintColor = .colorButtonOn
         allBarButton.tintColor = .lightGray

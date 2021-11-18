@@ -84,6 +84,21 @@ extension CoreDataManager {
             fatalError("loadData error")
         }
     }
+    func loadAllFavoriteLessonDataWithImage() -> [Lesson] {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let predicate = NSPredicate(format: "%K == %@", "favorite", NSNumber(value: true))
+        fetchRequest.predicate = predicate
+        let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
+        let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
+        fetchRequest.sortDescriptors = [orderSort, timeSort]
+        do {
+            var lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            lessons = lessons.filter { $0.imageSaved }
+            return lessons
+        } catch {
+            fatalError("loadData error")
+        }
+    }
     
     func loadAllLessonData() -> [Lesson] {
         let fetchRequest = createRequest(objecteType: .lesson)
@@ -92,6 +107,20 @@ extension CoreDataManager {
         fetchRequest.sortDescriptors = [orderSort, timeSort]
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            return lessons
+        } catch {
+            fatalError("loadData error")
+        }
+    }
+    
+    func loadAllLessonDataWithImage() -> [Lesson] {
+        let fetchRequest = createRequest(objecteType: .lesson)
+        let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
+        let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
+        fetchRequest.sortDescriptors = [orderSort, timeSort]
+        do {
+            var lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            lessons = lessons.filter { $0.imageSaved }
             return lessons
         } catch {
             fatalError("loadData error")
