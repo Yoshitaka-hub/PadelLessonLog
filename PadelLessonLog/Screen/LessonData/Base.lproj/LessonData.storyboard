@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d3b-jK-jJw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d3b-jK-jJw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,41 +19,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XiI-mJ-F9q" userLabel="Top Stack View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="95"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-7U-oSg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Dj4-pI-lJr"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="bCC-27-0Af"/>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="VLX-Jb-zKN"/>
+                                            <barButtonItem title="All" id="6Fb-dn-Bvp">
+                                                <connections>
+                                                    <action selector="allButtonPressed:" destination="d3b-jK-jJw" id="yC1-Du-Y8O"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="vxi-gV-WHc"/>
+                                            <barButtonItem title="Stars" id="CXB-V5-YXq">
+                                                <connections>
+                                                    <action selector="favoriteButtonPressed:" destination="d3b-jK-jJw" id="ps4-Zr-rvY"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="dek-t4-7Wd"/>
+                                            <barButtonItem title="Item" style="plain" id="mG5-lv-feL">
+                                                <imageReference key="image" image="rectangle.and.text.magnifyingglass" catalog="system" symbolScale="medium"/>
+                                                <color key="tintColor" name="colorButtonOff"/>
+                                                <connections>
+                                                    <action selector="searchButtonPressed:" destination="d3b-jK-jJw" id="8yI-DV-dST"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <searchBar contentMode="redraw" id="tVC-HG-XyV">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KtN-T6-Qq6">
-                                <rect key="frame" x="0.0" y="94" width="414" height="719"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Mn-7U-oSg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Dj4-pI-lJr"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="VLX-Jb-zKN"/>
-                                    <barButtonItem title="All" id="6Fb-dn-Bvp">
-                                        <connections>
-                                            <action selector="allButtonPressed:" destination="d3b-jK-jJw" id="yC1-Du-Y8O"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vxi-gV-WHc"/>
-                                    <barButtonItem title="Stars" id="CXB-V5-YXq">
-                                        <connections>
-                                            <action selector="favoriteButtonPressed:" destination="d3b-jK-jJw" id="ps4-Zr-rvY"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dek-t4-7Wd"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uH8-mL-Kh4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KtN-T6-Qq6" firstAttribute="leading" secondItem="uH8-mL-Kh4" secondAttribute="leading" id="2fW-JJ-kne"/>
-                            <constraint firstItem="KtN-T6-Qq6" firstAttribute="top" secondItem="1Mn-7U-oSg" secondAttribute="bottom" id="3TI-09-emU"/>
-                            <constraint firstItem="1Mn-7U-oSg" firstAttribute="top" secondItem="uH8-mL-Kh4" secondAttribute="top" id="bE9-AT-MQM"/>
+                            <constraint firstItem="XiI-mJ-F9q" firstAttribute="leading" secondItem="6Sl-IO-6cp" secondAttribute="leading" id="6mB-p8-JAE"/>
+                            <constraint firstAttribute="trailing" secondItem="XiI-mJ-F9q" secondAttribute="trailing" id="b7Q-uk-YEe"/>
+                            <constraint firstItem="XiI-mJ-F9q" firstAttribute="top" secondItem="uH8-mL-Kh4" secondAttribute="top" id="cQR-T5-nNh"/>
+                            <constraint firstItem="XiI-mJ-F9q" firstAttribute="bottom" secondItem="KtN-T6-Qq6" secondAttribute="top" id="nHM-yv-EJS"/>
                             <constraint firstItem="uH8-mL-Kh4" firstAttribute="bottom" secondItem="KtN-T6-Qq6" secondAttribute="bottom" id="oAm-jc-Bmy"/>
                             <constraint firstItem="uH8-mL-Kh4" firstAttribute="trailing" secondItem="KtN-T6-Qq6" secondAttribute="trailing" id="rP6-nk-hoW"/>
-                            <constraint firstItem="1Mn-7U-oSg" firstAttribute="leading" secondItem="uH8-mL-Kh4" secondAttribute="leading" id="vDw-Y0-V0t"/>
-                            <constraint firstItem="1Mn-7U-oSg" firstAttribute="trailing" secondItem="uH8-mL-Kh4" secondAttribute="trailing" id="zDa-Q2-h7F"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Title Table" image="chart.bar.doc.horizontal" catalog="system" id="HXV-oH-obI"/>
@@ -60,6 +81,8 @@
                         <outlet property="customTableView" destination="KtN-T6-Qq6" id="1ma-5o-JjF"/>
                         <outlet property="customToolbar" destination="1Mn-7U-oSg" id="kLy-2m-oX5"/>
                         <outlet property="favoriteBarButton" destination="CXB-V5-YXq" id="P1F-fn-oqw"/>
+                        <outlet property="searchBar" destination="tVC-HG-XyV" id="FFQ-8Q-gWf"/>
+                        <outlet property="searchButton" destination="mG5-lv-feL" id="taw-CC-k6o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jW-aB-OhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -69,6 +92,10 @@
     </scenes>
     <resources>
         <image name="chart.bar.doc.horizontal" catalog="system" width="115" height="128"/>
+        <image name="rectangle.and.text.magnifyingglass" catalog="system" width="128" height="101"/>
+        <namedColor name="colorButtonOff">
+            <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69700002670288086" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

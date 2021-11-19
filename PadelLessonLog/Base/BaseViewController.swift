@@ -25,6 +25,12 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         releaseWatchingKeyboard()
     }
     
+    @objc
+    func setting() { }
+    
+    @objc
+    func addNewLesson() { }
+    
     func watchingKeyboardStatus() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)

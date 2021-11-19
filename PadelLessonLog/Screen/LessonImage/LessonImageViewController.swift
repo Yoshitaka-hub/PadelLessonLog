@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LessonImageViewController: UIViewController {
+class LessonImageViewController: BaseViewController {
 
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
@@ -50,24 +50,28 @@ class LessonImageViewController: UIViewController {
             tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "plus.circle")!, select: #selector(addNewLesson))
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        lessonsArray = coreDataMangaer.loadAllLessonData()
+        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
         allBarButton.tintColor = .colorButtonOn
         favoriteBarButton.tintColor = .colorButtonOff
+        if lessonsArray.isEmpty {
+            detailButton.isHidden = true
+        } else {
+            detailButton.isHidden = false
+        }
     }
     
-    @objc
-    func setting() {
+    override func setting() {
         let storyboard = UIStoryboard(name: "Setting", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "Setting")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc
-    func addNewLesson() {
+    override func addNewLesson() {
         let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "NewLesson")
         if let newLessonVC = vc as? NewLessonViewController {
@@ -79,16 +83,26 @@ class LessonImageViewController: UIViewController {
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllLessonData()
+        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
         allBarButton.tintColor = .colorButtonOn
         favoriteBarButton.tintColor = .colorButtonOff
+        if lessonsArray.isEmpty {
+            detailButton.isHidden = true
+        } else {
+            detailButton.isHidden = false
+        }
     }
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
+        lessonsArray = coreDataMangaer.loadAllFavoriteLessonDataWithImage()
         customCollectionView.reloadData()
         favoriteBarButton.tintColor = .colorButtonOn
         allBarButton.tintColor = .lightGray
+        if lessonsArray.isEmpty {
+            detailButton.isHidden = true
+        } else {
+            detailButton.isHidden = false
+        }
     }
     @IBAction func detailButtonPressed(_ sender: UIButton) {
         let cell = customCollectionView.visibleCells.first as? ImageCollectionViewCell
@@ -179,6 +193,7 @@ extension LessonImageViewController: DetailViewControllerDelegate {
 
 extension LessonImageViewController: NewLessonViewControllerDelegate {
     func pushToLessonImageView() {
+        guard !lessonsArray.isEmpty else { return }
         customCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
     }
 }

@@ -26,6 +26,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         if lesson.imageSaved {
             lessonImageView.image = lesson.getImage()
         } else {
+            // こっちには来ないはずだけど、念の為残しておく
             lessonImageView.image = UIImage(named: "img_no_court")
         }
 

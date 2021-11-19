@@ -12,12 +12,14 @@ enum TableMode {
     case favoriteTableView
 }
 
-class LessonDataViewController: UIViewController {
+class LessonDataViewController: BaseViewController {
     
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     
     private var coreDataMangaer = CoreDataManager.shared
     private var lessonsArray = [Lesson]()
@@ -41,6 +43,14 @@ class LessonDataViewController: UIViewController {
         favoriteBarButton.style = .done
         
         customTableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
+        
+        if let tabBarCon = parent as? UITabBarController {
+            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "gearshape")!, select: #selector(setting))
+            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "plus.circle")!, select: #selector(addNewLesson))
+        }
+        searchBar.delegate = self
+        searchBar.isHidden = true
+        searchBar.autocapitalizationType = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +58,30 @@ class LessonDataViewController: UIViewController {
         allButtonPressed(allBarButton)
     }
     
+    override func setting() {
+        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "Setting")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func addNewLesson() {
+        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+        if let newLessonVC = vc as? NewLessonViewController {
+            newLessonVC.lessonData = coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
+            newLessonVC.delegate = self
+            newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+        searchBar.isHidden = !searchBar.isHidden
+        searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
+        if searchBar.isHidden {
+            tableDataUpdate()
+        }
+    }
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
         tableMode = .allTableView
         
@@ -63,6 +97,16 @@ class LessonDataViewController: UIViewController {
         customTableView.reloadData()
         favoriteBarButton.tintColor = .colorButtonOn
         allBarButton.tintColor = .colorButtonOff
+    }
+    
+    private func tableDataUpdate() {
+        let isAllflag = allBarButton.tintColor == .colorButtonOn
+        if isAllflag {
+            lessonsArray = coreDataMangaer.loadAllLessonData()
+        } else {
+            lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
+        }
+        customTableView.reloadData()
     }
 }
 
@@ -115,5 +159,27 @@ extension LessonDataViewController: DetailViewControllerDelegate {
             newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension LessonDataViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        tableDataUpdate()
+        guard let text = searchBar.text else { return }
+        if !text.isEmpty {
+            lessonsArray = lessonsArray.filter {
+                guard let titel = $0.title else { return false }
+                return titel.contains(text)
+            }
+            customTableView.reloadData()
+        }
+    }
+}
+
+extension LessonDataViewController: NewLessonViewControllerDelegate {
+    func pushToLessonImageView() {
+        if !lessonsArray.isEmpty {
+            customTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
 }
