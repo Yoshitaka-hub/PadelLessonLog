@@ -15,6 +15,7 @@ protocol NewLessonViewControllerDelegate {
 class NewLessonViewController: BaseViewController {
 
     @IBOutlet weak var lessonNameTextField: UITextField!
+    @IBOutlet weak var imageButtonsAreaView: UIView!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var editImageButton: UIButton!
     @IBOutlet weak var addStepButton: UIButton!
@@ -146,6 +147,21 @@ class NewLessonViewController: BaseViewController {
             fatalError("ステップ削除失敗")
         }
     }
+    
+    @objc
+    func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            mainTableView.contentInset = .zero
+        } else {
+            mainTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+        mainTableView.scrollIndicatorInsets = mainTableView.contentInset
+    }
 }
 
 extension NewLessonViewController {
@@ -179,24 +195,6 @@ extension NewLessonViewController: UITextFieldDelegate {
                 self.warningAlertView(withTitle: NSLocalizedString("Illegal characters are used", comment: ""))
             }
         }
-    }
-}
-
-extension NewLessonViewController: UITextViewDelegate {
-    
-    @objc
-    func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            mainTableView.contentInset = .zero
-        } else {
-            mainTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
-        }
-        mainTableView.scrollIndicatorInsets = mainTableView.contentInset
     }
 }
 
@@ -235,7 +233,14 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension NewLessonViewController: InputTextTableCellDelegate {
+    func textViewDidBeingEditing(index: Int?) {
+        imageButtonsAreaView.isHidden = true
+        guard let cellIndex = index else { return }
+        mainTableView.scrollToRow(at: IndexPath(row: cellIndex, section: 0), at: .top, animated: true)
+    }
+    
     func textViewDidEndEditing(cell: StepTableViewCell, value: String) {
+        imageButtonsAreaView.isHidden = false
         guard let data = cell.stepData else { return }
         data.explication = value
         data.save()
