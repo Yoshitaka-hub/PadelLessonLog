@@ -15,7 +15,7 @@ enum ObjectType: Int {
     }
 }
 
-protocol ObjectTableViewControllerDelegate: class {
+protocol ObjectTableViewControllerDelegate: AnyObject {
     func ObjectTableViewController(objectTableViewController: ObjectTableViewController, didSelectObject: ObjectType)
 }
 

@@ -37,6 +37,7 @@
                                     <constraint firstAttribute="height" constant="50" id="nSv-8j-are"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="zHV-XE-uLp"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nxX-t3-tVn"/>
                                     <barButtonItem title="All" id="ww6-lB-XQ1">
                                         <color key="tintColor" name="AccentColor"/>
@@ -52,6 +53,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="BcB-Xm-TtO"/>
+                                    <barButtonItem image="view.3d" catalog="system" id="Tum-PN-2Cx">
+                                        <color key="tintColor" name="colorNavBarButton"/>
+                                        <connections>
+                                            <action selector="arButtonPressed:" destination="fTc-pP-j0C" id="B4a-DM-Uuy"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-pX-aZV">
@@ -87,6 +94,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="allBarButton" destination="ww6-lB-XQ1" id="Awn-GI-vpD"/>
+                        <outlet property="arBarButton" destination="Tum-PN-2Cx" id="lmc-LA-fvT"/>
                         <outlet property="customCollectionView" destination="T93-fp-xJQ" id="2dP-PN-Hun"/>
                         <outlet property="customToolbar" destination="zfc-gE-S8Y" id="pTF-Hv-eWI"/>
                         <outlet property="detailButton" destination="ggU-pX-aZV" id="JGw-sS-ggH"/>
@@ -101,11 +109,15 @@
     <resources>
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="100"/>
+        <image name="view.3d" catalog="system" width="128" height="77"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorButtonOn">
             <color red="0.28999999165534973" green="0.74900001287460327" blue="0.67799997329711914" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="colorNavBarButton">
+            <color red="0.3880000114440918" green="0.3880000114440918" blue="0.39899998903274536" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

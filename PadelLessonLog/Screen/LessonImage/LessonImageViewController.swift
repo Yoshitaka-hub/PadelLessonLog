@@ -12,6 +12,7 @@ class LessonImageViewController: BaseViewController {
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet weak var arBarButton: UIBarButtonItem!
     @IBOutlet weak var detailButton: UIButton!
     
     @IBOutlet weak var customCollectionView: UICollectionView!
@@ -103,6 +104,12 @@ class LessonImageViewController: BaseViewController {
         } else {
             detailButton.isHidden = false
         }
+    }
+    
+    @IBAction func arButtonPressed(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "PadelAR", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "PadelAR")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func detailButtonPressed(_ sender: UIButton) {
         let cell = customCollectionView.visibleCells.first as? ImageCollectionViewCell
