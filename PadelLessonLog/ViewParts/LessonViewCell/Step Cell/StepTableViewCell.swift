@@ -9,6 +9,7 @@ import UIKit
 
 protocol InputTextTableCellDelegate {
     func textViewDidEndEditing(cell: StepTableViewCell, value: String)
+    func textViewDidBeingEditing(index: Int?)
 }
 
 class StepTableViewCell: UITableViewCell, UITextViewDelegate {
@@ -24,6 +25,9 @@ class StepTableViewCell: UITableViewCell, UITextViewDelegate {
     var stepData: LessonStep?
     var delegate: InputTextTableCellDelegate?
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.delegate?.textViewDidBeingEditing(index: index)
+    }
     func textViewDidEndEditing(_ textView: UITextView) {
         self.delegate?.textViewDidEndEditing(cell: self, value: stepTextView.text)
     }

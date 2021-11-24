@@ -30,7 +30,7 @@ enum ObjectColor: Int {
 }
 
 
-protocol ColorTableViewControllerDelegate: class {
+protocol ColorTableViewControllerDelegate: AnyObject {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor)
 }
 
