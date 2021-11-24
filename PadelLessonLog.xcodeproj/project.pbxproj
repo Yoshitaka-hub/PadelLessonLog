@@ -55,6 +55,11 @@
 		E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0626C4B6F4000A308C /* BaseViewController.swift */; };
 		E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidationTest.swift */; };
 		E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C1326C8D6AF000A308C /* SettingConst.swift */; };
+		E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E465FC2A274E7B2200503FC8 /* art.scnassets */; };
+		E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */; };
+		E465FC30274E7C3D00503FC8 /* AR+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC2E274E7C3D00503FC8 /* AR+Common.swift */; };
+		E465FC31274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC2F274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift */; };
+		E465FC33274E820100503FC8 /* BallLineGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC32274E820100503FC8 /* BallLineGeometry.swift */; };
 		E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FEA526E1143900785BB7 /* DataTableViewCell.swift */; };
 		E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */; };
 		E46B665926E3884B008247DC /* ImageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E46B665826E3884B008247DC /* ImageView.storyboard */; };
@@ -70,7 +75,6 @@
 		E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD673926F417DD009DD686 /* UIColorExtension.swift */; };
 		E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
-		E4E83BB8274DE5E00050FE48 /* PadelAR.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB7274DE5E00050FE48 /* PadelAR.rcproject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +164,11 @@
 		E4536C0626C4B6F4000A308C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4536C0E26C512E6000A308C /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
 		E4536C1326C8D6AF000A308C /* SettingConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConst.swift; sourceTree = "<group>"; };
+		E465FC2A274E7B2200503FC8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectnode.swift; sourceTree = "<group>"; };
+		E465FC2E274E7C3D00503FC8 /* AR+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AR+Common.swift"; sourceTree = "<group>"; };
+		E465FC2F274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARPlaneAnchor+Visualize.swift"; sourceTree = "<group>"; };
+		E465FC32274E820100503FC8 /* BallLineGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallLineGeometry.swift; sourceTree = "<group>"; };
 		E465FEA526E1143900785BB7 /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		E46B665826E3884B008247DC /* ImageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageView.storyboard; sourceTree = "<group>"; };
@@ -175,7 +184,6 @@
 		E4AD673926F417DD009DD686 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Additions.swift"; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
-		E4E83BB7274DE5E00050FE48 /* PadelAR.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = PadelAR.rcproject; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +372,8 @@
 		E41F349D26BE6D48001B24A2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				E465FC2F274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift */,
+				E465FC2E274E7C3D00503FC8 /* AR+Common.swift */,
 				E48E659E26C2141B00A88860 /* UIViewController+Common.swift */,
 				E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */,
 				E403D5FB26D68C1D00C36429 /* Date+format.swift */,
@@ -390,6 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				E4536BEF26C3AB99000A308C /* LessonViewCell */,
+				E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */,
+				E465FC32274E820100503FC8 /* BallLineGeometry.swift */,
 				E48E65AD26C2154700A88860 /* InfoAlertView.swift */,
 			);
 			path = ViewParts;
@@ -400,6 +412,7 @@
 			children = (
 				E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */,
 				E41F345726BE67B3001B24A2 /* Assets.xcassets */,
+				E465FC2A274E7B2200503FC8 /* art.scnassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -479,7 +492,6 @@
 			children = (
 				E430C826274BAC7B0029F295 /* PadelAR.storyboard */,
 				E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */,
-				E4E83BB7274DE5E00050FE48 /* PadelAR.rcproject */,
 			);
 			path = 3DPadel;
 			sourceTree = "<group>";
@@ -698,6 +710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
+				E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */,
 				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
 				E422AB6226F586E9008F395B /* Setting.storyboard in Resources */,
 				E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */,
@@ -863,12 +876,13 @@
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
 				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
 				E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */,
-				E4E83BB8274DE5E00050FE48 /* PadelAR.rcproject in Sources */,
 				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
 				E46B665E26E38865008247DC /* ImageViewController.swift in Sources */,
+				E465FC31274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift in Sources */,
 				E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */,
 				E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */,
+				E465FC30274E7C3D00503FC8 /* AR+Common.swift in Sources */,
 				E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */,
 				E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */,
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
@@ -879,6 +893,7 @@
 				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
 				E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */,
 				E40113DD26EED97B00912EBE /* LessonStep+CoreDataProperties.swift in Sources */,
+				E465FC33274E820100503FC8 /* BallLineGeometry.swift in Sources */,
 				E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */,
 				E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */,
 				E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */,
@@ -896,6 +911,7 @@
 				E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */,
 				E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */,
 				E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */,
+				E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */,
 				E40113DC26EED97B00912EBE /* LessonStep+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
