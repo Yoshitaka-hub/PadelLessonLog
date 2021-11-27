@@ -74,7 +74,7 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
         if padelCourt == nil {
             guard let planeAnchor = anchor as? ARPlaneAnchor else { fatalError() }
             
-            planeAnchor.addPlaneNode(on: node, contents: UIColor.gray)
+            planeAnchor.addPlaneNode(on: node, contents: UIColor.clear)
             
             let virtualNode = VirtualObjectNode()
             virtualNode.position = SCNVector3(

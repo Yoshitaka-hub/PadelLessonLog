@@ -15,12 +15,13 @@ protocol NewLessonViewControllerDelegate {
 class NewLessonViewController: BaseViewController {
 
     @IBOutlet weak var lessonNameTextField: UITextField!
-    @IBOutlet weak var imageButtonsAreaView: UIView!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var editImageButton: UIButton!
     @IBOutlet weak var addStepButton: UIButton!
     @IBOutlet weak var editStepButton: UIButton!
-    @IBOutlet weak var mainTableView: UITableView!
+    
+    @IBOutlet var mainTableView: UITableView!
+    @IBOutlet var imageButtonsAreaView: UIView!
     
     private let viewModel = NewLessonViewModel()
     private var coreDataMangaer = CoreDataManager.shared
@@ -234,15 +235,17 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension NewLessonViewController: InputTextTableCellDelegate {
     func textViewDidBeingEditing(index: Int?) {
-        imageButtonsAreaView.isHidden = true
         guard let cellIndex = index else { return }
         mainTableView.scrollToRow(at: IndexPath(row: cellIndex, section: 0), at: .top, animated: true)
+        guard let view = imageButtonsAreaView else { return }
+        view.isHidden = true
     }
     
     func textViewDidEndEditing(cell: StepTableViewCell, value: String) {
-        imageButtonsAreaView.isHidden = false
         guard let data = cell.stepData else { return }
         data.explication = value
         data.save()
+        guard let view = imageButtonsAreaView else { return }
+        view.isHidden = false
     }
 }
