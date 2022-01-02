@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Combine
 
-class LessonImageViewController: BaseViewController {
+final class LessonImageViewController: BaseViewController {
 
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
@@ -17,6 +18,7 @@ class LessonImageViewController: BaseViewController {
     
     @IBOutlet weak var customCollectionView: UICollectionView!
     
+    private let viewModel = LessonImageViewModel()
     private var coreDataMangaer = CoreDataManager.shared
     private var lessonsArray = [Lesson]()
 
@@ -66,21 +68,34 @@ class LessonImageViewController: BaseViewController {
         }
     }
     
+    override func bind() {
+        viewModel.transiton
+            .sink { [self] transition in
+                switch transition {
+                case .setting:
+                    let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+                    let vc = storyboard.instantiateViewController(identifier: "Setting")
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case .addNew:
+                    let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+                    let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+                    if let newLessonVC = vc as? NewLessonViewController {
+                        newLessonVC.lessonData = self.coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
+                        newLessonVC.delegate = self
+                        newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+    
     override func setting() {
-        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "Setting")
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.settingButtonPressed.send()
     }
     
     override func addNewLesson() {
-        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-        if let newLessonVC = vc as? NewLessonViewController {
-            newLessonVC.lessonData = coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
-            newLessonVC.delegate = self
-            newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.addLessonButtonPressed.send()
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {

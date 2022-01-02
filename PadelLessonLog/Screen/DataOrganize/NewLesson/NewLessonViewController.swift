@@ -37,7 +37,7 @@ class NewLessonViewController: BaseViewController {
         lessonNameTextField.delegate = self
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        mainTableView.register(R.nib.stepTableViewCell)
+        mainTableView.register(UINib(nibName: "StepTableViewCell", bundle: nil), forCellReuseIdentifier: "StepTableViewCellIdentifier")
         
         mainTableView.tableFooterView = UIView()
         addImageButton.isSelected = false
@@ -203,7 +203,7 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StepCell", for: indexPath) as! StepTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StepTableViewCellIdentifier", for: indexPath) as! StepTableViewCell
         var data: LessonStep?
         for step in viewModel.tableViewCellData where step.orderNum == indexPath.row {
             data = step

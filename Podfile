@@ -8,6 +8,7 @@ target 'PadelLessonLog' do
   # Pods for PadelLessonLog
   pod 'Sketch'
   pod 'R.swift'
+  pod 'Swinject'
 
   target 'PadelLessonLogTests' do
     inherit! :search_paths

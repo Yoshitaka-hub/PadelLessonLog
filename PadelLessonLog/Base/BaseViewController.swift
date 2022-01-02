@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import Combine
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     static let forbidHideKeyboardTag: Int = 9001
     var keyboardShowing = false
     var tapGesture: UITapGestureRecognizer?
+    
+    var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         watchingKeyboardStatus()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +34,8 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc
     func addNewLesson() { }
+    
+    func bind() { }
     
     func watchingKeyboardStatus() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
