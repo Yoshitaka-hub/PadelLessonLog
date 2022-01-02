@@ -37,7 +37,7 @@ class NewLessonViewController: BaseViewController {
         lessonNameTextField.delegate = self
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        mainTableView.register(UINib(nibName: "StepTableViewCell", bundle: nil), forCellReuseIdentifier: "StepCell")
+        mainTableView.register(R.nib.stepTableViewCell)
         
         mainTableView.tableFooterView = UIView()
         addImageButton.isSelected = false
@@ -131,10 +131,9 @@ class NewLessonViewController: BaseViewController {
     @objc
     func save() {
         let title = lessonNameTextField.text ?? ""
-        let emptyCheck = ValidationManager()
-        emptyCheck.emptyFlag = true
-        let result: ValidationResult = emptyCheck.validate(title)
-        if result != .valid {
+        let emptyCheck = ValidateManager()
+        let result: ValidateResult = emptyCheck.validate(word: title, maxCount: 0)
+        guard result == .valid else {
             self.warningAlertView(withTitle: NSLocalizedString("The title is blank", comment: ""))
             return
         }
@@ -182,12 +181,11 @@ extension NewLessonViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }
         guard text != "" else { return }
-        let validationManager = ValidationManager()
-        validationManager.maxTextNum = 40
-        validationManager.emptyFlag = false
-        let result: ValidationResult = validationManager.validate(text)
+        let validateManager = ValidateManager()
+        let maxCount = 40
+        let result: ValidateResult = validateManager.validate(word: text, maxCount: maxCount)
         if result != .valid {
-            let dif = (textField.text?.count ?? validationManager.maxTextNum) - validationManager.maxTextNum
+            let dif = (textField.text?.count ?? maxCount) - maxCount
             if dif > 0 {
                 let dropedText = textField.text?.dropLast(dif)
                 lessonNameTextField.text = dropedText?.description

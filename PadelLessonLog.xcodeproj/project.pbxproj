@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,6 @@
 		E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE526C36966000A308C /* NewLessonViewModel.swift */; };
 		E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */; };
 		E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */; };
-		E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0026C4AE17000A308C /* ValidationManager.swift */; };
 		E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0626C4B6F4000A308C /* BaseViewController.swift */; };
 		E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidationTest.swift */; };
 		E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C1326C8D6AF000A308C /* SettingConst.swift */; };
@@ -73,6 +72,8 @@
 		E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65BE26C2172100A88860 /* ColorTableViewController.swift */; };
 		E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65C326C2173500A88860 /* ObjectTableViewController.swift */; };
 		E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD673926F417DD009DD686 /* UIColorExtension.swift */; };
+		E4AF75E027796DC90088110A /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF75DF27796DC90088110A /* ValidateManager.swift */; };
+		E4AF75E3277DB63B0088110A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF75E2277DB63B0088110A /* R.generated.swift */; };
 		E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
 /* End PBXBuildFile section */
@@ -160,7 +161,6 @@
 		E4536BE526C36966000A308C /* NewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModel.swift; sourceTree = "<group>"; };
 		E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewController.swift; sourceTree = "<group>"; };
 		E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		E4536C0026C4AE17000A308C /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		E4536C0626C4B6F4000A308C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4536C0E26C512E6000A308C /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
 		E4536C1326C8D6AF000A308C /* SettingConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConst.swift; sourceTree = "<group>"; };
@@ -182,6 +182,8 @@
 		E48E65BE26C2172100A88860 /* ColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewController.swift; sourceTree = "<group>"; };
 		E48E65C326C2173500A88860 /* ObjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewController.swift; sourceTree = "<group>"; };
 		E4AD673926F417DD009DD686 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		E4AF75DF27796DC90088110A /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
+		E4AF75E2277DB63B0088110A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Additions.swift"; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,6 +277,7 @@
 			children = (
 				E41F344B26BE67A8001B24A2 /* AppDelegate.swift */,
 				E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */,
+				E4AF75E2277DB63B0088110A /* R.generated.swift */,
 				E4536C0526C4B6D6000A308C /* Base */,
 				E41F349726BE6CCA001B24A2 /* Screen */,
 				E41F349F26BE6D63001B24A2 /* ViewParts */,
@@ -314,12 +317,12 @@
 		E41F349726BE6CCA001B24A2 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				E430C825274BABB60029F295 /* 3DPadel */,
 				E41F345126BE67A8001B24A2 /* Main.storyboard */,
 				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
 				E41F34BF26BF8A7C001B24A2 /* LessonImage */,
 				E41F34BE26BF8A6D001B24A2 /* LessonData */,
 				E445D0D026E2F1BD005B6FCB /* DataOrganize */,
+				E430C825274BABB60029F295 /* 3DPadel */,
 				E40113E126EF5B7F00912EBE /* Setting */,
 			);
 			path = Screen;
@@ -345,9 +348,9 @@
 		E41F349A26BE6D20001B24A2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E4536C0026C4AE17000A308C /* ValidationManager.swift */,
 				E403D5F626D6891100C36429 /* LessonImageDataManager.swift */,
 				E403D60E26D74DF600C36429 /* CoreDataManager.swift */,
+				E4AF75DF27796DC90088110A /* ValidateManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 			buildConfigurationList = E41F347526BE67B3001B24A2 /* Build configuration list for PBXNativeTarget "PadelLessonLog" */;
 			buildPhases = (
 				637E8AE6C2669DFD765FCB5D /* [CP] Check Pods Manifest.lock */,
+				E4AF75E1277DB2E00088110A /* ShellScript */,
 				E41F344426BE67A8001B24A2 /* Sources */,
 				E41F344526BE67A8001B24A2 /* Frameworks */,
 				E41F344626BE67A8001B24A2 /* Resources */,
@@ -864,6 +868,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E4AF75E1277DB2E00088110A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -884,7 +907,6 @@
 				E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */,
 				E465FC30274E7C3D00503FC8 /* AR+Common.swift in Sources */,
 				E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */,
-				E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */,
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
 				E48E65A926C214C600A88860 /* Const.swift in Sources */,
 				E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */,
@@ -894,6 +916,7 @@
 				E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */,
 				E40113DD26EED97B00912EBE /* LessonStep+CoreDataProperties.swift in Sources */,
 				E465FC33274E820100503FC8 /* BallLineGeometry.swift in Sources */,
+				E4AF75E027796DC90088110A /* ValidateManager.swift in Sources */,
 				E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */,
 				E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */,
 				E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */,
@@ -909,6 +932,7 @@
 				E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */,
 				E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */,
 				E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */,
+				E4AF75E3277DB63B0088110A /* R.generated.swift in Sources */,
 				E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */,
 				E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */,
 				E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */,
@@ -1158,7 +1182,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLogDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1.0;
+				CURRENT_PROJECT_VERSION = 1.1.1.1;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1181,7 +1205,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1.0;
+				CURRENT_PROJECT_VERSION = 1.1.1.1;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

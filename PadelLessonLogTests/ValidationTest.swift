@@ -12,12 +12,12 @@ import Nimble
 
 class ValidationTest: QuickSpec {
     override func spec() {
-        describe("ValidationManager") {
+        describe("ValidateManager") {
             // テスト用の変数
-            var validationManager = ValidationManager()
+            let validateManager = ValidateManager()
             var inputString: String!
-            var subject: ValidationResult {
-                return validationManager.validate(inputString)
+            var subject: ValidateResult {
+                return validateManager.validate(word: inputString, maxCount: 8)
             }
             
             // 概要
@@ -29,7 +29,7 @@ class ValidationTest: QuickSpec {
                     
                     // 期待する結果
                     it("invalidが返ってくること") {
-                        XCTAssertEqual(subject, .invalid)
+                        XCTAssertEqual(subject, .emptyError)
                     }
                 }
                 
@@ -43,9 +43,9 @@ class ValidationTest: QuickSpec {
                     }
                 }
                 // 条件3:4文字
-                context("4文字") {
+                context("8文字") {
                     // この階層以下に定義されたitの直前に呼ばれる
-                    beforeEach { inputString = "ABCD" }
+                    beforeEach { inputString = "ABCDEFGH" }
                     // 期待する結果
                     it("validが返ってくること") {
                         expect(subject).to(equal(.valid))
@@ -56,22 +56,8 @@ class ValidationTest: QuickSpec {
                     // この階層以下に定義されたitの直前に呼ばれる
                     beforeEach { inputString = "ABCDEFGHI" }
                     // 期待する結果
-                    it("invalidが返ってくること") {
-                        expect(subject).to(equal(.invalid))
-                    }
-                }
-                // 条件3:9文字
-                context("12文字をMaxに変えて、9文字") {
-                    // この階層以下に定義されたitの直前に呼ばれる
-                    beforeEach {
-                        validationManager = ValidationManager()
-                        validationManager.maxTextNum = 12
-                        inputString = "ABCDEFGHI"
-                        
-                    }
-                    // 期待する結果
-                    it("invalidが返ってくること") {
-                        expect(subject).to(equal(.valid))
+                    it("最大文字数オーバーが返ってくること") {
+                        expect(subject).to(equal(.countOverError))
                     }
                 }
             }
