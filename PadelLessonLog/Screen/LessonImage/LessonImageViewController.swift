@@ -34,9 +34,7 @@ final class LessonImageViewController: BaseViewController {
         customToolbar.isTranslucent = false
         customToolbar.barTintColor = UIColor.systemBackground
         customToolbar.barStyle = .default
-        allBarButton.tintColor = .colorButtonOn
         allBarButton.style = .done
-        favoriteBarButton.tintColor = .colorButtonOff
         favoriteBarButton.style = .done
         
         customCollectionView.delegate = self
@@ -56,11 +54,9 @@ final class LessonImageViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        viewModel.allButtonPressed.send()
         lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
-        allBarButton.tintColor = .colorButtonOn
-        favoriteBarButton.tintColor = .colorButtonOff
         if lessonsArray.isEmpty {
             detailButton.isHidden = true
         } else {
@@ -69,6 +65,17 @@ final class LessonImageViewController: BaseViewController {
     }
     
     override func bind() {
+        viewModel.allBarButtonIsOn
+            .sink { isOn in
+                self.allBarButton.tintColor = isOn ? .colorButtonOn : .colorButtonOff
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.favoriteBarButtonIsOn.sink { isOn in
+            self.favoriteBarButton.tintColor = isOn ? .colorButtonOn : .colorButtonOff
+        }
+        .store(in: &subscriptions)
+        
         viewModel.transiton
             .sink { [self] transition in
                 switch transition {
@@ -99,10 +106,9 @@ final class LessonImageViewController: BaseViewController {
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
+        viewModel.allButtonPressed.send()
         lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
         customCollectionView.reloadData()
-        allBarButton.tintColor = .colorButtonOn
-        favoriteBarButton.tintColor = .colorButtonOff
         if lessonsArray.isEmpty {
             detailButton.isHidden = true
         } else {
@@ -110,10 +116,9 @@ final class LessonImageViewController: BaseViewController {
         }
     }
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        viewModel.favoriteButtonPressed.send()
         lessonsArray = coreDataMangaer.loadAllFavoriteLessonDataWithImage()
         customCollectionView.reloadData()
-        favoriteBarButton.tintColor = .colorButtonOn
-        allBarButton.tintColor = .lightGray
         if lessonsArray.isEmpty {
             detailButton.isHidden = true
         } else {

@@ -12,7 +12,7 @@ enum TableMode {
     case favoriteTableView
 }
 
-class LessonDataViewController: BaseViewController {
+final class LessonDataViewController: BaseViewController {
     
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var customToolbar: UIToolbar!
