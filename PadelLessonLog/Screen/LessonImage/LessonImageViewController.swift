@@ -50,7 +50,6 @@ final class LessonImageViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.allButtonPressed.send()
-        viewModel.loadAllLessonData.send()
     }
     
     override func bind() {
@@ -124,12 +123,10 @@ final class LessonImageViewController: BaseViewController {
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.allButtonPressed.send()
-        viewModel.loadAllLessonData.send()
     }
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
-        viewModel.loadFavoriteLessonData.send()
     }
     
     @IBAction func arButtonPressed(_ sender: UIBarButtonItem) {
@@ -201,7 +198,7 @@ extension LessonImageViewController: DetailViewControllerDelegate {
 }
 
 extension LessonImageViewController: NewLessonViewControllerDelegate {
-    func pushToLessonImageView() {
+    func pushToLessonView() {
         viewModel.pushBackFromNewLessonView.send()
     }
 }

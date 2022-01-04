@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol NewLessonViewControllerDelegate {
-    func pushToLessonImageView()
+    func pushToLessonView()
 }
 
 class NewLessonViewController: BaseViewController {
@@ -140,7 +140,7 @@ class NewLessonViewController: BaseViewController {
         guard let id = lessonData?.id?.uuidString else { return }
         if coreDataMangaer.updateLessonTitle(lessonID: id, title: title) {
             if let safeDelegate = delegate {
-                safeDelegate.pushToLessonImageView()
+                safeDelegate.pushToLessonView()
             }
             self.navigationController?.popViewController(animated: true)
         } else {
