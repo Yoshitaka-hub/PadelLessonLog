@@ -7,8 +7,8 @@
 //
 
 import Quick
-import Nimble
 @testable import PadelLessonLog
+import Combine
 
 class ValidationTest: QuickSpec {
     override func spec() {
@@ -48,16 +48,16 @@ class ValidationTest: QuickSpec {
                     beforeEach { inputString = "ABCDEFGH" }
                     // 期待する結果
                     it("validが返ってくること") {
-                        expect(subject).to(equal(.valid))
+                        XCTAssertEqual(subject, .valid)
                     }
                 }
-                // 条件3:9文字
+                // 条件4:9文字
                 context("9文字") {
                     // この階層以下に定義されたitの直前に呼ばれる
                     beforeEach { inputString = "ABCDEFGHI" }
                     // 期待する結果
                     it("最大文字数オーバーが返ってくること") {
-                        expect(subject).to(equal(.countOverError))
+                        XCTAssertEqual(subject, .countOverError)
                     }
                 }
             }
