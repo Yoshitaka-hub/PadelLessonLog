@@ -55,9 +55,12 @@ class NewLessonViewController: BaseViewController {
     }
     
     override func bind() {
+        viewModel.lessonTitleText
+            .assign(to: \.text, on: lessonNameTextField)
+            .store(in: &subscriptions)
+        
         viewModel.loadView.sink { [weak self] lesson in
             guard let self = self else { return }
-            self.lessonNameTextField.text = lesson.title
             self.mainTableView.reloadData()
         }.store(in: &subscriptions)
         
@@ -89,9 +92,51 @@ class NewLessonViewController: BaseViewController {
             self.infoAlertViewWithTitle(title: NSLocalizedString("Image deleted", comment: ""))
         }.store(in: &subscriptions)
         
+        viewModel.dataDeleted.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.infoAlertViewWithTitle(title: NSLocalizedString("Data deleted", comment: ""), message: "") {
+                self.viewModel.transiton.send(.deleted)
+            }
+        }.store(in: &subscriptions)
+        
+        viewModel.titleEmptyAlert.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.warningAlertView(withTitle: NSLocalizedString("The title is blank", comment: ""))
+        }.store(in: &subscriptions)
+        
+        viewModel.titleStringCountOverAlert.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.warningAlertView(withTitle: NSLocalizedString("The number of characters is exceeded", comment: ""))
+        }.store(in: &subscriptions)
+        
+        viewModel.dataSaved.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.infoAlertViewWithTitle(title: NSLocalizedString("Data saved", comment: ""), message: "") {
+                self.viewModel.transiton.send(.saved)
+            }
+        }.store(in: &subscriptions)
+        
         viewModel.scrolStepTable.sink { [weak self] _ in
             guard let self = self else { return }
             self.mainTableView.scrollToRow(at: IndexPath(row: self.viewModel.lessonStepData.value.count - 1, section: 0) , at: .top, animated: true)
+        }.store(in: &subscriptions)
+        
+        viewModel.transiton.sink { [weak self] transition in
+            guard let self = self else { return }
+            switch transition {
+            case let .addEditImage(lesson):
+                guard let id = lesson.id else { return }
+                guard let addNewImageVC = R.storyboard.addNewImage.addNewImage() else { return }
+                addNewImageVC.lessonImage = lesson.getImage()
+                addNewImageVC.lessonID = id.uuidString
+                self.navigationController?.pushViewController(addNewImageVC, animated: true)
+            case .saved:
+                guard let safeDelegate = self.delegate else { return }
+                safeDelegate.pushToLessonView()
+                self.navigationController?.popViewController(animated: true)
+            case .deleted:
+                self.navigationController?.popViewController(animated: true)
+            }
         }.store(in: &subscriptions)
     }
 
@@ -110,35 +155,13 @@ class NewLessonViewController: BaseViewController {
     @objc
     func deleteData() {
         destructiveAlertView(withTitle: NSLocalizedString("Data will be deleted", comment: ""), cancelString: NSLocalizedString("Cancel", comment: ""), destructiveString: NSLocalizedString("Delete", comment: "")) {
-            guard let id = self.lessonData?.id?.uuidString else { return }
-            if self.coreDataMangaer.deleteLessonData(lessonID: id) {
-                self.infoAlertViewWithTitle(title: NSLocalizedString("Data deleted", comment: ""), message: "") {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            } else {
-                fatalError("データ削除失敗")
-            }
+            self.viewModel.deleteData.send()
         }
     }
-    
     @objc
     func save() {
-        let title = lessonNameTextField.text ?? ""
-        let emptyCheck = ValidateManager()
-        let result: ValidateResult = emptyCheck.validate(word: title, maxCount: 0)
-        guard result == .valid else {
-            self.warningAlertView(withTitle: NSLocalizedString("The title is blank", comment: ""))
-            return
-        }
-        guard let id = lessonData?.id?.uuidString else { return }
-        if coreDataMangaer.updateLessonTitle(lessonID: id, title: title) {
-            if let safeDelegate = delegate {
-                safeDelegate.pushToLessonView()
-            }
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            fatalError("ステップ削除失敗")
-        }
+        self.viewModel.textFieldDidEndEditing.send(lessonNameTextField.text)
+        viewModel.saveData.send()
     }
     
     @objc
@@ -157,36 +180,9 @@ class NewLessonViewController: BaseViewController {
     }
 }
 
-extension NewLessonViewController {
-    func pushToAddNewImageVC() {
-        let storyboard = UIStoryboard(name: "AddNewImage", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "AddNewImage")
-        if let addNewImageVC = vc as? AddNewImageViewController {
-            guard let data = lessonData else { return }
-            addNewImageVC.lessonImage = data.getImage()
-            addNewImageVC.lessonID = data.id?.uuidString
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
 extension NewLessonViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        guard text != "" else { return }
-        let validateManager = ValidateManager()
-        let maxCount = 40
-        let result: ValidateResult = validateManager.validate(word: text, maxCount: maxCount)
-        if result != .valid {
-            let dif = (textField.text?.count ?? maxCount) - maxCount
-            if dif > 0 {
-                let dropedText = textField.text?.dropLast(dif)
-                lessonNameTextField.text = dropedText?.description
-                self.warningAlertView(withTitle: NSLocalizedString("The number of characters is exceeded", comment: ""))
-            } else {
-                self.warningAlertView(withTitle: NSLocalizedString("Illegal characters are used", comment: ""))
-            }
-        }
+        self.viewModel.textFieldDidEndEditing.send(textField.text)
     }
 }
 
@@ -205,19 +201,7 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard viewModel.lessonStepData.value.count > 1 else { return }
-        guard let lesson = lessonData else { return }
-        var deleteStep: LessonStep?
-        for step in viewModel.lessonStepData.value where step.orderNum == indexPath.row {
-            deleteStep = step
-        }
-        if let step = deleteStep {
-            coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: viewModel.lessonStepData.value)
-        }
-        let stpes = lesson.steps?.allObjects as? [LessonStep]
-        guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
-        viewModel.lessonStepData.send(safeSteps)
-        mainTableView.reloadData()
+        viewModel.lessonStepDidDelete.send(indexPath)
     }
 }
 
@@ -230,9 +214,8 @@ extension NewLessonViewController: InputTextTableCellDelegate {
     }
     
     func textViewDidEndEditing(cell: StepTableViewCell, value: String) {
-        guard let data = cell.stepData else { return }
-        data.explication = value
-        data.save()
+        guard let lessonStep = cell.stepData else { return }
+        viewModel.lessonStepDidEndEditing.send((lessonStep, value))
         guard let view = imageButtonsAreaView else { return }
         view.isHidden = false
     }

@@ -10,12 +10,13 @@
 "Image deleted" = "イメージを削除しました";
 "Data will be deleted" = "データを削除しますか？";
 "Data deleted" = "データを削除しました";
+"Data saved" = "データを保存しました";
 "Delete" = "削除";
 "Cancel" = "キャンセル";
 
 "The title is blank" = "タイトルが空欄です";
 "Illegal characters are used" = "使用できない文字が使われています";
-"The number of characters is exceeded" = "入力文字数が上限を超えています";
+"The number of characters is exceeded" = "入力文字数が\n上限を超えています";
 
 "Detail" = "データ詳細";
 "Image View" = "イメージ";

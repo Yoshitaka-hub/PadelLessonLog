@@ -18,6 +18,7 @@ class ValidateManager {
     
     func validate(word: String, maxCount: Int) -> ValidateResult {
         guard !word.isEmpty else { return .emptyError }
+        guard word.count != 0 else { return .emptyError }
         guard maxCount != 0 else { return .valid }
         guard word.count <= maxCount else { return .countOverError }
 
