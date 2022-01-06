@@ -25,8 +25,6 @@ class NewLessonViewController: BaseViewController {
     
     private let viewModel = NewLessonViewModel()
     private var coreDataMangaer = CoreDataManager.shared
-
-    private var cancellables = Set<AnyCancellable>()
     
     var lessonData: Lesson?
 
@@ -50,69 +48,64 @@ class NewLessonViewController: BaseViewController {
         notificationCenter.addObserver(self, selector: #selector(self.adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         self.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "trash.circle")!, color: .red, select: #selector(deleteData))
         self.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "checkmark.circle")!, select: #selector(save))
-        
-        if let lesson = lessonData {
-            lessonNameTextField.text = lesson.title
-            let stpes = lesson.steps?.allObjects as? [LessonStep]
-            guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
-            viewModel.tableViewCellNum = safeSteps.count
-            viewModel.tableViewCellData = safeSteps
-        }
-        
-        viewModel.$addImageButtonIsSelected
-            .sink { [self] (isSelected) in
-                guard isSelected != addImageButton.isSelected else { return }
-                if isSelected {
-                    pushToAddNewLessonVC()
-                } else {
-                    destructiveAlertView(withTitle: NSLocalizedString("Are you sure?", comment: ""), cancelString: NSLocalizedString("Cancel", comment: ""), destructiveString: NSLocalizedString("Delete", comment: "")) {
-                        guard let id = lessonData?.id?.uuidString else { return }
-                        let isSaved = coreDataMangaer.resetLessonImage(lessonID: id, image: UIImage(named: "img_court")!)
-                        if isSaved {
-                            lessonData = coreDataMangaer.loadLessonData(lessonID: id)
-                            infoAlertViewWithTitle(title: NSLocalizedString("Image deleted", comment: ""))
-                            addImageButton.isSelected.toggle()
-                            addImageButton.tintColor = isSelected ? .systemRed : .systemBlue
-                            editImageButton.isHidden = !addImageButton.isSelected
-                        } else {
-                            fatalError("画像が更新できない")
-                        }
-                    }
-                }
-            }
-            .store(in: &cancellables)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let flag = lessonData?.imageSaved else { return }
-        addImageButton.isSelected = flag
-        addImageButton.tintColor = flag ? .systemRed : .systemBlue
-        editImageButton.isHidden = !flag
+        viewModel.lessonData.send(lessonData)
+    }
+    
+    override func bind() {
+        viewModel.loadView.sink { [weak self] lesson in
+            guard let self = self else { return }
+            self.lessonNameTextField.text = lesson.title
+            self.mainTableView.reloadData()
+        }.store(in: &subscriptions)
+        
+        viewModel.imageButtonIsOn.sink { [weak self] isOn in
+            guard let self = self else { return }
+            self.addImageButton.isSelected = isOn
+            self.addImageButton.tintColor = isOn ? .systemRed : .systemBlue
+        }.store(in: &subscriptions)
+        
+        viewModel.editImageButtonIsHidden
+            .assign(to: \.isHidden, on: editImageButton)
+            .store(in: &subscriptions)
+        
+        viewModel.editStepButtonIsOn.sink { [weak self] isOn in
+            guard let self = self else { return }
+            self.editStepButton.isSelected = isOn
+            self.mainTableView.setEditing(isOn, animated: true)
+        }.store(in: &subscriptions)
+        
+        viewModel.deleteImageAlert.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.destructiveAlertView(withTitle: NSLocalizedString("Are you sure?", comment: ""), cancelString: NSLocalizedString("Cancel", comment: ""), destructiveString: NSLocalizedString("Delete", comment: "")) {
+                self.viewModel.deleteImageConfirmed.send()
+            }
+        }.store(in: &subscriptions)
+        
+        viewModel.imageDeleted.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.infoAlertViewWithTitle(title: NSLocalizedString("Image deleted", comment: ""))
+        }.store(in: &subscriptions)
+        
+        viewModel.scrolStepTable.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.mainTableView.scrollToRow(at: IndexPath(row: self.viewModel.lessonStepData.value.count - 1, section: 0) , at: .top, animated: true)
+        }.store(in: &subscriptions)
     }
 
     @IBAction func addImageButtonPressed(_ sender: UIButton) {
-        viewModel.addImageButtonIsSelected = !addImageButton.isSelected
+        viewModel.imageButtonPressed.send(sender.isSelected)
     }
     @IBAction func editImageButtonPressed(_ sender: UIButton) {
-        pushToAddNewLessonVC()
+        viewModel.editImageButtonPressed.send()
     }
     @IBAction func addStepButtonPressed(_ sender: UIButton) {
-        guard let lesson = lessonData else { return }
-        coreDataMangaer.createStep(lesson: lesson)
-        let stpes = lesson.steps?.allObjects as? [LessonStep]
-        guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
-        viewModel.tableViewCellNum = safeSteps.count
-        viewModel.tableViewCellData = safeSteps
-        mainTableView.reloadData()
-        if editStepButton.isSelected {
-            editStepButton.isSelected = false
-            mainTableView.setEditing(false, animated: true)
-        }
-        mainTableView.scrollToRow(at: IndexPath(row: viewModel.tableViewCellNum - 1, section: 0) , at: .top, animated: true)
+        viewModel.addStepButtonPressed.send()
     }
     @IBAction func editStepButtonPressed(_ sender: UIButton) {
-        editStepButton.isSelected = !editStepButton.isSelected
-        mainTableView.setEditing(!mainTableView.isEditing, animated: true)
+        viewModel.editStepButtonPressed.send(sender.isSelected)
     }
     @objc
     func deleteData() {
@@ -165,13 +158,13 @@ class NewLessonViewController: BaseViewController {
 }
 
 extension NewLessonViewController {
-    func pushToAddNewLessonVC() {
-        let storyboard = UIStoryboard(name: "AddNewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "AddNewLesson")
-        if let addNewLessonVC = vc as? AddNewLessonViewController {
+    func pushToAddNewImageVC() {
+        let storyboard = UIStoryboard(name: "AddNewImage", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "AddNewImage")
+        if let addNewImageVC = vc as? AddNewImageViewController {
             guard let data = lessonData else { return }
-            addNewLessonVC.lessonImage = data.getImage()
-            addNewLessonVC.lessonID = data.id?.uuidString
+            addNewImageVC.lessonImage = data.getImage()
+            addNewImageVC.lessonID = data.id?.uuidString
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -199,34 +192,31 @@ extension NewLessonViewController: UITextFieldDelegate {
 
 extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableViewCellNum
+        return viewModel.lessonStepData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StepTableViewCellIdentifier", for: indexPath) as! StepTableViewCell
-        var data: LessonStep?
-        for step in viewModel.tableViewCellData where step.orderNum == indexPath.row {
-            data = step
+        for step in viewModel.lessonStepData.value where step.orderNum == indexPath.row {
+            cell.delegate = self
+            cell.setup(index: indexPath.row, stepData: step)
         }
-        guard let safeData = data else { fatalError() }
-        cell.delegate = self
-        cell.setup(index: indexPath.row, stepData: safeData)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard viewModel.tableViewCellData.count > 1 else { return }
+        guard viewModel.lessonStepData.value.count > 1 else { return }
         guard let lesson = lessonData else { return }
         var deleteStep: LessonStep?
-        for step in viewModel.tableViewCellData where step.orderNum == indexPath.row {
+        for step in viewModel.lessonStepData.value where step.orderNum == indexPath.row {
             deleteStep = step
         }
         if let step = deleteStep {
-            coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: viewModel.tableViewCellData)
+            coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: viewModel.lessonStepData.value)
         }
         let stpes = lesson.steps?.allObjects as? [LessonStep]
         guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
-        viewModel.tableViewCellNum = safeSteps.count
-        viewModel.tableViewCellData = safeSteps
+        viewModel.lessonStepData.send(safeSteps)
         mainTableView.reloadData()
     }
 }

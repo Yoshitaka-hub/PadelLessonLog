@@ -1,5 +1,5 @@
 //
-//  AddNewLessonViewController.swift
+//  AddNewImageViewController.swift
 //  PadelLessonLog
 //
 //  Created by Yoshitaka on 2021/08/08.
@@ -8,12 +8,12 @@
 import UIKit
 import Sketch
 
-class AddNewLessonViewController: UIViewController {
+class AddNewImageViewController: UIViewController {
 
     @IBOutlet weak var sketchView: SketchView!
     @IBOutlet weak var customToolbar: UIToolbar!
     
-    private var viewModel = AddNewLessonViewModel()
+    private var viewModel = AddNewImageViewModel()
     
     private var coreDataMangaer = CoreDataManager.shared
     var lessonID: String?
@@ -147,7 +147,7 @@ class AddNewLessonViewController: UIViewController {
     }
 }
 
-extension AddNewLessonViewController: ColorTableViewControllerDelegate {
+extension AddNewImageViewController: ColorTableViewControllerDelegate {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor) {
         switch didSelectColor {
         case .black:
@@ -175,7 +175,7 @@ extension AddNewLessonViewController: ColorTableViewControllerDelegate {
     }
 }
 
-extension AddNewLessonViewController: ObjectTableViewControllerDelegate {
+extension AddNewImageViewController: ObjectTableViewControllerDelegate {
     func ObjectTableViewController(objectTableViewController: ObjectTableViewController, didSelectObject: ObjectType) {
         switch didSelectObject {
         case .pen:

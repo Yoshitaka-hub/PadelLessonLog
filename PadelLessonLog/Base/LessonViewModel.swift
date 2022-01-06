@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-enum LessonTransition {
+enum lessonTransition {
     case setting
     case lesson(Lesson, Bool)
     case arView
@@ -37,7 +37,7 @@ class LessonViewModel: BaseViewModel {
     
     var tableMode = CurrentValueSubject<TableMode, Never>(.allTableView)
     
-    private(set) var transiton = PassthroughSubject<LessonTransition, Never>()
+    private(set) var transiton = PassthroughSubject<lessonTransition, Never>()
     
     private(set) var lessonsArray = CurrentValueSubject<[Lesson], Never>([])
     

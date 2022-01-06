@@ -34,9 +34,9 @@
 		E41F347126BE67B3001B24A2 /* PadelLessonLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */; };
 		E41F34B426BE7BE3001B24A2 /* LessonImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */; };
 		E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */; };
-		E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */; };
-		E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */; };
-		E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */; };
+		E41F34C526BF9862001B24A2 /* AddNewImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */; };
+		E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */; };
+		E41F34CF26BF9FFF001B24A2 /* AddNewImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */; };
 		E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */; };
 		E422AB1A26F55E8A008F395B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E422AB1C26F55E8A008F395B /* Localizable.strings */; };
 		E422AB2926F571A1008F395B /* NewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E422AB2B26F571A1008F395B /* NewLesson.storyboard */; };
@@ -142,9 +142,9 @@
 		E41F347226BE67B3001B24A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LessonImage.storyboard; path = PadelLessonLog/Screen/LessonImage/LessonImage.storyboard; sourceTree = SOURCE_ROOT; };
 		E41F34B926BE7CAA001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LessonData.storyboard; sourceTree = "<group>"; };
-		E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewLesson.storyboard; sourceTree = "<group>"; };
-		E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewController.swift; sourceTree = "<group>"; };
-		E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewModel.swift; sourceTree = "<group>"; };
+		E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewImage.storyboard; sourceTree = "<group>"; };
+		E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewController.swift; sourceTree = "<group>"; };
+		E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewModel.swift; sourceTree = "<group>"; };
 		E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewController.swift; sourceTree = "<group>"; };
 		E422AB0C26F55E06008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		E422AB1026F55E07008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LessonData.strings; sourceTree = "<group>"; };
@@ -497,16 +497,16 @@
 			path = LessonImage;
 			sourceTree = "<group>";
 		};
-		E41F34C326BF982E001B24A2 /* AddNewLessonImage */ = {
+		E41F34C326BF982E001B24A2 /* AddNewImage */ = {
 			isa = PBXGroup;
 			children = (
-				E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */,
-				E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */,
-				E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */,
+				E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */,
+				E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */,
+				E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */,
 				E48E65B326C216C000A88860 /* ObjectTable */,
 				E48E65B226C216AF00A88860 /* ColorTable */,
 			);
-			path = AddNewLessonImage;
+			path = AddNewImage;
 			sourceTree = "<group>";
 		};
 		E430C825274BABB60029F295 /* 3DPadel */ = {
@@ -533,7 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				E4536BDA26C33F06000A308C /* NewLesson */,
-				E41F34C326BF982E001B24A2 /* AddNewLessonImage */,
+				E41F34C326BF982E001B24A2 /* AddNewImage */,
 				E445D0CF26E2F133005B6FCB /* Detail */,
 			);
 			path = DataOrganize;
@@ -736,7 +736,7 @@
 			files = (
 				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
 				E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */,
-				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
+				E41F34C526BF9862001B24A2 /* AddNewImage.storyboard in Resources */,
 				E422AB6226F586E9008F395B /* Setting.storyboard in Resources */,
 				E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */,
 				E422AB4E26F57B9E008F395B /* DataTableViewCell.xib in Resources */,
@@ -918,7 +918,7 @@
 				E445D0D726E2F274005B6FCB /* DetailViewController.swift in Sources */,
 				E4320C6026EE04FD00BE2FD4 /* DetailViewModel.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
-				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
+				E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */,
 				E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */,
 				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
@@ -935,7 +935,7 @@
 				E40113DA26EED97B00912EBE /* Lesson+CoreDataClass.swift in Sources */,
 				E4D0F4F92783D46900690B99 /* LessonDataViewModel.swift in Sources */,
 				E40113DB26EED97B00912EBE /* Lesson+CoreDataProperties.swift in Sources */,
-				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
+				E41F34CF26BF9FFF001B24A2 /* AddNewImageViewModel.swift in Sources */,
 				E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */,
 				E40113DD26EED97B00912EBE /* LessonStep+CoreDataProperties.swift in Sources */,
 				E465FC33274E820100503FC8 /* BallLineGeometry.swift in Sources */,
