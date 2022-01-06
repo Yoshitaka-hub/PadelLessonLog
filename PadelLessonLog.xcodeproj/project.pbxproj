@@ -22,6 +22,7 @@
 		E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */; };
 		E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */; };
 		E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */; };
+		E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E412785E1940077C710 /* DetailViewModelTest.swift */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
 		E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */; };
 		E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* MainViewController.swift */; };
@@ -123,6 +124,7 @@
 		E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModelTest.swift; sourceTree = "<group>"; };
 		E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewModelTest.swift; sourceTree = "<group>"; };
 		E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewModelTest.swift; sourceTree = "<group>"; };
+		E4078E412785E1940077C710 /* DetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTest.swift; sourceTree = "<group>"; };
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F344B26BE67A8001B24A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */,
 				E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */,
 				E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */,
+				E4078E412785E1940077C710 /* DetailViewModelTest.swift */,
 			);
 			path = PadelLessonLogTests;
 			sourceTree = "<group>";
@@ -969,6 +972,7 @@
 				E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */,
 				E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */,
 				E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */,
+				E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */,
 				E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */,
 				E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */,
 			);

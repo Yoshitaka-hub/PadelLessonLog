@@ -12,13 +12,13 @@ import Combine
 
 class LessonImageViewModelTest: QuickSpec {
     override func spec() {
-        describe("ValidateManager") {
+        describe("LessonImageViewModel") {
             let lessonImageViewModel = LessonImageViewModel()
             var subscriptions = Set<AnyCancellable>()
             var recievedReloadStreamFlag = false
             var recievedAllButtonStateStreamFlag: Bool?
             var recievedFavoriteButtonStateStreamFlag: Bool?
-            var recievedTransitionStream: lessonTransition?
+            var recievedTransitionStream: LessonTransition?
             
             lessonImageViewModel.dataReload.sink { _ in
                 recievedReloadStreamFlag = true
@@ -36,7 +36,7 @@ class LessonImageViewModelTest: QuickSpec {
                 recievedTransitionStream = value
             }.store(in: &subscriptions)
             
-            describe("入力文字検証") {
+            describe("動作検証") {
                 context("Allボタンタップ") {
                     beforeEach {
                         lessonImageViewModel.dataReload.sink { _ in
