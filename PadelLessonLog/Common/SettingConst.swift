@@ -14,5 +14,4 @@ let https = "http"
 let https = "https"
 
 #endif
-
 let filesPath = "Documents/Files"

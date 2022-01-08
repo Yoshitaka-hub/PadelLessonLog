@@ -55,7 +55,7 @@
 		E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */; };
 		E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */; };
 		E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0626C4B6F4000A308C /* BaseViewController.swift */; };
-		E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidationTest.swift */; };
+		E4536C0F26C512E6000A308C /* ValidateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */; };
 		E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C1326C8D6AF000A308C /* SettingConst.swift */; };
 		E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E465FC2A274E7B2200503FC8 /* art.scnassets */; };
 		E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */; };
@@ -83,6 +83,8 @@
 		E4D0F4FB2783D4D500690B99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */; };
 		E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
+		E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */; };
+		E4EBEEF427888D1000798481 /* StubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF327888D1000798481 /* StubManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,7 +174,7 @@
 		E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewController.swift; sourceTree = "<group>"; };
 		E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4536C0626C4B6F4000A308C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		E4536C0E26C512E6000A308C /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
+		E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManagerTest.swift; sourceTree = "<group>"; };
 		E4536C1326C8D6AF000A308C /* SettingConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConst.swift; sourceTree = "<group>"; };
 		E465FC2A274E7B2200503FC8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectnode.swift; sourceTree = "<group>"; };
@@ -200,6 +202,8 @@
 		E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
+		E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModelTest.swift; sourceTree = "<group>"; };
+		E4EBEEF327888D1000798481 /* StubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,11 +317,13 @@
 			children = (
 				E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */,
 				E41F346726BE67B3001B24A2 /* Info.plist */,
-				E4536C0E26C512E6000A308C /* ValidationTest.swift */,
+				E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */,
 				E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */,
 				E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */,
 				E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */,
 				E4078E412785E1940077C710 /* DetailViewModelTest.swift */,
+				E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */,
+				E4EBEEF327888D1000798481 /* StubManager.swift */,
 			);
 			path = PadelLessonLogTests;
 			sourceTree = "<group>";
@@ -971,9 +977,11 @@
 			files = (
 				E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */,
 				E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */,
+				E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */,
 				E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */,
 				E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */,
-				E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */,
+				E4EBEEF427888D1000798481 /* StubManager.swift in Sources */,
+				E4536C0F26C512E6000A308C /* ValidateManagerTest.swift in Sources */,
 				E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

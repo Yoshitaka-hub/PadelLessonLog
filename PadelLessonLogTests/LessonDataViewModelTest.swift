@@ -14,35 +14,30 @@ class LessonDataViewModelTest: QuickSpec {
     override func spec() {
         describe("LessonDataViewModel") {
             let lessonDataViewModel = LessonDataViewModel()
+            let stubManager = StubManager()
             var subscriptions = Set<AnyCancellable>()
-            var recievedReloadStreamFlag = false
+            
+            var recievedReloadStreamFlag: Bool?
             var recievedAllButtonStateStreamFlag: Bool?
             var recievedFavoriteButtonStateStreamFlag: Bool?
-            var recievedTransitionStream: LessonTransition?
+            var flag: Bool?
             
-            lessonDataViewModel.dataReload.sink { _ in
-                recievedReloadStreamFlag = true
-            }.store(in: &subscriptions)
-            
-            lessonDataViewModel.allBarButtonIsOn.sink { value in
-                recievedAllButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonDataViewModel.favoriteBarButtonIsOn.sink { value in
-                recievedFavoriteButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonDataViewModel.transiton.sink { value in
-                recievedTransitionStream = value
-            }.store(in: &subscriptions)
-            
+            //TODO: reorderDataを叩いてデータの並び替えをテストしたいが、CoreDataManagerでUpdateが走るのでできない
             describe("動作検証") {
                 context("Allボタンタップ") {
                     beforeEach {
+                        subscriptions.removeAll()
                         lessonDataViewModel.dataReload.sink { _ in
                             recievedReloadStreamFlag = true
                         }.store(in: &subscriptions)
-                        recievedReloadStreamFlag = false
+                        lessonDataViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        lessonDataViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
                         lessonDataViewModel.allButtonPressed.send()
@@ -60,7 +55,18 @@ class LessonDataViewModelTest: QuickSpec {
                 }
                 context("Favoriteボタンタップ") {
                     beforeEach {
-                        recievedReloadStreamFlag = false
+                        subscriptions.removeAll()
+                        lessonDataViewModel.dataReload.sink { _ in
+                            recievedReloadStreamFlag = true
+                        }.store(in: &subscriptions)
+                        lessonDataViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        lessonDataViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
                         lessonDataViewModel.favoriteButtonPressed.send()
@@ -76,37 +82,72 @@ class LessonDataViewModelTest: QuickSpec {
                         XCTAssertEqual(recievedFavoriteButtonStateStreamFlag, true)
                     }
                 }
-                
                 context("設定画面に遷移") {
                     beforeEach {
-                        recievedTransitionStream = nil
+                        subscriptions.removeAll()
+                        lessonDataViewModel.transiton.sink { value in
+                            switch value {
+                            case .setting:
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
                         lessonDataViewModel.settingButtonPressed.send()
                     }
                     it(".settingが流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .setting:
-                            flag = true
-                        default:
-                            break
-                        }
                         XCTAssertEqual(flag, true)
                     }
                 }
                 context("詳細画面に遷移") {
                     beforeEach {
-                        let dummyLesson = Lesson()
-                        recievedTransitionStream = nil
-                        lessonDataViewModel.detailButtonPressed.send(dummyLesson)
+                        subscriptions.removeAll()
+                        lessonDataViewModel.transiton.sink { value in
+                            switch value {
+                            case .detail(_):
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonDataViewModel.didSelectRowAt.send(IndexPath(row: 0, section: 0))
                     }
                     it(".detail(dummyLesson)が流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .detail(_):
+                        XCTAssertEqual(flag, true)
+                    }
+                }
+                context("追加画面から戻ってきたら自動スクロール") {
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonDataViewModel.scrollToTableIndex.sink { _ in
                             flag = true
-                        default:
-                            break
-                        }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonDataViewModel.pushBackFromNewLessonView.send()
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, true)
+                    }
+                }
+                context("TESTで検索してフィルタリングされるか") {
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonDataViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
+                        lessonDataViewModel.lessonsArray.sink { value in
+                            guard value.count == 1 else { return }
+                            guard value[0].title == "TEST DATA" else { return }
+                            flag = true
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonDataViewModel.searchAndFilterData.send("TEST")
+                    }
+                    it("検索結果でフィルタリングされること") {
                         XCTAssertEqual(flag, true)
                     }
                 }

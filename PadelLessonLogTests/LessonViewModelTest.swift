@@ -13,35 +13,32 @@ class LessonViewModelTest: QuickSpec {
     override func spec() {
         describe("LessonViewModel") {
             let lessonViewModel = LessonViewModel()
+            let stubManager = StubManager()
             var subscriptions = Set<AnyCancellable>()
-            var recievedReloadStreamFlag = false
+            
+            var recievedReloadStreamFlag: Bool?
             var recievedAllButtonStateStreamFlag: Bool?
             var recievedFavoriteButtonStateStreamFlag: Bool?
-            var recievedTransitionStream: LessonTransition?
+            var flag: Bool?
             
-            lessonViewModel.dataReload.sink { _ in
-                recievedReloadStreamFlag = true
-            }.store(in: &subscriptions)
-            
-            lessonViewModel.allBarButtonIsOn.sink { value in
-                recievedAllButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonViewModel.favoriteBarButtonIsOn.sink { value in
-                recievedFavoriteButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonViewModel.transiton.sink { value in
-                recievedTransitionStream = value
-            }.store(in: &subscriptions)
-            
+            //TODO: addLessonButtonPressed・pushToEditLessonViewを叩いての遷移はCoreDataManagerで新規レコードが追加されてしまうのでテストできない
             describe("動作検証") {
                 context("Allボタンタップ") {
                     beforeEach {
+                        subscriptions.removeAll()
                         lessonViewModel.dataReload.sink { _ in
                             recievedReloadStreamFlag = true
                         }.store(in: &subscriptions)
-                        recievedReloadStreamFlag = false
+                        
+                        lessonViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        lessonViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
                         lessonViewModel.allButtonPressed.send()
@@ -59,7 +56,20 @@ class LessonViewModelTest: QuickSpec {
                 }
                 context("Favoriteボタンタップ") {
                     beforeEach {
-                        recievedReloadStreamFlag = false
+                        subscriptions.removeAll()
+                        lessonViewModel.dataReload.sink { _ in
+                            recievedReloadStreamFlag = true
+                        }.store(in: &subscriptions)
+                        
+                        lessonViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        lessonViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
                         lessonViewModel.favoriteButtonPressed.send()
@@ -78,34 +88,39 @@ class LessonViewModelTest: QuickSpec {
                 
                 context("設定画面に遷移") {
                     beforeEach {
-                        recievedTransitionStream = nil
+                        subscriptions.removeAll()
+                        lessonViewModel.transiton.sink { value in
+                            switch value {
+                            case .setting:
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
                         lessonViewModel.settingButtonPressed.send()
                     }
                     it(".settingが流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .setting:
-                            flag = true
-                        default:
-                            break
-                        }
                         XCTAssertEqual(flag, true)
                     }
                 }
                 context("詳細画面に遷移") {
                     beforeEach {
-                        let dummyLesson = Lesson()
-                        recievedTransitionStream = nil
-                        lessonViewModel.detailButtonPressed.send(dummyLesson)
+                        subscriptions.removeAll()
+                        lessonViewModel.transiton.sink { value in
+                            switch value {
+                            case .detail(_):
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonViewModel.detailButtonPressed.send(stubManager.createStubLessonData())
                     }
-                    it(".detail(dummyLesson)が流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .detail(_):
-                            flag = true
-                        default:
-                            break
-                        }
+                    it(".detail(Lesson)が流れてくること") {
                         XCTAssertEqual(flag, true)
                     }
                 }

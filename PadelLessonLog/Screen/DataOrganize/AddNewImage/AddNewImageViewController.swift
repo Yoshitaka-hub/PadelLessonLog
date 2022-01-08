@@ -23,7 +23,7 @@ class AddNewImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureToolbar()
-        navigationItem.title = NSLocalizedString("Draw View", comment: "")
+        navigationItem.title = R.string.localizable.drawView()
         navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
     }
     override func viewWillAppear(_ animated: Bool) {

@@ -27,7 +27,7 @@ class DetailViewController: BaseViewController {
         stepTableView.dataSource = self
         stepTableView.tableFooterView = UIView()
 
-        navigationItem.title = NSLocalizedString("Detail", comment: "")
+        navigationItem.title = R.string.localizable.detail()
         navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
         navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage(systemName: "pencil.tip.crop.circle.badge.plus")!, select: #selector(edit))
     }

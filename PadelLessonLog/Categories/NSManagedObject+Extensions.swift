@@ -13,7 +13,6 @@ extension NSManagedObject {
             try managedObjectContext?.save()
         } catch let error {
             print(error)
-//            abort()
         }
     }
 }

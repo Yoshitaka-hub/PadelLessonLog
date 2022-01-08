@@ -15,7 +15,6 @@
 "Cancel" = "キャンセル";
 
 "The title is blank" = "タイトルが空欄です";
-"Illegal characters are used" = "使用できない文字が使われています";
 "The number of characters is exceeded" = "入力文字数が\n上限を超えています";
 
 "Detail" = "データ詳細";

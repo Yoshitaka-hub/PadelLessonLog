@@ -1,5 +1,5 @@
 //
-//  ValidationTest.swift
+//  ValidateManagerTest.swift
 //  PadelLessonLog
 //
 //  Created by Yoshitaka on 2021/08/12.
@@ -10,7 +10,7 @@ import Quick
 @testable import PadelLessonLog
 import Combine
 
-class ValidationTest: QuickSpec {
+class ValidateManagerTest: QuickSpec {
     override func spec() {
         describe("ValidateManager") {
             // テスト用の変数

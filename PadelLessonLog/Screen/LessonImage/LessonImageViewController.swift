@@ -82,9 +82,9 @@ final class LessonImageViewController: BaseViewController {
                 newLessonVC.delegate = self
                 
                 if isNew {
-                    newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
+                    newLessonVC.navigationItem.title = R.string.localizable.createNewData()
                 } else {
-                    newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
+                    newLessonVC.navigationItem.title = R.string.localizable.editData()
                 }
                 self.navigationController?.pushViewController(vc, animated: true)
             case .arView:

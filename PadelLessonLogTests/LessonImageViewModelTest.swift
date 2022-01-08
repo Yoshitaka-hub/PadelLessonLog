@@ -14,37 +14,32 @@ class LessonImageViewModelTest: QuickSpec {
     override func spec() {
         describe("LessonImageViewModel") {
             let lessonImageViewModel = LessonImageViewModel()
+            let stubManager = StubManager()
             var subscriptions = Set<AnyCancellable>()
-            var recievedReloadStreamFlag = false
+            
+            var recievedReloadStreamFlag: Bool?
             var recievedAllButtonStateStreamFlag: Bool?
             var recievedFavoriteButtonStateStreamFlag: Bool?
-            var recievedTransitionStream: LessonTransition?
-            
-            lessonImageViewModel.dataReload.sink { _ in
-                recievedReloadStreamFlag = true
-            }.store(in: &subscriptions)
-            
-            lessonImageViewModel.allBarButtonIsOn.sink { value in
-                recievedAllButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonImageViewModel.favoriteBarButtonIsOn.sink { value in
-                recievedFavoriteButtonStateStreamFlag = value
-            }.store(in: &subscriptions)
-            
-            lessonImageViewModel.transiton.sink { value in
-                recievedTransitionStream = value
-            }.store(in: &subscriptions)
+            var flag: Bool?
             
             describe("動作検証") {
                 context("Allボタンタップ") {
                     beforeEach {
+                        subscriptions.removeAll()
                         lessonImageViewModel.dataReload.sink { _ in
                             recievedReloadStreamFlag = true
                         }.store(in: &subscriptions)
-                        recievedReloadStreamFlag = false
+                        lessonImageViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
+                        
                         lessonImageViewModel.allButtonPressed.send()
                     }
                     it("テーブルデータがリロードされること") {
@@ -60,9 +55,21 @@ class LessonImageViewModelTest: QuickSpec {
                 }
                 context("Favoriteボタンタップ") {
                     beforeEach {
-                        recievedReloadStreamFlag = false
+                        subscriptions.removeAll()
+                        lessonImageViewModel.dataReload.sink { _ in
+                            recievedReloadStreamFlag = true
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.allBarButtonIsOn.sink { value in
+                            recievedAllButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.favoriteBarButtonIsOn.sink { value in
+                            recievedFavoriteButtonStateStreamFlag = value
+                        }.store(in: &subscriptions)
+                        
+                        recievedReloadStreamFlag = nil
                         recievedAllButtonStateStreamFlag = nil
                         recievedFavoriteButtonStateStreamFlag = nil
+                        
                         lessonImageViewModel.favoriteButtonPressed.send()
                     }
                     it("テーブルデータがリロードされること") {
@@ -79,35 +86,151 @@ class LessonImageViewModelTest: QuickSpec {
                 
                 context("設定画面に遷移") {
                     beforeEach {
-                        recievedTransitionStream = nil
+                        subscriptions.removeAll()
+                        lessonImageViewModel.transiton.sink { value in
+                            switch value {
+                            case .setting:
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
                         lessonImageViewModel.settingButtonPressed.send()
                     }
+                    
                     it(".settingが流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .setting:
-                            flag = true
-                        default:
-                            break
-                        }
                         XCTAssertEqual(flag, true)
                     }
                 }
                 context("詳細画面に遷移") {
                     beforeEach {
-                        let dummyLesson = Lesson()
-                        recievedTransitionStream = nil
-                        lessonImageViewModel.detailButtonPressed.send(dummyLesson)
+                        subscriptions.removeAll()
+                        lessonImageViewModel.transiton.sink { value in
+                            switch value {
+                            case .detail(_):
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonImageViewModel.detailButtonPressed.send(stubManager.createStubLessonData())
                     }
                     it(".detail(dummyLesson)が流れてくること") {
-                        var flag = false
-                        switch recievedTransitionStream {
-                        case .detail(_):
-                            flag = true
-                        default:
-                            break
-                        }
                         XCTAssertEqual(flag, true)
+                    }
+                }
+                
+                context("3D画面に遷移") {
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.transiton.sink { value in
+                            switch value {
+                            case .arView:
+                                flag = true
+                            default:
+                                break
+                            }
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonImageViewModel.arButtonPressed.send()
+                    }
+                    it(".arが流れてくること") {
+                        XCTAssertEqual(flag, true)
+                    }
+                }
+                
+                context("追加画面から戻ってきたら自動スクロール") {
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.scrollToCellIndex.sink { _ in
+                            flag = true
+                        }.store(in: &subscriptions)
+                        
+                        flag = nil
+                        lessonImageViewModel.pushBackFromNewLessonView.send()
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, true)
+                    }
+                }
+                
+                context("画面スクロール 開始 右") {
+                    var direction: Bool?
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.detailButtonIsHidden.sink { value in
+                            flag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.scrollDirection.sink { value in
+                            direction = value
+                        }.store(in: &subscriptions)
+                        flag = nil
+                        lessonImageViewModel.scrollViewDidTouch.send(CGPoint(x: 0, y: 0))
+                        lessonImageViewModel.scrollViewDidScroll.send(CGPoint(x: 1, y: 0))
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, true)
+                        XCTAssertEqual(direction, true)
+                    }
+                }
+                context("画面スクロール　右　停止") {
+                    var scrollCell: Int?
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.detailButtonIsHidden.sink { value in
+                            flag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.scrollToCellIndex.sink { value in
+                            scrollCell = value
+                        }.store(in: &subscriptions)
+                        flag = nil
+                        lessonImageViewModel.scrollViewDidStop.send([0,1,2])
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, false)
+                        XCTAssertEqual(scrollCell, 2)
+                    }
+                }
+                context("画面スクロール 開始 左") {
+                    var direction: Bool?
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.detailButtonIsHidden.sink { value in
+                            flag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.scrollDirection.sink { value in
+                            direction = value
+                        }.store(in: &subscriptions)
+                        flag = nil
+                        lessonImageViewModel.scrollViewDidTouch.send(CGPoint(x: 1, y: 0))
+                        lessonImageViewModel.scrollViewDidScroll.send(CGPoint(x: 0, y: 0))
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, true)
+                        XCTAssertEqual(direction, false)
+                    }
+                }
+                context("画面スクロール　左　停止") {
+                    var scrollCell: Int?
+                    beforeEach {
+                        subscriptions.removeAll()
+                        lessonImageViewModel.detailButtonIsHidden.sink { value in
+                            flag = value
+                        }.store(in: &subscriptions)
+                        lessonImageViewModel.scrollToCellIndex.sink { value in
+                            scrollCell = value
+                        }.store(in: &subscriptions)
+                        flag = nil
+                        lessonImageViewModel.scrollViewDidStop.send([0,1,2])
+                    }
+                    it("スクロールされること") {
+                        XCTAssertEqual(flag, false)
+                        XCTAssertEqual(scrollCell, 0)
                     }
                 }
             }

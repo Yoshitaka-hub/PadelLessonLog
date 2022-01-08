@@ -10,4 +10,3 @@ import Foundation
 let infoDialogTime = 0.8
 
 let DIALOG_OK = "OK" // ダイアログボタン(OK)
-let DIALOG_CANCEL = "キャンセル" // ダイアログボタン(キャンセル)

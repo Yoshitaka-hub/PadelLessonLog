@@ -82,36 +82,36 @@ class NewLessonViewController: BaseViewController {
         
         viewModel.deleteImageAlert.sink { [weak self] _ in
             guard let self = self else { return }
-            self.destructiveAlertView(withTitle: NSLocalizedString("Are you sure?", comment: ""), cancelString: NSLocalizedString("Cancel", comment: ""), destructiveString: NSLocalizedString("Delete", comment: "")) {
+            self.destructiveAlertView(withTitle: R.string.localizable.areYouSure(), cancelString: R.string.localizable.cancel(), destructiveString: R.string.localizable.delete()) {
                 self.viewModel.deleteImageConfirmed.send()
             }
         }.store(in: &subscriptions)
         
         viewModel.imageDeleted.sink { [weak self] _ in
             guard let self = self else { return }
-            self.infoAlertViewWithTitle(title: NSLocalizedString("Image deleted", comment: ""))
+            self.infoAlertViewWithTitle(title: R.string.localizable.imageDeleted())
         }.store(in: &subscriptions)
         
         viewModel.dataDeleted.sink { [weak self] _ in
             guard let self = self else { return }
-            self.infoAlertViewWithTitle(title: NSLocalizedString("Data deleted", comment: ""), message: "") {
+            self.infoAlertViewWithTitle(title: R.string.localizable.dataDeleted(), message: "") {
                 self.viewModel.transiton.send(.deleted)
             }
         }.store(in: &subscriptions)
         
         viewModel.titleEmptyAlert.sink { [weak self] _ in
             guard let self = self else { return }
-            self.warningAlertView(withTitle: NSLocalizedString("The title is blank", comment: ""))
+            self.warningAlertView(withTitle: R.string.localizable.theTitleIsBlank())
         }.store(in: &subscriptions)
         
         viewModel.titleStringCountOverAlert.sink { [weak self] _ in
             guard let self = self else { return }
-            self.warningAlertView(withTitle: NSLocalizedString("The number of characters is exceeded", comment: ""))
+            self.warningAlertView(withTitle: R.string.localizable.theNumberOfCharactersIsExceeded())
         }.store(in: &subscriptions)
         
         viewModel.dataSaved.sink { [weak self] _ in
             guard let self = self else { return }
-            self.infoAlertViewWithTitle(title: NSLocalizedString("Data saved", comment: ""), message: "") {
+            self.infoAlertViewWithTitle(title: R.string.localizable.dataSaved(), message: "") {
                 self.viewModel.transiton.send(.saved)
             }
         }.store(in: &subscriptions)
@@ -154,7 +154,7 @@ class NewLessonViewController: BaseViewController {
     }
     @objc
     func deleteData() {
-        destructiveAlertView(withTitle: NSLocalizedString("Data will be deleted", comment: ""), cancelString: NSLocalizedString("Cancel", comment: ""), destructiveString: NSLocalizedString("Delete", comment: "")) {
+        destructiveAlertView(withTitle: R.string.localizable.dataWillBeDeleted(), cancelString: R.string.localizable.cancel(), destructiveString: R.string.localizable.delete()) {
             self.viewModel.deleteData.send()
         }
     }

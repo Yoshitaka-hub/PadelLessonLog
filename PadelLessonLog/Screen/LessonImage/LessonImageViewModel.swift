@@ -39,7 +39,7 @@ final class LessonImageViewModel: LessonViewModel {
             self.transiton.send(.arView)
         }.store(in: &subscriptions)
         
-        pushBackFromNewLessonView.sink { [weak self] editLessonData in
+        pushBackFromNewLessonView.sink { [weak self] _ in
             guard let self = self else { return }
             guard !self.lessonsArray.value.isEmpty else { return }
             self.scrollToCellIndex.send(0)

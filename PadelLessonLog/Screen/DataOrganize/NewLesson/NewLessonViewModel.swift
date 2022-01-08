@@ -80,7 +80,7 @@ class NewLessonViewModel: BaseViewModel {
         
         imageButtonPressed.sink { [weak self] isSelected in
             guard let self = self else { return }
-            if isSelected {
+            if !isSelected {
                 guard let lesson = self.lessonData.value else { return }
                 self.transiton.send(.addEditImage(lesson))
             } else {
