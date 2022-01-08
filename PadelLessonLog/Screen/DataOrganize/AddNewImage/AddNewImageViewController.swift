@@ -8,7 +8,7 @@
 import UIKit
 import Sketch
 
-class AddNewImageViewController: UIViewController {
+class AddNewImageViewController: BaseViewController {
 
     @IBOutlet weak var sketchView: SketchView!
     @IBOutlet weak var customToolbar: UIToolbar!
@@ -18,7 +18,6 @@ class AddNewImageViewController: UIViewController {
     private var coreDataMangaer = CoreDataManager.shared
     var lessonID: String?
     var lessonImage: UIImage?
-    private var stampType = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,20 +27,80 @@ class AddNewImageViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let id = lessonID, let image = lessonImage else { return }
+        viewModel.loadLessonImageData.send((id, image))
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        sketchView.loadImage(image: lessonImage!, drawMode: .scale)
-        sketchView.drawTool = .pen
-        sketchView.drawingPenType = .normal
-        sketchView.lineColor = .black
-        sketchView.lineAlpha = 1
-        sketchView.lineWidth = 4
         UIGraphicsBeginImageContextWithOptions(sketchView.frame.size, false, 0.0)
         UIGraphicsGetCurrentContext()!.interpolationQuality = .high
+    }
+    
+    override func bind() {
+        viewModel.lessonImage.sink { [weak self] image in
+            guard let self = self else { return }
+            guard let lessonImage = image else { return }
+            self.sketchView.loadImage(image: lessonImage, drawMode: .scale)
+        }.store(in: &subscriptions)
+        
+        viewModel.toolType.sink { [weak self] tooType in
+            guard let self = self else { return }
+            self.sketchView.drawTool = tooType
+        }.store(in: &subscriptions)
+        
+        viewModel.penType.sink { [weak self] penType in
+            guard let self = self else { return }
+            self.sketchView.drawingPenType = penType
+        }.store(in: &subscriptions)
+        
+        viewModel.lineColor.sink { [weak self] lineColor in
+            guard let self = self else { return }
+            self.sketchView.lineColor = lineColor
+        }.store(in: &subscriptions)
+        
+        viewModel.lineAlpha.sink { [weak self] lineAlpha in
+            guard let self = self else { return }
+            self.sketchView.lineAlpha = lineAlpha
+        }.store(in: &subscriptions)
+        
+        viewModel.lineWidth.sink { [weak self] lineWidth in
+            guard let self = self else { return }
+            self.sketchView.lineWidth = lineWidth
+        }.store(in: &subscriptions)
+        
+        viewModel.stampImage.sink { [weak self] stampImage in
+            guard let self = self else { return }
+            self.sketchView.stampImage = stampImage
+        }.store(in: &subscriptions)
+        
+        viewModel.action.sink { [weak self] action in
+            guard let self = self else { return }
+            switch action {
+            case let .colorTableShow(color):
+                let colorTavleVC = R.storyboard.colorTable.colorTable()
+                guard let colorTableVC = colorTavleVC else { return }
+                colorTableVC.delegate = self
+                colorTableVC.objectColor = color
+                let screenSize = UIScreen.main.bounds.size
+                self.openPopUpController(popUpController: colorTableVC, sourceView: self.customToolbar, rect: CGRect(x: screenSize.width / 3.2, y: 0, width: screenSize.width / 3, height: screenSize.height / 5), arrowDirections: .down, canOverlapSourceViewRect: true)
+            case let .objectTableShow(object):
+                let objectTableVC = R.storyboard.objectTable.objectTable()
+                guard let objectTableVC = objectTableVC else { return }
+                objectTableVC.delegate = self
+                objectTableVC.objectType = object
+                let screenSize = UIScreen.main.bounds.size
+                self.openPopUpController(popUpController: objectTableVC, sourceView: self.customToolbar, rect: CGRect(x: screenSize.width / 8.3 , y: 0, width: screenSize.width / 3, height: screenSize.height / 4), arrowDirections: .down, canOverlapSourceViewRect: true)
+            case .undo:
+                self.sketchView.undo()
+            case .saved:
+                self.navigationController?.popViewController(animated: true)
+            case .back:
+                self.navigationController?.popViewController(animated: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     func configureToolbar() {
@@ -75,161 +134,42 @@ class AddNewImageViewController: UIViewController {
     
     @objc
     func back() {
+        viewModel.backButtonPressed.send()
         navigationController?.popViewController(animated: true)
     }
-    
     @objc
     func save() {
-        guard let id = lessonID else { return }
         let size = sketchView.frame
-        print(size)
         sketchView.draw(CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let savingImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        let isSaved = coreDataMangaer.updateLessonImage(lessonID: id, image: savingImage!)
-        if isSaved {
-            navigationController?.popViewController(animated: true)
-        } else {
-            fatalError("画像が更新できない")
-        }
+        viewModel.saveButtonPressed.send(savingImage)
     }
     @objc
     func undo() {
+        viewModel.undoButtonPressed.send()
         sketchView.undo()
     }
     @objc
     func colorTable() {
-        let storyboard = UIStoryboard(name: "ColorTable", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "ColorTable")
-        if let colorTableVC = vc as? ColorTableViewController {
-            colorTableVC.delegate = self
-            switch sketchView.lineColor {
-            case .red:
-                colorTableVC.objectColor = .red
-            case .yellow:
-                colorTableVC.objectColor = .yellow
-            case .blue:
-                colorTableVC.objectColor = .blue
-            default:
-                colorTableVC.objectColor = ObjectColor.defaultValue()
-            }
-        }
-        let screenSize = UIScreen.main.bounds.size
-        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: screenSize.width / 3.2, y: 0, width: screenSize.width / 3, height: screenSize.height / 5), arrowDirections: .down, canOverlapSourceViewRect: true)
+        viewModel.colorTableButtonPressed.send()
     }
     @objc
     func objectTable() {
-        let storyboard = UIStoryboard(name: "ObjectTable", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "ObjectTable")
-        if let objectTableVC = vc as? ObjectTableViewController {
-            objectTableVC.delegate = self
-            switch sketchView.drawTool {
-            case .line:
-                objectTableVC.objectType = .line
-            case .arrow:
-                objectTableVC.objectType = .arrow
-            case .stamp:
-                objectTableVC.objectType = stampType ? .ball : .pin
-            case .rectangleFill:
-                objectTableVC.objectType = .rect
-            case .fill:
-                objectTableVC.objectType = .fill
-            default:
-                objectTableVC.objectType = ObjectType.defaultValue()
-            }
-        }
-        let screenSize = UIScreen.main.bounds.size
-        openPopUpController(popUpController: vc, sourceView: customToolbar, rect: CGRect(x: screenSize.width / 8.3 , y: 0, width: screenSize.width / 3, height: screenSize.height / 4), arrowDirections: .down, canOverlapSourceViewRect: true)
-    }
-    private func changeStampMode(stampName: String) {
-        sketchView.stampImage = UIImage(named: stampName)
-        sketchView.drawTool = .stamp
+        viewModel.objectTableButtonPressed.send()
     }
 }
 
 extension AddNewImageViewController: ColorTableViewControllerDelegate {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor) {
-        switch didSelectColor {
-        case .black:
-            sketchView.lineColor = .black
-        case .yellow:
-            sketchView.lineColor = .yellow
-        case .blue:
-            sketchView.lineColor = .blue
-        case .red:
-            sketchView.lineColor = .red
-        }
-        if sketchView.drawTool == .stamp {
-            switch sketchView.lineColor {
-            case .red:
-                changeStampMode(stampName: stampType ? "img_ball_red" : "img_pin_red")
-            case .yellow:
-                changeStampMode(stampName: stampType ? "img_ball_yellow" : "img_pin_yellow")
-            case .blue:
-                changeStampMode(stampName: stampType ? "img_ball_blue" : "img_pin_blue")
-            default:
-                changeStampMode(stampName: stampType ? "img_ball_black" : "img_pin_black")
-            }
-        }
+        viewModel.didSelectColor.send(didSelectColor)
         colorTableViewController.dismiss(animated: true)
     }
 }
 
 extension AddNewImageViewController: ObjectTableViewControllerDelegate {
     func ObjectTableViewController(objectTableViewController: ObjectTableViewController, didSelectObject: ObjectType) {
-        switch didSelectObject {
-        case .pen:
-            sketchView.drawTool = .pen
-            sketchView.drawingPenType = .normal
-            sketchView.lineAlpha = 1
-            sketchView.lineWidth = 4
-        case .line:
-            sketchView.drawTool = .line
-            sketchView.lineAlpha = 0.8
-            sketchView.lineWidth = 4
-        case .arrow:
-            sketchView.drawTool = .arrow
-            sketchView.lineAlpha = 0.8
-            sketchView.lineWidth = 4
-        case .ball:
-            sketchView.drawTool = .stamp
-            switch sketchView.lineColor {
-            case .yellow:
-                changeStampMode(stampName: "img_ball_yellow")
-            case .red:
-                changeStampMode(stampName: "img_ball_red")
-            case .blue:
-                changeStampMode(stampName: "img_ball_blue")
-            default:
-                changeStampMode(stampName: "img_ball_black")
-            }
-
-            stampType = true
-
-        case .pin:
-            sketchView.drawTool = .stamp
-            switch sketchView.lineColor {
-            case .yellow:
-                changeStampMode(stampName: "img_pin_yellow")
-            case .red:
-                changeStampMode(stampName: "img_pin_red")
-            case .blue:
-                changeStampMode(stampName: "img_pin_blue")
-            default:
-                changeStampMode(stampName: "img_pin_black")
-            }
-
-            stampType = false
-
-        case .rect:
-            sketchView.drawTool = .rectangleFill
-            sketchView.lineAlpha = 0.3
-            sketchView.lineWidth = 2
-
-        case .fill:
-            sketchView.drawTool = .fill
-
-        }
+        viewModel.didSelectObject.send(didSelectObject)
         objectTableViewController.dismiss(animated: true)
     }
 }
