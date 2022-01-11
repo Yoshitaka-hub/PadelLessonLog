@@ -143,7 +143,7 @@ class AddNewImageViewModel: BaseViewModel {
                 self.stampMode.send(true)
             case .pin:
                 self.toolType.send(.stamp)
-                self.stampMode.send(true)
+                self.stampMode.send(false)
             case .rect:
                 self.toolType.send(.rectangleFill)
                 self.lineAlpha.send(0.3)

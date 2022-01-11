@@ -23,6 +23,9 @@
 		E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */; };
 		E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */; };
 		E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E412785E1940077C710 /* DetailViewModelTest.swift */; };
+		E4103C7D278C23E100E12348 /* AddNewImageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */; };
+		E4103C7F278C54C400E12348 /* LessonImageViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */; };
+		E4103C81278E347000E12348 /* LessonDataViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C80278E347000E12348 /* LessonDataViewTest.swift */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
 		E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */; };
 		E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* MainViewController.swift */; };
@@ -127,6 +130,9 @@
 		E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewModelTest.swift; sourceTree = "<group>"; };
 		E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewModelTest.swift; sourceTree = "<group>"; };
 		E4078E412785E1940077C710 /* DetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTest.swift; sourceTree = "<group>"; };
+		E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewModelTest.swift; sourceTree = "<group>"; };
+		E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewTest.swift; sourceTree = "<group>"; };
+		E4103C80278E347000E12348 /* LessonDataViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewTest.swift; sourceTree = "<group>"; };
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F344B26BE67A8001B24A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -319,10 +325,13 @@
 				E41F346726BE67B3001B24A2 /* Info.plist */,
 				E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */,
 				E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */,
+				E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */,
 				E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */,
 				E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */,
-				E4078E412785E1940077C710 /* DetailViewModelTest.swift */,
+				E4103C80278E347000E12348 /* LessonDataViewTest.swift */,
 				E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */,
+				E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */,
+				E4078E412785E1940077C710 /* DetailViewModelTest.swift */,
 				E4EBEEF327888D1000798481 /* StubManager.swift */,
 			);
 			path = PadelLessonLogTests;
@@ -977,7 +986,10 @@
 			files = (
 				E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */,
 				E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */,
+				E4103C7F278C54C400E12348 /* LessonImageViewTest.swift in Sources */,
+				E4103C81278E347000E12348 /* LessonDataViewTest.swift in Sources */,
 				E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */,
+				E4103C7D278C23E100E12348 /* AddNewImageViewModelTest.swift in Sources */,
 				E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */,
 				E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */,
 				E4EBEEF427888D1000798481 /* StubManager.swift in Sources */,
