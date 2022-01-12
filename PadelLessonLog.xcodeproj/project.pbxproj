@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,13 @@
 		E403D5FC26D68C1D00C36429 /* Date+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D5FB26D68C1D00C36429 /* Date+format.swift */; };
 		E403D60F26D74DF600C36429 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60E26D74DF600C36429 /* CoreDataManager.swift */; };
 		E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */; };
+		E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */; };
+		E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */; };
+		E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */; };
+		E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4078E412785E1940077C710 /* DetailViewModelTest.swift */; };
+		E4103C7D278C23E100E12348 /* AddNewImageViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */; };
+		E4103C7F278C54C400E12348 /* LessonImageViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */; };
+		E4103C81278E347000E12348 /* LessonDataViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C80278E347000E12348 /* LessonDataViewTest.swift */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
 		E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */; };
 		E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* MainViewController.swift */; };
@@ -28,12 +35,11 @@
 		E41F345B26BE67B3001B24A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */; };
 		E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */; };
 		E41F347126BE67B3001B24A2 /* PadelLessonLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */; };
-		E41F349326BE6A9A001B24A2 /* MainFeatureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */; };
 		E41F34B426BE7BE3001B24A2 /* LessonImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */; };
 		E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */; };
-		E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */; };
-		E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */; };
-		E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */; };
+		E41F34C526BF9862001B24A2 /* AddNewImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */; };
+		E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */; };
+		E41F34CF26BF9FFF001B24A2 /* AddNewImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */; };
 		E41F34DE26BFB5EA001B24A2 /* LessonImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */; };
 		E422AB1A26F55E8A008F395B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E422AB1C26F55E8A008F395B /* Localizable.strings */; };
 		E422AB2926F571A1008F395B /* NewLesson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E422AB2B26F571A1008F395B /* NewLesson.storyboard */; };
@@ -51,9 +57,8 @@
 		E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE526C36966000A308C /* NewLessonViewModel.swift */; };
 		E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */; };
 		E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */; };
-		E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0026C4AE17000A308C /* ValidationManager.swift */; };
 		E4536C0726C4B6F4000A308C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0626C4B6F4000A308C /* BaseViewController.swift */; };
-		E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidationTest.swift */; };
+		E4536C0F26C512E6000A308C /* ValidateManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */; };
 		E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536C1326C8D6AF000A308C /* SettingConst.swift */; };
 		E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E465FC2A274E7B2200503FC8 /* art.scnassets */; };
 		E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */; };
@@ -73,8 +78,16 @@
 		E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65BE26C2172100A88860 /* ColorTableViewController.swift */; };
 		E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65C326C2173500A88860 /* ObjectTableViewController.swift */; };
 		E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD673926F417DD009DD686 /* UIColorExtension.swift */; };
+		E4AF75E027796DC90088110A /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF75DF27796DC90088110A /* ValidateManager.swift */; };
+		E4AF75E3277DB63B0088110A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AF75E2277DB63B0088110A /* R.generated.swift */; };
 		E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */; };
+		E4D0F4F72781887D00690B99 /* LessonImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4F62781887D00690B99 /* LessonImageViewModel.swift */; };
+		E4D0F4F92783D46900690B99 /* LessonDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4F82783D46900690B99 /* LessonDataViewModel.swift */; };
+		E4D0F4FB2783D4D500690B99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */; };
+		E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
+		E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */; };
+		E4EBEEF427888D1000798481 /* StubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF327888D1000798481 /* StubManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +126,13 @@
 		E403D5FB26D68C1D00C36429 /* Date+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+format.swift"; sourceTree = "<group>"; };
 		E403D60E26D74DF600C36429 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPresistentContainerExtension.swift; sourceTree = "<group>"; };
+		E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModelTest.swift; sourceTree = "<group>"; };
+		E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewModelTest.swift; sourceTree = "<group>"; };
+		E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewModelTest.swift; sourceTree = "<group>"; };
+		E4078E412785E1940077C710 /* DetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTest.swift; sourceTree = "<group>"; };
+		E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewModelTest.swift; sourceTree = "<group>"; };
+		E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewTest.swift; sourceTree = "<group>"; };
+		E4103C80278E347000E12348 /* LessonDataViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewTest.swift; sourceTree = "<group>"; };
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F344B26BE67A8001B24A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,12 +148,11 @@
 		E41F346C26BE67B3001B24A2 /* PadelLessonLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PadelLessonLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F347026BE67B3001B24A2 /* PadelLessonLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelLessonLogUITests.swift; sourceTree = "<group>"; };
 		E41F347226BE67B3001B24A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeatureTest.swift; sourceTree = "<group>"; };
 		E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LessonImage.storyboard; path = PadelLessonLog/Screen/LessonImage/LessonImage.storyboard; sourceTree = SOURCE_ROOT; };
 		E41F34B926BE7CAA001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LessonData.storyboard; sourceTree = "<group>"; };
-		E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewLesson.storyboard; sourceTree = "<group>"; };
-		E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewController.swift; sourceTree = "<group>"; };
-		E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLessonViewModel.swift; sourceTree = "<group>"; };
+		E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddNewImage.storyboard; sourceTree = "<group>"; };
+		E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewController.swift; sourceTree = "<group>"; };
+		E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewModel.swift; sourceTree = "<group>"; };
 		E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewController.swift; sourceTree = "<group>"; };
 		E422AB0C26F55E06008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		E422AB1026F55E07008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LessonData.strings; sourceTree = "<group>"; };
@@ -160,9 +179,8 @@
 		E4536BE526C36966000A308C /* NewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModel.swift; sourceTree = "<group>"; };
 		E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewController.swift; sourceTree = "<group>"; };
 		E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		E4536C0026C4AE17000A308C /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		E4536C0626C4B6F4000A308C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		E4536C0E26C512E6000A308C /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
+		E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManagerTest.swift; sourceTree = "<group>"; };
 		E4536C1326C8D6AF000A308C /* SettingConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingConst.swift; sourceTree = "<group>"; };
 		E465FC2A274E7B2200503FC8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		E465FC2C274E7B7C00503FC8 /* VirtualObjectnode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualObjectnode.swift; sourceTree = "<group>"; };
@@ -182,8 +200,16 @@
 		E48E65BE26C2172100A88860 /* ColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewController.swift; sourceTree = "<group>"; };
 		E48E65C326C2173500A88860 /* ObjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewController.swift; sourceTree = "<group>"; };
 		E4AD673926F417DD009DD686 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		E4AF75DF27796DC90088110A /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
+		E4AF75E2277DB63B0088110A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+Additions.swift"; sourceTree = "<group>"; };
+		E4D0F4F62781887D00690B99 /* LessonImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewModel.swift; sourceTree = "<group>"; };
+		E4D0F4F82783D46900690B99 /* LessonDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewModel.swift; sourceTree = "<group>"; };
+		E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
+		E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModelTest.swift; sourceTree = "<group>"; };
+		E4EBEEF327888D1000798481 /* StubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +301,7 @@
 			children = (
 				E41F344B26BE67A8001B24A2 /* AppDelegate.swift */,
 				E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */,
+				E4AF75E2277DB63B0088110A /* R.generated.swift */,
 				E4536C0526C4B6D6000A308C /* Base */,
 				E41F349726BE6CCA001B24A2 /* Screen */,
 				E41F349F26BE6D63001B24A2 /* ViewParts */,
@@ -296,8 +323,16 @@
 			children = (
 				E41F346526BE67B3001B24A2 /* PadelLessonLogTests.swift */,
 				E41F346726BE67B3001B24A2 /* Info.plist */,
-				E41F349226BE6A9A001B24A2 /* MainFeatureTest.swift */,
-				E4536C0E26C512E6000A308C /* ValidationTest.swift */,
+				E4536C0E26C512E6000A308C /* ValidateManagerTest.swift */,
+				E4078E3B2784912D0077C710 /* LessonViewModelTest.swift */,
+				E4103C7E278C54C400E12348 /* LessonImageViewTest.swift */,
+				E4078E3D27849E950077C710 /* LessonImageViewModelTest.swift */,
+				E4078E3F27849EA50077C710 /* LessonDataViewModelTest.swift */,
+				E4103C80278E347000E12348 /* LessonDataViewTest.swift */,
+				E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */,
+				E4103C7C278C23E100E12348 /* AddNewImageViewModelTest.swift */,
+				E4078E412785E1940077C710 /* DetailViewModelTest.swift */,
+				E4EBEEF327888D1000798481 /* StubManager.swift */,
 			);
 			path = PadelLessonLogTests;
 			sourceTree = "<group>";
@@ -314,12 +349,12 @@
 		E41F349726BE6CCA001B24A2 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				E430C825274BABB60029F295 /* 3DPadel */,
 				E41F345126BE67A8001B24A2 /* Main.storyboard */,
 				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
 				E41F34BF26BF8A7C001B24A2 /* LessonImage */,
 				E41F34BE26BF8A6D001B24A2 /* LessonData */,
 				E445D0D026E2F1BD005B6FCB /* DataOrganize */,
+				E430C825274BABB60029F295 /* 3DPadel */,
 				E40113E126EF5B7F00912EBE /* Setting */,
 			);
 			path = Screen;
@@ -345,9 +380,9 @@
 		E41F349A26BE6D20001B24A2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E4536C0026C4AE17000A308C /* ValidationManager.swift */,
 				E403D5F626D6891100C36429 /* LessonImageDataManager.swift */,
 				E403D60E26D74DF600C36429 /* CoreDataManager.swift */,
+				E4AF75DF27796DC90088110A /* ValidateManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -462,6 +497,7 @@
 			children = (
 				E41F34B826BE7CAA001B24A2 /* LessonData.storyboard */,
 				E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */,
+				E4D0F4F82783D46900690B99 /* LessonDataViewModel.swift */,
 			);
 			path = LessonData;
 			sourceTree = "<group>";
@@ -471,20 +507,21 @@
 			children = (
 				E41F34B326BE7BE3001B24A2 /* LessonImage.storyboard */,
 				E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */,
+				E4D0F4F62781887D00690B99 /* LessonImageViewModel.swift */,
 			);
 			path = LessonImage;
 			sourceTree = "<group>";
 		};
-		E41F34C326BF982E001B24A2 /* AddNewLessonImage */ = {
+		E41F34C326BF982E001B24A2 /* AddNewImage */ = {
 			isa = PBXGroup;
 			children = (
-				E41F34C426BF9862001B24A2 /* AddNewLesson.storyboard */,
-				E41F34C926BF9FBA001B24A2 /* AddNewLessonViewController.swift */,
-				E41F34CE26BF9FFF001B24A2 /* AddNewLessonViewModel.swift */,
+				E41F34C426BF9862001B24A2 /* AddNewImage.storyboard */,
+				E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */,
+				E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */,
 				E48E65B326C216C000A88860 /* ObjectTable */,
 				E48E65B226C216AF00A88860 /* ColorTable */,
 			);
-			path = AddNewLessonImage;
+			path = AddNewImage;
 			sourceTree = "<group>";
 		};
 		E430C825274BABB60029F295 /* 3DPadel */ = {
@@ -511,7 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				E4536BDA26C33F06000A308C /* NewLesson */,
-				E41F34C326BF982E001B24A2 /* AddNewLessonImage */,
+				E41F34C326BF982E001B24A2 /* AddNewImage */,
 				E445D0CF26E2F133005B6FCB /* Detail */,
 			);
 			path = DataOrganize;
@@ -559,6 +596,8 @@
 			isa = PBXGroup;
 			children = (
 				E4536C0626C4B6F4000A308C /* BaseViewController.swift */,
+				E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */,
+				E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -607,6 +646,7 @@
 			buildConfigurationList = E41F347526BE67B3001B24A2 /* Build configuration list for PBXNativeTarget "PadelLessonLog" */;
 			buildPhases = (
 				637E8AE6C2669DFD765FCB5D /* [CP] Check Pods Manifest.lock */,
+				E4AF75E1277DB2E00088110A /* ShellScript */,
 				E41F344426BE67A8001B24A2 /* Sources */,
 				E41F344526BE67A8001B24A2 /* Frameworks */,
 				E41F344626BE67A8001B24A2 /* Resources */,
@@ -711,7 +751,7 @@
 			files = (
 				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
 				E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */,
-				E41F34C526BF9862001B24A2 /* AddNewLesson.storyboard in Resources */,
+				E41F34C526BF9862001B24A2 /* AddNewImage.storyboard in Resources */,
 				E422AB6226F586E9008F395B /* Setting.storyboard in Resources */,
 				E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */,
 				E422AB4E26F57B9E008F395B /* DataTableViewCell.xib in Resources */,
@@ -864,6 +904,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E4AF75E1277DB2E00088110A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -874,7 +933,7 @@
 				E445D0D726E2F274005B6FCB /* DetailViewController.swift in Sources */,
 				E4320C6026EE04FD00BE2FD4 /* DetailViewModel.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
-				E41F34CA26BF9FBA001B24A2 /* AddNewLessonViewController.swift in Sources */,
+				E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */,
 				E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */,
 				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
@@ -883,17 +942,19 @@
 				E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */,
 				E4536C1426C8D6B0000A308C /* SettingConst.swift in Sources */,
 				E465FC30274E7C3D00503FC8 /* AR+Common.swift in Sources */,
+				E4D0F4F72781887D00690B99 /* LessonImageViewModel.swift in Sources */,
 				E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */,
-				E4536C0126C4AE17000A308C /* ValidationManager.swift in Sources */,
 				E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */,
 				E48E65A926C214C600A88860 /* Const.swift in Sources */,
 				E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */,
 				E40113DA26EED97B00912EBE /* Lesson+CoreDataClass.swift in Sources */,
+				E4D0F4F92783D46900690B99 /* LessonDataViewModel.swift in Sources */,
 				E40113DB26EED97B00912EBE /* Lesson+CoreDataProperties.swift in Sources */,
-				E41F34CF26BF9FFF001B24A2 /* AddNewLessonViewModel.swift in Sources */,
+				E41F34CF26BF9FFF001B24A2 /* AddNewImageViewModel.swift in Sources */,
 				E465FEA726E1143900785BB7 /* DataTableViewCell.swift in Sources */,
 				E40113DD26EED97B00912EBE /* LessonStep+CoreDataProperties.swift in Sources */,
 				E465FC33274E820100503FC8 /* BallLineGeometry.swift in Sources */,
+				E4AF75E027796DC90088110A /* ValidateManager.swift in Sources */,
 				E4D0D18026DE4498006C5A39 /* Lesson+Additions.swift in Sources */,
 				E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */,
 				E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */,
@@ -906,9 +967,12 @@
 				E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */,
 				E445D0DE26E33C03005B6FCB /* StepTableViewCell.swift in Sources */,
 				E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */,
+				E4D0F4FB2783D4D500690B99 /* BaseViewModel.swift in Sources */,
 				E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */,
+				E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */,
 				E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */,
 				E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */,
+				E4AF75E3277DB63B0088110A /* R.generated.swift in Sources */,
 				E465FEAD26E119D800785BB7 /* NSManagedObject+Extensions.swift in Sources */,
 				E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */,
 				E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */,
@@ -920,9 +984,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4078E3E27849E950077C710 /* LessonImageViewModelTest.swift in Sources */,
+				E4078E3C2784912D0077C710 /* LessonViewModelTest.swift in Sources */,
+				E4103C7F278C54C400E12348 /* LessonImageViewTest.swift in Sources */,
+				E4103C81278E347000E12348 /* LessonDataViewTest.swift in Sources */,
+				E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */,
+				E4103C7D278C23E100E12348 /* AddNewImageViewModelTest.swift in Sources */,
 				E41F346626BE67B3001B24A2 /* PadelLessonLogTests.swift in Sources */,
-				E41F349326BE6A9A001B24A2 /* MainFeatureTest.swift in Sources */,
-				E4536C0F26C512E6000A308C /* ValidationTest.swift in Sources */,
+				E4078E422785E1940077C710 /* DetailViewModelTest.swift in Sources */,
+				E4EBEEF427888D1000798481 /* StubManager.swift in Sources */,
+				E4536C0F26C512E6000A308C /* ValidateManagerTest.swift in Sources */,
+				E4078E4027849EA50077C710 /* LessonDataViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,7 +1230,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLogDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1.0;
+				CURRENT_PROJECT_VERSION = 1.1.1.1;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1181,7 +1253,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1.0;
+				CURRENT_PROJECT_VERSION = 1.1.1.1;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLog/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -11,14 +11,13 @@ protocol DetailViewControllerDelegate {
     func pushToEditView(lesson: Lesson)
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: BaseViewController {
 
     @IBOutlet weak var stepTableView: UITableView!
     @IBOutlet weak var lessonTitleLabel: UILabel!
     @IBOutlet weak var imageButton: UIButton!
     var lessonData: Lesson?
     
-    private var coreDataMangaer = CoreDataManager.shared
     private let viewModel = DetailViewModel()
     var delegate: DetailViewControllerDelegate?
     
@@ -28,60 +27,64 @@ class DetailViewController: UIViewController {
         stepTableView.dataSource = self
         stepTableView.tableFooterView = UIView()
 
-        navigationItem.title = NSLocalizedString("Detail", comment: "")
+        navigationItem.title = R.string.localizable.detail()
         navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
         navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage(systemName: "pencil.tip.crop.circle.badge.plus")!, select: #selector(edit))
-        
-        guard let lesson = lessonData else { return }
-        lessonTitleLabel.text = lesson.title
-        imageButton.isHidden = !lesson.imageSaved
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let lesson = lessonData {
-            let stpes = lesson.steps?.allObjects as? [LessonStep]
-            guard let safeSteps = stpes, !safeSteps.isEmpty else { return }
-            viewModel.tableViewCellNum = safeSteps.count
-            viewModel.tableViewCellData = safeSteps
-        }
+        viewModel.lessonData.send(lessonData)
+    }
+    
+    override func bind() {
+        viewModel.loadView.sink { [weak self] lesson in
+            guard let self = self else { return }
+            self.lessonTitleLabel.text = lesson.title
+            self.imageButton.isHidden = !lesson.imageSaved
+            self.stepTableView.reloadData()
+        }.store(in: &subscriptions)
+        
+        viewModel.transiton.sink { [weak self] transition in
+            guard let self = self else { return }
+            switch transition {
+            case let .imgaeView(_lessonData):
+                guard let vc = R.storyboard.imageView.imageView() else { return }
+                vc.lesson = _lessonData
+                self.navigationController?.pushViewController(vc, animated: true)
+            case let .editView(_lessonData):
+                self.dismiss(animated: true) {
+                    self.delegate?.pushToEditView(lesson: _lessonData)
+                }
+            case .back:
+                self.dismiss(animated: true)
+            }
+        }.store(in: &subscriptions)
     }
     
     @IBAction func imageButtonPressed(_ sender: UIButton) {
-        guard let lesson = lessonData else { return }
-        let storyboard = UIStoryboard(name: "ImageView", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "ImageView")
-        if let imageVC = vc as? ImageViewController {
-            imageVC.lesson = lesson
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.imageViewButtonPressed.send()
     }
     @objc
     func back() {
-        self.dismiss(animated: true)
+        self.viewModel.backButtonPressed.send()
     }
     @objc
     func edit() {
-        guard let lesson = lessonData else { return }
-        self.dismiss(animated: true) {
-            self.delegate?.pushToEditView(lesson: lesson)
-        }
+        self.viewModel.editViewButtonPressed.send()
     }
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableViewCellNum
+        return viewModel.tableViewCellData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
         let stepLabel = cell.contentView.viewWithTag(1) as! UILabel
-        var data: LessonStep?
-        for step in viewModel.tableViewCellData where step.orderNum == indexPath.row {
-            data = step
+        for step in viewModel.tableViewCellData.value where step.orderNum == indexPath.row {
+            stepLabel.text = step.explication
         }
-        guard let safeData = data else { fatalError() }
-        stepLabel.text = safeData.explication
         return cell
     }
 }

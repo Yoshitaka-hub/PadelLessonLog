@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Combine
 
-class LessonImageViewController: BaseViewController {
+final class LessonImageViewController: BaseViewController {
 
     @IBOutlet weak var customToolbar: UIToolbar!
     @IBOutlet weak var allBarButton: UIBarButtonItem!
@@ -17,11 +18,7 @@ class LessonImageViewController: BaseViewController {
     
     @IBOutlet weak var customCollectionView: UICollectionView!
     
-    private var coreDataMangaer = CoreDataManager.shared
-    private var lessonsArray = [Lesson]()
-
-    var scrollBeginingPoint: CGPoint!
-    var scrollDirection: Bool = true
+    private let viewModel = LessonImageViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +29,7 @@ class LessonImageViewController: BaseViewController {
         customToolbar.isTranslucent = false
         customToolbar.barTintColor = UIColor.systemBackground
         customToolbar.barStyle = .default
-        allBarButton.tintColor = .colorButtonOn
         allBarButton.style = .done
-        favoriteBarButton.tintColor = .colorButtonOff
         favoriteBarButton.style = .done
         
         customCollectionView.delegate = self
@@ -54,88 +49,107 @@ class LessonImageViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.allButtonPressed.send()
+    }
+    
+    override func bind() {
+        viewModel.allBarButtonIsOn
+            .map { $0 ? .colorButtonOn : .colorButtonOff }
+            .assign(to: \.tintColor, on: allBarButton)
+            .store(in: &subscriptions)
         
-        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
-        customCollectionView.reloadData()
-        allBarButton.tintColor = .colorButtonOn
-        favoriteBarButton.tintColor = .colorButtonOff
-        if lessonsArray.isEmpty {
-            detailButton.isHidden = true
-        } else {
-            detailButton.isHidden = false
-        }
+        viewModel.favoriteBarButtonIsOn.sink { [weak self] isOn in
+            guard let self = self else { return }
+            self.favoriteBarButton.tintColor = isOn ? .colorButtonOn : .colorButtonOff
+        }.store(in: &subscriptions)
+        
+        viewModel.detailButtonIsHidden
+            .assign(to: \.isHidden, on: detailButton)
+            .store(in: &subscriptions)
+        
+        viewModel.transiton.sink { [weak self] transition in
+            guard let self = self else { return }
+            switch transition {
+            case .setting:
+                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "Setting")
+                self.navigationController?.pushViewController(vc, animated: true)
+            case let .lesson(lessonData, isNew):
+                let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+                guard let newLessonVC = vc as? NewLessonViewController else { return }
+                newLessonVC.lessonData = lessonData
+                newLessonVC.delegate = self
+                
+                if isNew {
+                    newLessonVC.navigationItem.title = R.string.localizable.createNewData()
+                } else {
+                    newLessonVC.navigationItem.title = R.string.localizable.editData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .arView:
+                guard let vc = R.storyboard.padelAR.padelAR() else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
+            case let .detail(lessonData):
+                let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "Detail")
+                guard let detailVC = vc as? DetailViewController else { return }
+                detailVC.lessonData = lessonData
+                detailVC.delegate = self
+                
+                let nvc = UINavigationController.init(rootViewController: vc)
+                self.present(nvc, animated: true)
+            }
+        }.store(in: &subscriptions)
+        
+        viewModel.lessonsArray.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.customCollectionView.reloadData()
+        }.store(in: &subscriptions)
+        
+        viewModel.scrollToCellIndex.sink { [weak self] cellIndex in
+            guard let self = self else { return }
+            self.customCollectionView.scrollToItem(at: IndexPath(item: cellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }.store(in: &subscriptions)
     }
     
     override func setting() {
-        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "Setting")
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.settingButtonPressed.send()
     }
     
     override func addNewLesson() {
-        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-        if let newLessonVC = vc as? NewLessonViewController {
-            newLessonVC.lessonData = coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
-            newLessonVC.delegate = self
-            newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.addLessonButtonPressed.send()
     }
     
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllLessonDataWithImage()
-        customCollectionView.reloadData()
-        allBarButton.tintColor = .colorButtonOn
-        favoriteBarButton.tintColor = .colorButtonOff
-        if lessonsArray.isEmpty {
-            detailButton.isHidden = true
-        } else {
-            detailButton.isHidden = false
-        }
+        viewModel.allButtonPressed.send()
     }
+    
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        lessonsArray = coreDataMangaer.loadAllFavoriteLessonDataWithImage()
-        customCollectionView.reloadData()
-        favoriteBarButton.tintColor = .colorButtonOn
-        allBarButton.tintColor = .lightGray
-        if lessonsArray.isEmpty {
-            detailButton.isHidden = true
-        } else {
-            detailButton.isHidden = false
-        }
+        viewModel.favoriteButtonPressed.send()
     }
     
     @IBAction func arButtonPressed(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "PadelAR", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "PadelAR")
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.arButtonPressed.send()
     }
     @IBAction func detailButtonPressed(_ sender: UIButton) {
-        let cell = customCollectionView.visibleCells.first as? ImageCollectionViewCell
+        let cell = self.customCollectionView.visibleCells.first as? ImageCollectionViewCell
         guard let safeCell = cell else { return }
         guard let lesson = safeCell.lesson else { return }
-        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "Detail")
-        if let detailVC = vc as? DetailViewController {
-            detailVC.lessonData = lesson
-            detailVC.delegate = self
-        }
-        let nvc = UINavigationController.init(rootViewController: vc)
-        self.present(nvc, animated: true)
+        viewModel.detailButtonPressed.send(lesson)
     }
 }
 
 extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return lessonsArray.count
+        return viewModel.lessonsArray.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath)
         guard let imageCell = customCell as? ImageCollectionViewCell else { return customCell }
-        imageCell.setLessonData(lesson: lessonsArray[indexPath.row], row: indexPath.row)
+        imageCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row], row: indexPath.row)
         return imageCell
     }
     
@@ -144,64 +158,48 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        viewModel.scrollViewDidTouch.send(scrollView.contentOffset)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        viewModel.scrollViewDidScroll.send(scrollView.contentOffset)
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let cells = customCollectionView.visibleCells
         var indexArray: [Int] = []
-        var indexRow: Int?
         for cell in cells {
             guard let safeCell = cell as? ImageCollectionViewCell else { return }
             indexArray.append(safeCell.row ?? 0)
         }
         guard !indexArray.isEmpty else { return }
-        if scrollDirection {
-            indexRow = indexArray.max()
-        } else {
-            indexRow = indexArray.min()
-        }
-        customCollectionView.scrollToItem(at: IndexPath(item: indexRow ?? 0, section: 0), at: .centeredHorizontally, animated: true)
-        detailButton.isHidden = false
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        scrollBeginingPoint = scrollView.contentOffset;
-        detailButton.isHidden = true
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentPoint = scrollView.contentOffset;
-        if scrollBeginingPoint.x < currentPoint.x {
-            scrollDirection = true
-        } else {
-            scrollDirection = false
-        }
+        viewModel.scrollViewDidStop.send(indexArray)
     }
 }
 
 extension LessonImageViewController: DetailViewControllerDelegate {
     func pushToEditView(lesson: Lesson) {
-        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-        if let newLessonVC = vc as? NewLessonViewController {
-            newLessonVC.lessonData = lesson
-            newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.pushToEditLessonView.send(lesson)
     }
 }
 
 extension LessonImageViewController: NewLessonViewControllerDelegate {
-    func pushToLessonImageView() {
-        guard !lessonsArray.isEmpty else { return }
-        customCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+    func pushToLessonView() {
+        viewModel.pushBackFromNewLessonView.send()
     }
 }
 

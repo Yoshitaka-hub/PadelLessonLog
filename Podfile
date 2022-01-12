@@ -7,12 +7,13 @@ target 'PadelLessonLog' do
 
   # Pods for PadelLessonLog
   pod 'Sketch'
+  pod 'R.swift'
+  pod 'Swinject'
 
   target 'PadelLessonLogTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Quick'
-    pod 'Nimble'
   end
 
   target 'PadelLessonLogUITests' do

@@ -7,12 +7,7 @@
 
 import UIKit
 
-enum TableMode {
-    case allTableView
-    case favoriteTableView
-}
-
-class LessonDataViewController: BaseViewController {
+final class LessonDataViewController: BaseViewController {
     
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var customToolbar: UIToolbar!
@@ -21,9 +16,7 @@ class LessonDataViewController: BaseViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     
-    private var coreDataMangaer = CoreDataManager.shared
-    private var lessonsArray = [Lesson]()
-    private var tableMode: TableMode = .allTableView
+    private let viewModel = LessonDataViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +30,7 @@ class LessonDataViewController: BaseViewController {
         customToolbar.isTranslucent = false
         customToolbar.barTintColor = UIColor.systemBackground
         customToolbar.barStyle = .default
-        allBarButton.tintColor = .colorButtonOn
         allBarButton.style = .done
-        favoriteBarButton.tintColor = .colorButtonOff
         favoriteBarButton.style = .done
         
         customTableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
@@ -58,87 +49,105 @@ class LessonDataViewController: BaseViewController {
         allButtonPressed(allBarButton)
     }
     
+    override func bind() {
+        viewModel.allBarButtonIsOn
+            .map { $0 ? .colorButtonOn : .colorButtonOff }
+            .assign(to: \.tintColor, on: allBarButton)
+            .store(in: &subscriptions)
+        
+        viewModel.favoriteBarButtonIsOn.sink { [weak self] isOn in
+            guard let self = self else { return }
+            self.favoriteBarButton.tintColor = isOn ? .colorButtonOn : .colorButtonOff
+        }.store(in: &subscriptions)
+        
+        viewModel.transiton.sink { [weak self] transition in
+            guard let self = self else { return }
+            switch transition {
+            case .setting:
+                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "Setting")
+                self.navigationController?.pushViewController(vc, animated: true)
+            case let .lesson(lessonData, isNew):
+                let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "NewLesson")
+                guard let newLessonVC = vc as? NewLessonViewController else { return }
+                newLessonVC.lessonData = lessonData
+                newLessonVC.delegate = self
+                
+                if isNew {
+                    newLessonVC.navigationItem.title = R.string.localizable.createNewData()
+                } else {
+                    newLessonVC.navigationItem.title = R.string.localizable.editData()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .arView:
+                guard let vc = R.storyboard.padelAR.padelAR() else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
+            case let .detail(lessonData):
+                let storyboard = UIStoryboard(name: "Detail", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "Detail")
+                guard let detailVC = vc as? DetailViewController else { return }
+                detailVC.lessonData = lessonData
+                detailVC.delegate = self
+                
+                let nvc = UINavigationController.init(rootViewController: vc)
+                self.present(nvc, animated: true)
+            }
+        }.store(in: &subscriptions)
+        
+        viewModel.lessonsArray.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.customTableView.reloadData()
+        }.store(in: &subscriptions)
+        
+        viewModel.scrollToTableIndex.sink { [weak self] tableIndex in
+            guard let self = self else { return }
+            self.customTableView.scrollToRow(at: IndexPath(row: tableIndex, section: 0), at: .top, animated: true)
+        }.store(in: &subscriptions)
+    }
+    
     override func setting() {
-        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "Setting")
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.settingButtonPressed.send()
     }
     
     override func addNewLesson() {
-        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-        if let newLessonVC = vc as? NewLessonViewController {
-            newLessonVC.lessonData = coreDataMangaer.createNewLesson(image: UIImage(named: "img_court")!, steps: [""])
-            newLessonVC.delegate = self
-            newLessonVC.navigationItem.title = NSLocalizedString("Create New Data", comment: "")
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
+        viewModel.addLessonButtonPressed.send()
     }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchBar.isHidden = !searchBar.isHidden
         searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
         if searchBar.isHidden {
-            tableDataUpdate()
+            viewModel.dataReload.send()
         }
     }
     @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
-        tableMode = .allTableView
-        
-        lessonsArray = coreDataMangaer.loadAllLessonData()
-        customTableView.reloadData()
-        allBarButton.tintColor = .colorButtonOn
-        favoriteBarButton.tintColor = .colorButtonOff
+        viewModel.allButtonPressed.send()
     }
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        tableMode = .favoriteTableView
-        
-        lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
-        customTableView.reloadData()
-        favoriteBarButton.tintColor = .colorButtonOn
-        allBarButton.tintColor = .colorButtonOff
-    }
-    
-    private func tableDataUpdate() {
-        let isAllflag = allBarButton.tintColor == .colorButtonOn
-        if isAllflag {
-            lessonsArray = coreDataMangaer.loadAllLessonData()
-        } else {
-            lessonsArray = coreDataMangaer.loadAllFavoriteLessonData()
-        }
-        customTableView.reloadData()
+        viewModel.favoriteButtonPressed.send()
     }
 }
 
 extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lessonsArray.count
+        return viewModel.lessonsArray.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! DataTableViewCell
-        customCell.setLessonData(lesson: lessonsArray[indexPath.row])
+        customCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row])
         return customCell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "Detail")
-        if let detailVC = vc as? DetailViewController {
-            detailVC.lessonData = lessonsArray[indexPath.row]
-            detailVC.delegate = self
-        }
-        let nvc = UINavigationController.init(rootViewController: vc)
+        viewModel.didSelectRowAt.send(indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
-        self.present(nvc, animated: true)
     }
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return tableMode == .allTableView ?  true : false
+        return viewModel.tableMode.value == .allTableView
     }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let lesson = lessonsArray[sourceIndexPath.row]
-        lessonsArray.remove(at: sourceIndexPath.row)
-        lessonsArray.insert(lesson, at: destinationIndexPath.row)
-        coreDataMangaer.updateLessonOrder(lessonArray: lessonsArray)
+        viewModel.reorderData.send((sourceIndexPath, destinationIndexPath))
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -150,36 +159,24 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension LessonDataViewController: DetailViewControllerDelegate {
-    func pushToEditView(lesson: Lesson) {
-        let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-        if let newLessonVC = vc as? NewLessonViewController {
-            newLessonVC.lessonData = lesson
-            newLessonVC.navigationItem.title = NSLocalizedString("Edit Data", comment: "")
+extension LessonDataViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.dataReload.send()
+        guard let text = searchBar.text else { return }
+        if !text.isEmpty {
+            viewModel.searchAndFilterData.send(text)
         }
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension LessonDataViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        tableDataUpdate()
-        guard let text = searchBar.text else { return }
-        if !text.isEmpty {
-            lessonsArray = lessonsArray.filter {
-                guard let titel = $0.title else { return false }
-                return titel.contains(text)
-            }
-            customTableView.reloadData()
-        }
+extension LessonDataViewController: DetailViewControllerDelegate {
+    func pushToEditView(lesson: Lesson) {
+        viewModel.pushToEditLessonView.send(lesson)
     }
 }
 
 extension LessonDataViewController: NewLessonViewControllerDelegate {
-    func pushToLessonImageView() {
-        if !lessonsArray.isEmpty {
-            customTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
+    func pushToLessonView() {
+        viewModel.pushBackFromNewLessonView.send()
     }
 }
