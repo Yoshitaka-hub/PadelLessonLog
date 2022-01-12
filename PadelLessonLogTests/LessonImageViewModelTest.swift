@@ -147,6 +147,7 @@ class LessonImageViewModelTest: QuickSpec {
                 context("追加画面から戻ってきたら自動スクロール") {
                     beforeEach {
                         subscriptions.removeAll()
+                        lessonImageViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
                         lessonImageViewModel.scrollToCellIndex.sink { _ in
                             flag = true
                         }.store(in: &subscriptions)

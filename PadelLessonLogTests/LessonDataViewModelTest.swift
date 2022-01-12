@@ -104,6 +104,7 @@ class LessonDataViewModelTest: QuickSpec {
                 context("詳細画面に遷移") {
                     beforeEach {
                         subscriptions.removeAll()
+                        lessonDataViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
                         lessonDataViewModel.transiton.sink { value in
                             switch value {
                             case .detail(_):
@@ -123,6 +124,7 @@ class LessonDataViewModelTest: QuickSpec {
                 context("追加画面から戻ってきたら自動スクロール") {
                     beforeEach {
                         subscriptions.removeAll()
+                        lessonDataViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
                         lessonDataViewModel.scrollToTableIndex.sink { _ in
                             flag = true
                         }.store(in: &subscriptions)
@@ -139,7 +141,7 @@ class LessonDataViewModelTest: QuickSpec {
                         subscriptions.removeAll()
                         lessonDataViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
                         lessonDataViewModel.lessonsArray.sink { value in
-                            guard value.count == 1 else { return }
+                            guard !value.isEmpty else { return }
                             guard value[0].title == "TEST DATA" else { return }
                             flag = true
                         }.store(in: &subscriptions)
