@@ -1,37 +1,44 @@
-![img_padeLog](https://user-images.githubusercontent.com/63494353/150270127-92c467fe-af95-441e-831c-39cbe5ccd5c5.png)
+# PadelLessonLog パデログ
+![Pod Platform](https://img.shields.io/cocoapods/p/AMClockView.svg?style=flat)
+![Pod Platform](https://img.shields.io/github/license/Yoshitaka-hub/PadelLessonLog)
+![Commit Msg](https://img.shields.io/badge/Commit%20message-en__US-brightgreen.svg)
+![Code Cmnt](https://img.shields.io/badge/code%20comment-Ja-brightgreen.svg)
+![216](https://user-images.githubusercontent.com/63494353/150297383-1c345d0b-681c-44ef-937d-fbfa3321bf09.png)
 
-# アプリ概要
-スペイン発祥のスポーツ『パデル』の練習メニュー管理アプリです。
+## 📱アプリ概要
+🎾スペイン発祥のスポーツ『パデル』の練習メニュー管理アプリです。
 
-**App Storeリリースしています**
-[AppStore](https://apps.apple.com/jp/app/padelog/id1586424565 "PadeLog")
+**App Storeにて公開中**
+[PadeLog](https://apps.apple.com/jp/app/padelog/id1586424565 "App Store")
 
-# 開発環境
+## 🛠開発環境
 * macOS Monterey 12.0.1
 * Xcode 13.2.1
+* Swift 5.5.2
 
-# ブランチ説明
+## 🌲ブランチ説明
 * main AppStoreリリース版
 * feature-* 開発ブランチ
 
-# ビルド手順
-PadeLogのディレクトリにてライブラリのインストールをしてください。
-```ruby
-pod update
-```
+## 🏗ビルド手順
+1. Install Xcode.
+1. Clone this repository.
+1. Install CocoaPods.
+1. Run `pod install` to install libraries.
+1. Open `PadelLessonLog.xcworkspace`.
 
-# 接続環境
-外部サーバへの通信なし
+## 🖥接続環境
+外部サーバとの通信なし
 
-# 使用ライブラリ
+## 📙使用ライブラリ
 * Sketch : https://cocoapods.org/pods/Sketch
 * R.swift : https://cocoapods.org/pods/R.swift
 * Swinject : https://cocoapods.org/pods/Swinject
 * Quick : https://cocoapods.org/pods/Quick
 
-# Author
+## 🖋Author
 * Yoshitaka
 * Twitter : https://twitter.com/os_yoshi
 
-# License
-"PadeLog" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+## ♠️License
+"PadelLessonLog" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
