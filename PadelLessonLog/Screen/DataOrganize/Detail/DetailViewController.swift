@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol DetailViewControllerDelegate {
+protocol DetailViewControllerDelegate: AnyObject {
     func pushToEditView(lesson: Lesson)
 }
 
@@ -19,7 +19,7 @@ class DetailViewController: BaseViewController {
     var lessonData: Lesson?
     
     private let viewModel = DetailViewModel()
-    var delegate: DetailViewControllerDelegate?
+    weak var delegate: DetailViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,12 @@ class DetailViewController: BaseViewController {
         stepTableView.tableFooterView = UIView()
 
         navigationItem.title = R.string.localizable.detail()
-        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
-        navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage(systemName: "pencil.tip.crop.circle.badge.plus")!, select: #selector(edit))
+        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage.chevronBackwardCircle, select: #selector(back))
+        navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage.pencilTipCropCircleBadgePlus, select: #selector(edit))
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.lessonData.send(lessonData)
     }
     
@@ -88,5 +89,3 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
-
-

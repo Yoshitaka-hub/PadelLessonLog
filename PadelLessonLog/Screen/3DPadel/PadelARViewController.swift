@@ -15,8 +15,8 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var lowOrHighSlider: UISlider!
     @IBOutlet weak var ballOrPin: UISegmentedControl!
     
-    var padelCourt: SCNNode? = nil
-    var detectedPlane: SCNNode? = nil
+    var padelCourt: SCNNode?
+    var detectedPlane: SCNNode?
     var ballArray = [SCNNode]()
     var lineArray = [SCNNode]()
     var pinArray = [SCNNode]()
@@ -26,8 +26,8 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
-        navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage(systemName: "arrow.clockwise.circle")!, select: #selector(refresh))
+        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage.chevronBackwardCircle, select: #selector(back))
+        navigationItem.rightBarButtonItem = createBarButtonItem(image: UIImage.arrowClockwiseCircle, select: #selector(refresh))
         
         sceneView.autoenablesDefaultLighting = true
         
@@ -63,7 +63,7 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // タップ位置のスクリーン座標を取得
-        guard let touch = touches.first else {return}
+        guard let touch = touches.first else { return }
         let pos = touch.location(in: sceneView)
         
         planeHitTest(pos)
@@ -72,7 +72,7 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
     // パデルコートを表示
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if padelCourt == nil {
-            guard let planeAnchor = anchor as? ARPlaneAnchor else { fatalError() }
+            guard let planeAnchor = anchor as? ARPlaneAnchor else { fatalError("平面取得ができない") }
             
             planeAnchor.addPlaneNode(on: node, contents: UIColor.clear)
             
@@ -88,7 +88,6 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
             padelCourt = virtualNode
         }
     }
-    
     
     private func planeHitTest(_ pos: CGPoint) {
         let results = sceneView.hitTest(pos, types: .existingPlaneUsingExtent)
@@ -148,7 +147,7 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
             
             sceneView.scene.rootNode.addChildNode(objectNode)
             
-            guard let currentDrawing = drawingNodes.first else {return}
+            guard let currentDrawing = drawingNodes.first else { return }
             
             DispatchQueue.main.async(execute: {
                 let vertice = objectNode.position
@@ -183,4 +182,3 @@ class PadelARViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 }
-

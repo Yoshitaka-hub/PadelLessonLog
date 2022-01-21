@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 #if DEBUG
 let https = "http"
 #else

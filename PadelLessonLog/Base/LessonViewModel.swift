@@ -51,7 +51,8 @@ class LessonViewModel: BaseViewModel {
         
         addLessonButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
-            let newLessonData = self.coreDataMangaer.createNewLesson(image: R.image.img_court(compatibleWith: .current)!, steps: [""])
+            guard let courtImg = R.image.img_court(compatibleWith: .current) else { return }
+            let newLessonData = self.coreDataMangaer.createNewLesson(image: courtImg, steps: [""])
             self.transiton.send(.lesson(newLessonData, true))
         }.store(in: &subscriptions)
         

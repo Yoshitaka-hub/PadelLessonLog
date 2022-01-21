@@ -50,7 +50,7 @@ class LessonDataViewModel: LessonViewModel {
             self.lessonsArray.send(filterdData)
         }.store(in: &subscriptions)
         
-        pushBackFromNewLessonView.sink { [weak self] editLessonData in
+        pushBackFromNewLessonView.sink { [weak self] _ in
             guard let self = self else { return }
             guard !self.lessonsArray.value.isEmpty else { return }
             self.scrollToTableIndex.send(0)

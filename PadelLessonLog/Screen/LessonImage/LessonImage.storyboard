@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fTc-pP-j0C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fTc-pP-j0C">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -69,7 +69,8 @@
                                 </constraints>
                                 <color key="tintColor" name="colorButtonOn"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="line.horizontal.3.decrease.circle" catalog="system" symbolScale="medium"/>
+                                    <imageReference key="image" image="info.circle" catalog="system" symbolScale="medium"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="light"/>
                                 </state>
                                 <connections>
                                     <action selector="detailButtonPressed:" destination="fTc-pP-j0C" eventType="touchUpInside" id="Vvu-9U-Snf"/>
@@ -107,7 +108,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="100"/>
         <image name="view.3d" catalog="system" width="128" height="77"/>
         <namedColor name="AccentColor">

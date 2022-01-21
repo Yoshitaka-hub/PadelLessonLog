@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 enum ObjectColor: Int {
     case black = 0, yellow, red, blue
 
@@ -28,7 +27,6 @@ enum ObjectColor: Int {
         return ObjectColor.black
     }
 }
-
 
 protocol ColorTableViewControllerDelegate: AnyObject {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol InputTextTableCellDelegate {
+protocol InputTextTableCellDelegate: AnyObject {
     func textViewDidEndEditing(cell: StepTableViewCell, value: String)
     func textViewDidBeingEditing(index: Int?)
 }
@@ -23,7 +23,7 @@ class StepTableViewCell: UITableViewCell, UITextViewDelegate {
     
     var index: Int?
     var stepData: LessonStep?
-    var delegate: InputTextTableCellDelegate?
+    weak var delegate: InputTextTableCellDelegate?
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.delegate?.textViewDidBeingEditing(index: index)
@@ -38,16 +38,4 @@ class StepTableViewCell: UITableViewCell, UITextViewDelegate {
         cellLabel.text = String(index + 1)
         stepTextView.text = stepData.explication
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
