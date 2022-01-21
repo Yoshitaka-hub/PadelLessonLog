@@ -24,17 +24,17 @@ class CoreDataManager {
 }
 
 extension CoreDataManager {
-    //MARK: - Lesson - create
+    // MARK: - Lesson - create
     func createNewLesson(image: UIImage, steps: [String]) -> Lesson {
         let lesson = createNewObject(objecteType: .lesson) as! Lesson
         lesson.id = UUID()
         lesson.timeStamp = Date()
-        //UIImageをNSDataに変換
+        // UIImageをNSDataに変換
         let imageData = image.pngData()
         
-        //UIImageの方向を確認
-        var imageOrientation:Int = 0
-        if (image.imageOrientation == UIImage.Orientation.down){
+        // UIImageの方向を確認
+        var imageOrientation: Int = 0
+        if image.imageOrientation == UIImage.Orientation.down {
             imageOrientation = 2
         } else {
             imageOrientation = 1
@@ -56,11 +56,11 @@ extension CoreDataManager {
         return lesson
     }
     
-    //MARK: - Lesson - read
+    // MARK: - Lesson - read
     func loadLessonData(lessonID: String) -> Lesson? {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return nil }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
@@ -127,23 +127,23 @@ extension CoreDataManager {
         }
     }
     
-    //MARK: - Lesson - update
+    // MARK: - Lesson - update
     func resetLessonImage(lessonID: String, image: UIImage) -> Bool {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
             guard let lesson = lessons.first else { return false }
-            //UIImageをNSDataに変換
+            // UIImageをNSDataに変換
             let imageData = image.pngData()
             
-            //UIImageの方向を確認
-            var imageOrientation:Int = 0
-            if (image.imageOrientation == UIImage.Orientation.down){
+            // UIImageの方向を確認
+            var imageOrientation: Int = 0
+            if image.imageOrientation == UIImage.Orientation.down {
                 imageOrientation = 2
-            }else{
+            } else {
                 imageOrientation = 1
             }
             
@@ -160,8 +160,8 @@ extension CoreDataManager {
     
     func updateLessonImage(lessonID: String, image: UIImage) -> Bool {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
@@ -169,8 +169,8 @@ extension CoreDataManager {
             // UIImageをNSDataに変換
             let imageData = image.pngData()
             // UIImageの方向を確認
-            var imageOrientation:Int = 0
-            if (image.imageOrientation == UIImage.Orientation.down) {
+            var imageOrientation: Int = 0
+            if image.imageOrientation == UIImage.Orientation.down {
                 imageOrientation = 2
             } else {
                 imageOrientation = 1
@@ -189,8 +189,8 @@ extension CoreDataManager {
     
     func updateLessonTitle(lessonID: String, title: String) -> Bool {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
@@ -205,8 +205,8 @@ extension CoreDataManager {
     
     func updateLessonFavorite(lessonID: String, favorite: Bool) {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
@@ -225,11 +225,11 @@ extension CoreDataManager {
         saveContext()
     }
     
-    //MARK: - Lesson - delete
+    // MARK: - Lesson - delete
     func deleteLessonData(lessonID: String) -> Bool {
         let fetchRequest = createRequest(objecteType: .lesson)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "id", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
@@ -243,11 +243,11 @@ extension CoreDataManager {
         }
     }
     
-    //MARK: - Steps - fetch
+    // MARK: - Steps - fetch
     func featchSteps(lessonID: String) -> [LessonStep] {
         let fetchRequest = createRequest(objecteType: .lessonStep)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return Array() }
+        let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid)
         fetchRequest.predicate = predicate
         let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -259,7 +259,7 @@ extension CoreDataManager {
         }
     }
     
-    //MARK: - Steps - create
+    // MARK: - Steps - create
     
     func createStep(lesson: Lesson) {
         let steps = lesson.steps?.allObjects as! [LessonStep]
@@ -273,11 +273,11 @@ extension CoreDataManager {
         saveContext()
     }
     
-    //MARK: - Steps - delete
+    // MARK: - Steps - delete
     func deleteAllSteps(lessonID: String) {
         let fetchRequest = createRequest(objecteType: .lessonStep)
-        let uuid = NSUUID(uuidString: lessonID)
-        let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid!)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return }
+        let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid)
         fetchRequest.predicate = predicate
         do {
             let lessonSteps = try managerObjectContext.fetch(fetchRequest) as! [LessonStep]

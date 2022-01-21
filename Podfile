@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '14.0'
 
 target 'PadelLessonLog' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -9,6 +9,7 @@ target 'PadelLessonLog' do
   pod 'Sketch'
   pod 'R.swift'
   pod 'Swinject'
+  pod 'SwiftLint'
 
   target 'PadelLessonLogTests' do
     inherit! :search_paths

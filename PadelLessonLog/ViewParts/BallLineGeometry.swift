@@ -20,7 +20,7 @@ open class BallLineGeometryNode: SCNNode {
         super.init()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -28,8 +28,8 @@ open class BallLineGeometryNode: SCNNode {
         vertices.append(SCNVector3Make(vertice.x, vertice.y - lineWidth, vertice.z))
         vertices.append(SCNVector3Make(vertice.x, vertice.y + lineWidth, vertice.z))
         let count = vertices.count
-        indices.append(Int32(count-2))
-        indices.append(Int32(count-1))
+        indices.append(Int32(count - 2))
+        indices.append(Int32(count - 1))
         
         updateGeometryIfNeeded()
     }
@@ -55,5 +55,3 @@ open class BallLineGeometryNode: SCNNode {
         geometry = nil
     }
 }
-
-

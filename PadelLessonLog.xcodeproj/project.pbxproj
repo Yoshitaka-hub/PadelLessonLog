@@ -15,7 +15,6 @@
 		E40113DC26EED97B00912EBE /* LessonStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40113D826EED97B00912EBE /* LessonStep+CoreDataClass.swift */; };
 		E40113DD26EED97B00912EBE /* LessonStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40113D926EED97B00912EBE /* LessonStep+CoreDataProperties.swift */; };
 		E40113E826EF5BEE00912EBE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40113E726EF5BEE00912EBE /* SettingTableViewController.swift */; };
-		E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D5F626D6891100C36429 /* LessonImageDataManager.swift */; };
 		E403D5FC26D68C1D00C36429 /* Date+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D5FB26D68C1D00C36429 /* Date+format.swift */; };
 		E403D60F26D74DF600C36429 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D60E26D74DF600C36429 /* CoreDataManager.swift */; };
 		E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */; };
@@ -53,6 +52,7 @@
 		E445D0D726E2F274005B6FCB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445D0D626E2F274005B6FCB /* DetailViewController.swift */; };
 		E445D0DE26E33C03005B6FCB /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */; };
 		E445D0DF26E33C03005B6FCB /* StepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */; };
+		E4474744279A61B500FDA36B /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4474743279A61B500FDA36B /* UIImageExtension.swift */; };
 		E4536BE126C34A46000A308C /* NewLessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE026C34A46000A308C /* NewLessonViewController.swift */; };
 		E4536BE626C36966000A308C /* NewLessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BE526C36966000A308C /* NewLessonViewModel.swift */; };
 		E4536BEB26C3A3A1000A308C /* LessonDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */; };
@@ -122,7 +122,6 @@
 		E40113D826EED97B00912EBE /* LessonStep+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E40113D926EED97B00912EBE /* LessonStep+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E40113E726EF5BEE00912EBE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		E403D5F626D6891100C36429 /* LessonImageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageDataManager.swift; sourceTree = "<group>"; };
 		E403D5FB26D68C1D00C36429 /* Date+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+format.swift"; sourceTree = "<group>"; };
 		E403D60E26D74DF600C36429 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPresistentContainerExtension.swift; sourceTree = "<group>"; };
@@ -175,6 +174,7 @@
 		E445D0D626E2F274005B6FCB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepTableViewCell.xib; sourceTree = "<group>"; };
+		E4474743279A61B500FDA36B /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		E4536BE026C34A46000A308C /* NewLessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewController.swift; sourceTree = "<group>"; };
 		E4536BE526C36966000A308C /* NewLessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModel.swift; sourceTree = "<group>"; };
 		E4536BEA26C3A3A1000A308C /* LessonDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 				E41F349826BE6CDA001B24A2 /* API */,
 				E41F349E26BE6D56001B24A2 /* Entity */,
 				E41F349926BE6D00001B24A2 /* Repository */,
-				E41F349D26BE6D48001B24A2 /* Categories */,
+				E41F349D26BE6D48001B24A2 /* Extensions */,
 				E41F349B26BE6D28001B24A2 /* Common */,
 				E41F349C26BE6D31001B24A2 /* Supporting Files */,
 				E41F34A026BE6D7A001B24A2 /* Resources */,
@@ -380,7 +380,6 @@
 		E41F349A26BE6D20001B24A2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E403D5F626D6891100C36429 /* LessonImageDataManager.swift */,
 				E403D60E26D74DF600C36429 /* CoreDataManager.swift */,
 				E4AF75DF27796DC90088110A /* ValidateManager.swift */,
 			);
@@ -404,7 +403,7 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E41F349D26BE6D48001B24A2 /* Categories */ = {
+		E41F349D26BE6D48001B24A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				E465FC2F274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift */,
@@ -415,8 +414,9 @@
 				E403D61326D74FB200C36429 /* NSPresistentContainerExtension.swift */,
 				E465FEAC26E119D800785BB7 /* NSManagedObject+Extensions.swift */,
 				E4AD673926F417DD009DD686 /* UIColorExtension.swift */,
+				E4474743279A61B500FDA36B /* UIImageExtension.swift */,
 			);
-			path = Categories;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E41F349E26BE6D56001B24A2 /* Entity */ = {
@@ -557,8 +557,8 @@
 		E445D0DB26E33BD7005B6FCB /* Step Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */,
 				E445D0DD26E33C03005B6FCB /* StepTableViewCell.xib */,
+				E445D0DC26E33C03005B6FCB /* StepTableViewCell.swift */,
 			);
 			path = "Step Cell";
 			sourceTree = "<group>";
@@ -586,8 +586,8 @@
 		E4536BF126C3ABBE000A308C /* Image Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */,
 				E422AB4426F57AEE008F395B /* ImageCollectionViewCell.xib */,
+				E4536BF226C3ABF3000A308C /* ImageCollectionViewCell.swift */,
 			);
 			path = "Image Cell";
 			sourceTree = "<group>";
@@ -605,8 +605,8 @@
 		E465FE9E26E1140C00785BB7 /* DataTable Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E465FEA526E1143900785BB7 /* DataTableViewCell.swift */,
 				E422AB5026F57B9E008F395B /* DataTableViewCell.xib */,
+				E465FEA526E1143900785BB7 /* DataTableViewCell.swift */,
 			);
 			path = "DataTable Cell";
 			sourceTree = "<group>";
@@ -651,6 +651,7 @@
 				E41F344526BE67A8001B24A2 /* Frameworks */,
 				E41F344626BE67A8001B24A2 /* Resources */,
 				7A8DAFDACA7338864BD051C1 /* [CP] Embed Pods Frameworks */,
+				E4474742279A3D0200FDA36B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -904,6 +905,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E4474742279A3D0200FDA36B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		E4AF75E1277DB2E00088110A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -934,7 +952,6 @@
 				E4320C6026EE04FD00BE2FD4 /* DetailViewModel.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
 				E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */,
-				E403D5F726D6891100C36429 /* LessonImageDataManager.swift in Sources */,
 				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
 				E46B665E26E38865008247DC /* ImageViewController.swift in Sources */,
@@ -977,6 +994,7 @@
 				E4536BF426C3ABF3000A308C /* ImageCollectionViewCell.swift in Sources */,
 				E465FC2D274E7B7C00503FC8 /* VirtualObjectnode.swift in Sources */,
 				E40113DC26EED97B00912EBE /* LessonStep+CoreDataClass.swift in Sources */,
+				E4474744279A61B500FDA36B /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,6 +1244,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34B2E34066A97E8ECE4FC155 /* Pods-PadelLessonLog.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLogDebug.entitlements;
@@ -1249,6 +1268,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FF6567659852CA561BCF5C0 /* Pods-PadelLessonLog.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PadelLessonLog/Entity/PadelLessonLog.entitlements;
@@ -1272,7 +1292,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2C467DA1DDADB520470D958 /* Pods-PadelLessonLogTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
@@ -1295,7 +1315,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84C38EEB744381022868338E /* Pods-PadelLessonLogTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
@@ -1318,7 +1338,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A3B66B3566CF342B2365AB30 /* Pods-PadelLessonLog-PadelLessonLogUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLogUITests/Info.plist;
@@ -1339,7 +1359,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4780E90FA52D8A2EF21C8CFB /* Pods-PadelLessonLog-PadelLessonLogUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKV3Y2GW5Q;
 				INFOPLIST_FILE = PadelLessonLogUITests/Info.plist;

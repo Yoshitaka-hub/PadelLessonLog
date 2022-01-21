@@ -23,7 +23,7 @@ class AddNewImageViewController: BaseViewController {
         super.viewDidLoad()
         configureToolbar()
         navigationItem.title = R.string.localizable.drawView()
-        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
+        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage.chevronBackwardCircle, select: #selector(back))
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,7 +36,8 @@ class AddNewImageViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIGraphicsBeginImageContextWithOptions(sketchView.frame.size, false, 0.0)
-        UIGraphicsGetCurrentContext()!.interpolationQuality = .high
+        guard let graphicsGetCurrentContext = UIGraphicsGetCurrentContext() else { return }
+        graphicsGetCurrentContext.interpolationQuality = .high
     }
     
     override func bind() {
@@ -92,7 +93,7 @@ class AddNewImageViewController: BaseViewController {
                 objectTableVC.delegate = self
                 objectTableVC.objectType = object
                 let screenSize = UIScreen.main.bounds.size
-                self.openPopUpController(popUpController: objectTableVC, sourceView: self.customToolbar, rect: CGRect(x: screenSize.width / 8.3 , y: 0, width: screenSize.width / 3, height: screenSize.height / 4), arrowDirections: .down, canOverlapSourceViewRect: true)
+                self.openPopUpController(popUpController: objectTableVC, sourceView: self.customToolbar, rect: CGRect(x: screenSize.width / 8.3, y: 0, width: screenSize.width / 3, height: screenSize.height / 4), arrowDirections: .down, canOverlapSourceViewRect: true)
             case .undo:
                 self.sketchView.undo()
             case .saved:

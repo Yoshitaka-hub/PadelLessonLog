@@ -36,8 +36,8 @@ final class LessonDataViewController: BaseViewController {
         customTableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
         
         if let tabBarCon = parent as? UITabBarController {
-            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "gearshape")!, select: #selector(setting))
-            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "plus.circle")!, select: #selector(addNewLesson))
+            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage.gearshape, select: #selector(setting))
+            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage.plusCircle, select: #selector(addNewLesson))
         }
         searchBar.delegate = self
         searchBar.isHidden = true
@@ -90,7 +90,7 @@ final class LessonDataViewController: BaseViewController {
                 detailVC.lessonData = lessonData
                 detailVC.delegate = self
                 
-                let nvc = UINavigationController.init(rootViewController: vc)
+                let nvc = UINavigationController(rootViewController: vc)
                 self.present(nvc, animated: true)
             }
         }.store(in: &subscriptions)
@@ -115,7 +115,7 @@ final class LessonDataViewController: BaseViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
-        searchBar.isHidden = !searchBar.isHidden
+        searchBar.isHidden.toggle()
         searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
         if searchBar.isHidden {
             viewModel.dataReload.send()

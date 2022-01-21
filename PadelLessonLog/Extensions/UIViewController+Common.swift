@@ -13,7 +13,7 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
         return .none
     }
     
-    func createBarButtonItem(image: UIImage, color: UIColor? = .colorNavBarButton, select: Selector?) -> UIBarButtonItem {
+    func createBarButtonItem(image: UIImage, select: Selector?, color: UIColor? = .colorNavBarButton) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.setImage(image, for: .normal)
         button.tintColor = color
@@ -75,12 +75,7 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
             return viewController
         }
     }
-    func destructiveAlertView(withTitle: String?,
-                               message: String? = nil,
-                               cancelString: String? = nil,
-                               cancelBlock: (() -> Void)? = nil,
-                               destructiveString: String? = nil,
-                               destructiveBlock: (() -> Void)? = nil) {
+    func destructiveAlertView(withTitle: String?, message: String? = nil, cancelString: String? = nil, cancelBlock: (() -> Void)? = nil, destructiveString: String? = nil, destructiveBlock: (() -> Void)? = nil) {
         UIAlertController(title: withTitle, message: message, preferredStyle: .alert)
             .addCancelAction(title: cancelString, handler: cancelBlock)
             .addDestructiveAction(title: destructiveString, handler: destructiveBlock)

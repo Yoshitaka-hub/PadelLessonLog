@@ -24,7 +24,6 @@ class ObjectTableViewController: UITableViewController {
     weak var delegate: ObjectTableViewControllerDelegate?
     var objectType = ObjectType.defaultValue()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()

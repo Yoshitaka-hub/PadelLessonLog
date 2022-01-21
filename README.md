@@ -3,6 +3,7 @@
 ![Pod Platform](https://img.shields.io/github/license/Yoshitaka-hub/PadelLessonLog)
 ![Commit Msg](https://img.shields.io/badge/Commit%20message-en__US-brightgreen.svg)
 ![Code Cmnt](https://img.shields.io/badge/code%20comment-Ja-brightgreen.svg)
+
 ![216](https://user-images.githubusercontent.com/63494353/150297383-1c345d0b-681c-44ef-937d-fbfa3321bf09.png)
 
 ## 📱アプリ概要
@@ -17,8 +18,10 @@
 * Swift 5.5.2
 
 ## 🌲ブランチ説明
-* main AppStoreリリース版
-* feature-* 開発ブランチ
+* main : AppStore公開中のブランチ
+* release : 次にリリースするブランチ
+* develop : 開発中のブランチ
+* feature-* : 新機能開発ブランチ
 
 ## 🏗ビルド手順
 1. Install Xcode.
