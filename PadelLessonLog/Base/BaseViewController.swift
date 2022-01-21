@@ -49,8 +49,9 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func hideKeyboardWhenTapped() {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture!.delegate = self
-        view.addGestureRecognizer(tapGesture!)
+        guard let tap = tapGesture else { return }
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
     }
 
     func cancelHideKeyboard() {
@@ -59,18 +60,21 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
-    @objc func dismissKeyboard() {
+    @objc
+    func dismissKeyboard() {
         if keyboardShowing {
             view.endEditing(true)
         }
     }
 
-    @objc func keyboardDidShow(notification: Notification) {
+    @objc
+    func keyboardDidShow(notification: Notification) {
         keyboardShowing = true
         hideKeyboardWhenTapped()
     }
 
-    @objc func keyboardDidHide(notification: Notification) {
+    @objc
+    func keyboardDidHide(notification: Notification) {
         keyboardShowing = false
         cancelHideKeyboard()
     }

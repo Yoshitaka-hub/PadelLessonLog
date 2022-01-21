@@ -92,7 +92,8 @@ class NewLessonViewModel: BaseViewModel {
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
             guard let id = lesson.id else { return }
-            if self.coreDataMangaer.resetLessonImage(lessonID: id.uuidString, image: R.image.img_court(compatibleWith: .current)!) {
+            guard let courtImage = R.image.img_court(compatibleWith: .current) else { return }
+            if self.coreDataMangaer.resetLessonImage(lessonID: id.uuidString, image: courtImage) {
                 self.lessonData.send(self.coreDataMangaer.loadLessonData(lessonID: id.uuidString))
                 self.imageDeleted.send()
             } else {

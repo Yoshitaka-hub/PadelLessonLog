@@ -9,10 +9,12 @@ import UIKit
 
 extension Lesson {
     func getImage() -> UIImage? {
-        var image = UIImage(data: self.image! as Data)
-        if (imageOrientation == 2) {
-            image = UIImage(cgImage: image!.cgImage!, scale: image!.scale, orientation: UIImage.Orientation.down)
+        guard let image = self.image else { return nil }
+        var imageData = UIImage(data: image as Data)
+        if imageOrientation == 2, let data = imageData {
+            guard let cdImage = data.cgImage else { return imageData }
+            imageData = UIImage(cgImage: cdImage, scale: data.scale, orientation: UIImage.Orientation.down)
         }
-        return image
+        return imageData
     }
 }

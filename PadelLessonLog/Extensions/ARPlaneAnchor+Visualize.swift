@@ -12,7 +12,7 @@ extension ARPlaneAnchor {
     
     @discardableResult
     func addPlaneNode(on node: SCNNode, geometry: SCNGeometry, contents: Any) -> SCNNode {
-        guard let material = geometry.materials.first else { fatalError() }
+        guard let material = geometry.materials.first else { fatalError("平面描画失敗") }
         
         if let program = contents as? SCNProgram {
             material.program = program
@@ -36,29 +36,23 @@ extension ARPlaneAnchor {
     }
     
     func findPlaneNode(on node: SCNNode) -> SCNNode? {
-        for childNode in node.childNodes {
-            if childNode.geometry as? SCNPlane != nil {
-                return childNode
-            }
+        for childNode in node.childNodes where childNode.geometry as? SCNPlane != nil {
+            return childNode
         }
         return nil
     }
 
     func findShapedPlaneNode(on node: SCNNode) -> SCNNode? {
-        for childNode in node.childNodes {
-            if childNode.geometry as? ARSCNPlaneGeometry != nil {
-                return childNode
-            }
+        for childNode in node.childNodes where childNode.geometry as? ARSCNPlaneGeometry != nil {
+            return childNode
         }
         return nil
     }
 
     @available(iOS 11.3, *)
     func findPlaneGeometryNode(on node: SCNNode) -> SCNNode? {
-        for childNode in node.childNodes {
-            if childNode.geometry as? ARSCNPlaneGeometry != nil {
-                return childNode
-            }
+        for childNode in node.childNodes where childNode.geometry as? ARSCNPlaneGeometry != nil {
+            return childNode
         }
         return nil
     }
@@ -82,7 +76,7 @@ extension ARPlaneAnchor {
     }
 }
 
-fileprivate func PlaneSizeEqualToExtent(plane: SCNPlane, extent: vector_float3) -> Bool {
+private func PlaneSizeEqualToExtent(plane: SCNPlane, extent: vector_float3) -> Bool {
     if plane.width != CGFloat(extent.x) || plane.height != CGFloat(extent.z) {
         return false
     } else {

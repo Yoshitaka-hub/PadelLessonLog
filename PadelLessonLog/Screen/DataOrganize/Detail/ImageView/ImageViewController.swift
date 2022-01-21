@@ -15,10 +15,11 @@ class ImageViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = R.string.localizable.imageView()
-        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage(systemName: "chevron.backward.circle")!, select: #selector(back))
+        navigationItem.leftBarButtonItem = createBarButtonItem(image: UIImage.chevronBackwardCircle, select: #selector(back))
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard let safeLesson = lesson else { return }
         imageView.image = safeLesson.getImage()
     }

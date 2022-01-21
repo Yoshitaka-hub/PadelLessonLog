@@ -42,13 +42,13 @@ final class LessonImageViewController: BaseViewController {
         customCollectionView.setCollectionViewLayout(layout, animated: true)
         
         if let tabBarCon = parent as? UITabBarController {
-            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "gearshape")!, select: #selector(setting))
-            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "plus.circle")!, select: #selector(addNewLesson))
+            tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage.gearshape, select: #selector(setting))
+            tabBarCon.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage.plusCircle, select: #selector(addNewLesson))
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         viewModel.allButtonPressed.send()
     }
     
@@ -97,7 +97,7 @@ final class LessonImageViewController: BaseViewController {
                 detailVC.lessonData = lessonData
                 detailVC.delegate = self
                 
-                let nvc = UINavigationController.init(rootViewController: vc)
+                let nvc = UINavigationController(rootViewController: vc)
                 self.present(nvc, animated: true)
             }
         }.store(in: &subscriptions)
@@ -202,5 +202,3 @@ extension LessonImageViewController: NewLessonViewControllerDelegate {
         viewModel.pushBackFromNewLessonView.send()
     }
 }
-
-

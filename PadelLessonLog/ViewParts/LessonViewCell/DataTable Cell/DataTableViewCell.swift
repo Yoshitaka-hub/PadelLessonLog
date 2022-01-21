@@ -13,17 +13,6 @@ class DataTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     var lesson: Lesson?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     func setLessonData(lesson: Lesson) {
         self.lesson = lesson
         titleLabel.text = lesson.title
@@ -36,7 +25,7 @@ class DataTableViewCell: UITableViewCell {
         safeLesson.favorite = !starButton.isSelected
         safeLesson.save()
         
-        starButton.isSelected = !starButton.isSelected
+        starButton.isSelected.toggle()
         starButton.tintColor = safeLesson.favorite ? .systemYellow : .lightGray
     }
 }

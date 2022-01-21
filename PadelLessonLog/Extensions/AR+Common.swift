@@ -5,17 +5,13 @@
 //  Created by Yoshitaka on 2020/12/14.
 //
 
-
 import UIKit
 import SceneKit
 import ARKit
-import SceneKit.ModelIO
 
 extension UIColor {
     class var arBlue: UIColor {
-        get {
-            return UIColor(red: 0.141, green: 0.540, blue: 0.816, alpha: 1)
-        }
+        return UIColor(red: 0.141, green: 0.540, blue: 0.816, alpha: 1)
     }
 }
 
@@ -50,7 +46,7 @@ extension SCNNode {
 
         // Translate so that the text node can be seen
         let (min, max) = geometry.boundingBox
-        textNode.pivot = SCNMatrix4MakeTranslation((max.x - min.x)/2, min.y - 0.5, 0)
+        textNode.pivot = SCNMatrix4MakeTranslation((max.x - min.x) / 2, min.y - 0.5, 0)
         
         // Always look at the camera
         let node = SCNNode()
@@ -69,23 +65,22 @@ extension SCNNode {
         let line = SCNNode(geometry: geometry)
         
         let node = SCNNode()
-        node.eulerAngles = SCNVector3Make(Float.pi/2, 0, 0)
+        node.eulerAngles = SCNVector3Make(Float.pi / 2, 0, 0)
         node.addChildNode(line)
         
         return node
     }
 
     func loadScn(name: String, inDirectory directory: String) {
-        guard let scene = SCNScene(named: "\(name).scn", inDirectory: directory) else { fatalError() }
+        guard let scene = SCNScene(named: "\(name).scn", inDirectory: directory) else { fatalError("3Dオブジェクト読込み失敗") }
         for child in scene.rootNode.childNodes {
             child.geometry?.firstMaterial?.lightingModel = .physicallyBased
             addChildNode(child)
         }
     }
-    
     func loadUsdz(name: String) {
-        guard let url = Bundle.main.url(forResource: name, withExtension: "usdz") else { fatalError() }
-        let scene = try! SCNScene(url: url, options: [.checkConsistency: true])
+        guard let url = Bundle.main.url(forResource: name, withExtension: "usdz") else { fatalError("3Dオブジェクト読込み失敗") }
+        let scene = try! SCNScene(url: url, options: [.checkConsistency: true]) // swiftlint:disable:this force_try
         for child in scene.rootNode.childNodes {
             child.geometry?.firstMaterial?.lightingModel = .physicallyBased
             addChildNode(child)
@@ -118,9 +113,7 @@ extension SCNView {
     }
 }
 
-
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCATextLayerAlignmentMode(_ input: CATextLayerAlignmentMode) -> String {
+private func convertFromCATextLayerAlignmentMode(_ input: CATextLayerAlignmentMode) -> String {
     return input.rawValue
 }
-

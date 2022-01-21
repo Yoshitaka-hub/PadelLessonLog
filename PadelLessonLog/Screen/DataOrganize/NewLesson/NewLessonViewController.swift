@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol NewLessonViewControllerDelegate {
+protocol NewLessonViewControllerDelegate: AnyObject {
     func pushToLessonView()
 }
 
@@ -28,7 +28,7 @@ class NewLessonViewController: BaseViewController {
     
     var lessonData: Lesson?
 
-    var delegate: NewLessonViewControllerDelegate?
+    weak var delegate: NewLessonViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +46,12 @@ class NewLessonViewController: BaseViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(self.adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(self.adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        self.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "trash.circle")!, color: .red, select: #selector(deleteData))
-        self.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage(systemName: "checkmark.circle")!, select: #selector(save))
+        self.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage.trashCircle, select: #selector(deleteData), color: .red)
+        self.navigationItem.rightBarButtonItem = self.createBarButtonItem(image: UIImage.checkmarkCircle, select: #selector(save))
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.lessonData.send(lessonData)
     }
     
@@ -59,7 +60,7 @@ class NewLessonViewController: BaseViewController {
             .assign(to: \.text, on: lessonNameTextField)
             .store(in: &subscriptions)
         
-        viewModel.loadView.sink { [weak self] lesson in
+        viewModel.loadView.sink { [weak self] _ in
             guard let self = self else { return }
             self.mainTableView.reloadData()
         }.store(in: &subscriptions)
@@ -118,7 +119,7 @@ class NewLessonViewController: BaseViewController {
         
         viewModel.scrolStepTable.sink { [weak self] _ in
             guard let self = self else { return }
-            self.mainTableView.scrollToRow(at: IndexPath(row: self.viewModel.lessonStepData.value.count - 1, section: 0) , at: .top, animated: true)
+            self.mainTableView.scrollToRow(at: IndexPath(row: self.viewModel.lessonStepData.value.count - 1, section: 0), at: .top, animated: true)
         }.store(in: &subscriptions)
         
         viewModel.transiton.sink { [weak self] transition in
