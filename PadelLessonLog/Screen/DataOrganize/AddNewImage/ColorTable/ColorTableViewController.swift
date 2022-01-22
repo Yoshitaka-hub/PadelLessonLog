@@ -32,7 +32,7 @@ protocol ColorTableViewControllerDelegate: AnyObject {
     func ColorTableViewController(colorTableViewController: ColorTableViewController, didSelectColor: ObjectColor)
 }
 
-class ColorTableViewController: UITableViewController {
+final class ColorTableViewController: UITableViewController {
     
     weak var delegate: ColorTableViewControllerDelegate?
     var objectColor = ObjectColor.defaultValue()

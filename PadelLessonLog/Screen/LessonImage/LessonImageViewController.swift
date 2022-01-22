@@ -10,13 +10,13 @@ import Combine
 
 final class LessonImageViewController: BaseViewController {
 
-    @IBOutlet weak var customToolbar: UIToolbar!
-    @IBOutlet weak var allBarButton: UIBarButtonItem!
-    @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
-    @IBOutlet weak var arBarButton: UIBarButtonItem!
-    @IBOutlet weak var detailButton: UIButton!
+    @IBOutlet private weak var customToolbar: UIToolbar!
+    @IBOutlet private weak var allBarButton: UIBarButtonItem!
+    @IBOutlet private weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet private weak var arBarButton: UIBarButtonItem!
+    @IBOutlet private weak var detailButton: UIButton!
     
-    @IBOutlet weak var customCollectionView: UICollectionView!
+    @IBOutlet private weak var customCollectionView: UICollectionView!
     
     private let viewModel = LessonImageViewModel()
     
@@ -121,18 +121,18 @@ final class LessonImageViewController: BaseViewController {
         viewModel.addLessonButtonPressed.send()
     }
     
-    @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func allButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.allButtonPressed.send()
     }
     
-    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
     
-    @IBAction func arButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func arButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.arButtonPressed.send()
     }
-    @IBAction func detailButtonPressed(_ sender: UIButton) {
+    @IBAction private func detailButtonPressed(_ sender: UIButton) {
         let cell = self.customCollectionView.visibleCells.first as? ImageCollectionViewCell
         guard let safeCell = cell else { return }
         guard let lesson = safeCell.lesson else { return }

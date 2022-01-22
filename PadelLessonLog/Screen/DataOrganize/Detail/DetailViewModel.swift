@@ -14,7 +14,7 @@ enum DetailTransition {
     case back
 }
 
-class DetailViewModel: BaseViewModel {
+final class DetailViewModel: BaseViewModel {
     
     let imageViewButtonPressed = PassthroughSubject<Void, Never>()
     let editViewButtonPressed = PassthroughSubject<Void, Never>()

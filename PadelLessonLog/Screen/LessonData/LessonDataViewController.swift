@@ -9,12 +9,12 @@ import UIKit
 
 final class LessonDataViewController: BaseViewController {
     
-    @IBOutlet weak var customTableView: UITableView!
-    @IBOutlet weak var customToolbar: UIToolbar!
-    @IBOutlet weak var allBarButton: UIBarButtonItem!
-    @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchButton: UIBarButtonItem!
+    @IBOutlet private weak var customTableView: UITableView!
+    @IBOutlet private weak var customToolbar: UIToolbar!
+    @IBOutlet private weak var allBarButton: UIBarButtonItem!
+    @IBOutlet private weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchButton: UIBarButtonItem!
     
     private let viewModel = LessonDataViewModel()
     
@@ -114,17 +114,17 @@ final class LessonDataViewController: BaseViewController {
         viewModel.addLessonButtonPressed.send()
     }
     
-    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchBar.isHidden.toggle()
         searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
         if searchBar.isHidden {
             viewModel.dataReload.send()
         }
     }
-    @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func allButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.allButtonPressed.send()
     }
-    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction private func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
 }

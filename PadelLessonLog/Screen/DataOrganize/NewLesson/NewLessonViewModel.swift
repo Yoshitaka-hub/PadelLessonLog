@@ -14,7 +14,7 @@ enum NewLessonTransition {
     case deleted
 }
 
-class NewLessonViewModel: BaseViewModel {
+final class NewLessonViewModel: BaseViewModel {
     
     let imageButtonPressed = PassthroughSubject<Bool, Never>()
     let editImageButtonPressed = PassthroughSubject<Void, Never>()

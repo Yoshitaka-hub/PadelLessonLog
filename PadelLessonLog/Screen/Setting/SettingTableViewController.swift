@@ -7,8 +7,8 @@
 
 import UIKit
 
-class SettingTableViewController: UITableViewController {
-    @IBOutlet weak var versionLabel: UILabel!
+final class SettingTableViewController: UITableViewController {
+    @IBOutlet private weak var versionLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

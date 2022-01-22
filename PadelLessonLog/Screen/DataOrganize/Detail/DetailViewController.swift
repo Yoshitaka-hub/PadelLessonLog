@@ -11,11 +11,11 @@ protocol DetailViewControllerDelegate: AnyObject {
     func pushToEditView(lesson: Lesson)
 }
 
-class DetailViewController: BaseViewController {
+final class DetailViewController: BaseViewController {
 
-    @IBOutlet weak var stepTableView: UITableView!
-    @IBOutlet weak var lessonTitleLabel: UILabel!
-    @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet private weak var stepTableView: UITableView!
+    @IBOutlet private weak var lessonTitleLabel: UILabel!
+    @IBOutlet private weak var imageButton: UIButton!
     var lessonData: Lesson?
     
     private let viewModel = DetailViewModel()
@@ -62,7 +62,7 @@ class DetailViewController: BaseViewController {
         }.store(in: &subscriptions)
     }
     
-    @IBAction func imageButtonPressed(_ sender: UIButton) {
+    @IBAction private func imageButtonPressed(_ sender: UIButton) {
         viewModel.imageViewButtonPressed.send()
     }
     @objc

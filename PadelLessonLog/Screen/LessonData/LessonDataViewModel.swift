@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class LessonDataViewModel: LessonViewModel {
+final class LessonDataViewModel: LessonViewModel {
     
     let didSelectRowAt = PassthroughSubject<IndexPath, Never>()
     let reorderData = PassthroughSubject<(from: IndexPath, to: IndexPath), Never>()

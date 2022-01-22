@@ -12,10 +12,10 @@ protocol InputTextTableCellDelegate: AnyObject {
     func textViewDidBeingEditing(index: Int?)
 }
 
-class StepTableViewCell: UITableViewCell, UITextViewDelegate {
+final class StepTableViewCell: UITableViewCell, UITextViewDelegate {
 
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var stepTextView: UITextView! {
+    @IBOutlet private weak var cellLabel: UILabel!
+    @IBOutlet private  weak var stepTextView: UITextView! {
         didSet {
             stepTextView.delegate = self
         }

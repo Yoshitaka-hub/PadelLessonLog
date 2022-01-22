@@ -12,16 +12,16 @@ protocol NewLessonViewControllerDelegate: AnyObject {
     func pushToLessonView()
 }
 
-class NewLessonViewController: BaseViewController {
+final class NewLessonViewController: BaseViewController {
 
-    @IBOutlet weak var lessonNameTextField: UITextField!
-    @IBOutlet weak var addImageButton: UIButton!
-    @IBOutlet weak var editImageButton: UIButton!
-    @IBOutlet weak var addStepButton: UIButton!
-    @IBOutlet weak var editStepButton: UIButton!
+    @IBOutlet private weak var lessonNameTextField: UITextField!
+    @IBOutlet private weak var addImageButton: UIButton!
+    @IBOutlet private weak var editImageButton: UIButton!
+    @IBOutlet private weak var addStepButton: UIButton!
+    @IBOutlet private weak var editStepButton: UIButton!
     
-    @IBOutlet var mainTableView: UITableView!
-    @IBOutlet var imageButtonsAreaView: UIView!
+    @IBOutlet private var mainTableView: UITableView!
+    @IBOutlet private var imageButtonsAreaView: UIView!
     
     private let viewModel = NewLessonViewModel()
     private var coreDataMangaer = CoreDataManager.shared
@@ -141,16 +141,16 @@ class NewLessonViewController: BaseViewController {
         }.store(in: &subscriptions)
     }
 
-    @IBAction func addImageButtonPressed(_ sender: UIButton) {
+    @IBAction private func addImageButtonPressed(_ sender: UIButton) {
         viewModel.imageButtonPressed.send(sender.isSelected)
     }
-    @IBAction func editImageButtonPressed(_ sender: UIButton) {
+    @IBAction private func editImageButtonPressed(_ sender: UIButton) {
         viewModel.editImageButtonPressed.send()
     }
-    @IBAction func addStepButtonPressed(_ sender: UIButton) {
+    @IBAction private func addStepButtonPressed(_ sender: UIButton) {
         viewModel.addStepButtonPressed.send()
     }
-    @IBAction func editStepButtonPressed(_ sender: UIButton) {
+    @IBAction private func editStepButtonPressed(_ sender: UIButton) {
         viewModel.editStepButtonPressed.send(sender.isSelected)
     }
     @objc

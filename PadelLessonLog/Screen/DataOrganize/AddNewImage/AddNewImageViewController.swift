@@ -8,10 +8,10 @@
 import UIKit
 import Sketch
 
-class AddNewImageViewController: BaseViewController {
+final class AddNewImageViewController: BaseViewController {
 
-    @IBOutlet weak var sketchView: SketchView!
-    @IBOutlet weak var customToolbar: UIToolbar!
+    @IBOutlet private weak var sketchView: SketchView!
+    @IBOutlet private weak var customToolbar: UIToolbar!
     
     private var viewModel = AddNewImageViewModel()
     

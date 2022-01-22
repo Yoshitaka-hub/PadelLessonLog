@@ -7,10 +7,10 @@
 
 import UIKit
 
-class DataTableViewCell: UITableViewCell {
+final class DataTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var starButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var starButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
     var lesson: Lesson?
     
     func setLessonData(lesson: Lesson) {
@@ -20,7 +20,7 @@ class DataTableViewCell: UITableViewCell {
         starButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
     }
     
-    @IBAction func starButtonPressed(_ sender: UIButton) {
+    @IBAction private func starButtonPressed(_ sender: UIButton) {
         guard let safeLesson = lesson else { return }
         safeLesson.favorite = !starButton.isSelected
         safeLesson.save()

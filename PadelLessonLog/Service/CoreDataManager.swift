@@ -13,7 +13,7 @@ enum CoreDataObjectType: String {
     case lessonStep = "LessonStep"
  }
 
-class CoreDataManager {
+final class CoreDataManager {
     static let shared = CoreDataManager()
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate

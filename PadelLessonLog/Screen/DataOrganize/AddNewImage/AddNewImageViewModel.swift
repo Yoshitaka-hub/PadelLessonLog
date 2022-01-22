@@ -17,7 +17,7 @@ enum AddNewImageViewAction {
     case back
 }
 
-class AddNewImageViewModel: BaseViewModel {
+final class AddNewImageViewModel: BaseViewModel {
     
     let colorTableButtonPressed = PassthroughSubject<Void, Never>()
     let objectTableButtonPressed = PassthroughSubject<Void, Never>()

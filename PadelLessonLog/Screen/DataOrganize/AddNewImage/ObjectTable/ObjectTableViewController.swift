@@ -19,7 +19,7 @@ protocol ObjectTableViewControllerDelegate: AnyObject {
     func ObjectTableViewController(objectTableViewController: ObjectTableViewController, didSelectObject: ObjectType)
 }
 
-class ObjectTableViewController: UITableViewController {
+final class ObjectTableViewController: UITableViewController {
     
     weak var delegate: ObjectTableViewControllerDelegate?
     var objectType = ObjectType.defaultValue()

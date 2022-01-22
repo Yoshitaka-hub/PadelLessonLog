@@ -13,7 +13,7 @@ enum ValidateResult {
     case countOverError
 }
 
-class ValidateManager {
+final class ValidateManager {
     static let shared = ValidateManager()
     
     func validate(word: String, maxCount: Int) -> ValidateResult {
