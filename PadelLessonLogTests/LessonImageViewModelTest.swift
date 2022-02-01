@@ -13,7 +13,7 @@ import Combine
 class LessonImageViewModelTest: QuickSpec {
     override func spec() {
         describe("LessonImageViewModel") {
-            let lessonImageViewModel = LessonImageViewModel()
+            let lessonImageViewModel = LessonImageViewModel(dependency: .init(coreDataProtocol: CoreDataManager.shared))
             let stubManager = StubManager()
             var subscriptions = Set<AnyCancellable>()
             

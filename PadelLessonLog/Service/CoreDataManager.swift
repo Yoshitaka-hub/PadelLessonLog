@@ -13,7 +13,16 @@ enum CoreDataObjectType: String {
     case lessonStep = "LessonStep"
  }
 
-final class CoreDataManager {
+protocol CoreDataProtocol {
+    func createNewLesson(image: UIImage, steps: [String]) -> Lesson
+    func loadAllLessonData() -> [Lesson]
+    func loadAllFavoriteLessonData() -> [Lesson]
+    func loadAllLessonDataWithImage() -> [Lesson]
+    func loadAllFavoriteLessonDataWithImage() -> [Lesson]
+    func updateLessonOrder(lessonArray: [Lesson]) 
+}
+
+final class CoreDataManager: CoreDataProtocol {
     static let shared = CoreDataManager()
     
     private init() { }

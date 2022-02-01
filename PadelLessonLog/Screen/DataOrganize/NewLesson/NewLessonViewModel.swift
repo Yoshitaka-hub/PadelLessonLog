@@ -50,7 +50,12 @@ final class NewLessonViewModel: BaseViewModel {
     let coreDataMangaer = CoreDataManager.shared
     let validateManager = ValidateManager.shared
     
-    override func mutate() {
+    override init() {
+        super.init()
+        mutate()
+    }
+    
+    func mutate() {
         lessonData.sink { [weak self] lessonData in
             guard let self = self else { return }
             guard let lesson = lessonData else { return }

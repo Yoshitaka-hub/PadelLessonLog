@@ -1255,7 +1255,12 @@ struct _R: Rswift.Validatable {
       typealias InitialController = LessonDataViewController
 
       let bundle = R.hostingBundle
+      let lessonData = StoryboardViewControllerResource<LessonDataViewController>(identifier: "LessonData")
       let name = "LessonData"
+
+      func lessonData(_: Void = ()) -> LessonDataViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: lessonData)
+      }
 
       static func validate() throws {
         if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "chart.bar.doc.horizontal") == nil { throw Rswift.ValidationError(description: "[R.swift] System image named 'chart.bar.doc.horizontal' is used in storyboard 'LessonData', but couldn't be loaded.") } }
@@ -1263,6 +1268,7 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, tvOS 11.0, *) {
           if UIKit.UIColor(named: "colorButtonOff", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'colorButtonOff' is used in storyboard 'LessonData', but couldn't be loaded.") }
         }
+        if _R.storyboard.lessonData().lessonData() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'lessonData' could not be loaded from storyboard 'LessonData' as 'LessonDataViewController'.") }
       }
 
       fileprivate init() {}
@@ -1274,7 +1280,12 @@ struct _R: Rswift.Validatable {
       typealias InitialController = LessonImageViewController
 
       let bundle = R.hostingBundle
+      let lessonImage = StoryboardViewControllerResource<LessonImageViewController>(identifier: "LessonImage")
       let name = "LessonImage"
+
+      func lessonImage(_: Void = ()) -> LessonImageViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: lessonImage)
+      }
 
       static func validate() throws {
         if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "info.circle") == nil { throw Rswift.ValidationError(description: "[R.swift] System image named 'info.circle' is used in storyboard 'LessonImage', but couldn't be loaded.") } }
@@ -1285,6 +1296,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "colorButtonOn", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'colorButtonOn' is used in storyboard 'LessonImage', but couldn't be loaded.") }
           if UIKit.UIColor(named: "colorNavBarButton", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'colorNavBarButton' is used in storyboard 'LessonImage', but couldn't be loaded.") }
         }
+        if _R.storyboard.lessonImage().lessonImage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'lessonImage' could not be loaded from storyboard 'LessonImage' as 'LessonImageViewController'.") }
       }
 
       fileprivate init() {}

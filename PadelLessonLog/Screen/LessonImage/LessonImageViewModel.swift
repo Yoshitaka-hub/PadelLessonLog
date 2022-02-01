@@ -9,6 +9,16 @@ import Combine
 import UIKit
 
 final class LessonImageViewModel: LessonViewModel {
+    struct Dependency {
+        let coreDataProtocol: CoreDataProtocol
+    }
+    init(dependency: Dependency) {
+        coreDataMangaer = dependency.coreDataProtocol
+        super.init()
+        mutate()
+    }
+    let coreDataMangaer: CoreDataProtocol
+    
     let arButtonPressed = PassthroughSubject<Void, Never>()
     
     let scrollViewDidTouch = PassthroughSubject<CGPoint, Never>()
@@ -23,6 +33,13 @@ final class LessonImageViewModel: LessonViewModel {
     
     override func mutate() {
         super.mutate()
+        addLessonButtonPressed.sink { [weak self] _ in
+            guard let self = self else { return }
+            guard let courtImg = R.image.img_court(compatibleWith: .current) else { return }
+            let newLessonData = self.coreDataMangaer.createNewLesson(image: courtImg, steps: [""])
+            self.transiton.send(.lesson(newLessonData, true))
+        }.store(in: &subscriptions)
+        
         dataReload.sink { [weak self] _ in
             guard let self = self else { return }
             if self.tableMode.value == .allTableView {

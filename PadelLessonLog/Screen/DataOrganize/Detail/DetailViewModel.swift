@@ -26,7 +26,12 @@ final class DetailViewModel: BaseViewModel {
     private(set) var loadView = PassthroughSubject<Lesson, Never>()
     private(set) var transiton = PassthroughSubject<DetailTransition, Never>()
     
-    override func mutate() {
+    override init() {
+        super.init()
+        mutate()
+    }
+    
+    func mutate() {
         imageViewButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }

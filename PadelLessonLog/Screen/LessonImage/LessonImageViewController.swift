@@ -9,6 +9,16 @@ import UIKit
 import Combine
 
 final class LessonImageViewController: BaseViewController {
+    struct Dependency {
+        let viewModel: LessonImageViewModel
+    }
+    static func makeInstance(dependency: Dependency) -> LessonImageViewController {
+        // swiftlint:disable force_unwrapping
+        let viewController = R.storyboard.lessonImage.lessonImage()!
+        // swiftlint:anable force_unwrapping
+        viewController.viewModel = dependency.viewModel
+        return viewController
+    }
 
     @IBOutlet private weak var customToolbar: UIToolbar!
     // swiftlint:disable private_outlet
@@ -17,10 +27,9 @@ final class LessonImageViewController: BaseViewController {
     // swiftlint:anable private_outlet
     @IBOutlet private weak var arBarButton: UIBarButtonItem!
     @IBOutlet private weak var detailButton: UIButton!
-    
     @IBOutlet private weak var customCollectionView: UICollectionView!
     
-    private let viewModel = LessonImageViewModel()
+    private var viewModel: LessonImageViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -47,7 +47,12 @@ final class AddNewImageViewModel: BaseViewModel {
     
     private var coreDataMangaer = CoreDataManager.shared
     
-    override func mutate() {
+    override init() {
+        super.init()
+        mutate()
+    }
+    
+    func mutate() {
         loadLessonImageData.sink { [weak self] id, image in
             guard let self = self else { return }
             self.lessonID.send(id)

@@ -8,6 +8,16 @@
 import UIKit
 
 final class LessonDataViewController: BaseViewController {
+    struct Dependency {
+        let viewModel: LessonDataViewModel
+    }
+    static func makeInstance(dependency: Dependency) -> LessonDataViewController {
+        // swiftlint:disable force_unwrapping
+        let viewController = R.storyboard.lessonData.lessonData()!
+        // swiftlint:anable force_unwrapping
+        viewController.viewModel = dependency.viewModel
+        return viewController
+    }
     
     @IBOutlet private weak var customTableView: UITableView!
     @IBOutlet private weak var customToolbar: UIToolbar!
@@ -17,7 +27,7 @@ final class LessonDataViewController: BaseViewController {
     @IBOutlet private(set) weak var searchBar: UISearchBar!
     @IBOutlet private(set) weak var searchButton: UIBarButtonItem!
     // swiftlint:anable private_outlet
-    private let viewModel = LessonDataViewModel()
+    private var viewModel: LessonDataViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
