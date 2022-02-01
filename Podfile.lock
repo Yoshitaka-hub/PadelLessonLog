@@ -1,0 +1,36 @@
+PODS:
+  - Quick (4.0.0)
+  - R.swift (6.1.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+  - Sketch (3.0)
+  - SwiftLint (0.45.1)
+  - Swinject (2.8.1)
+
+DEPENDENCIES:
+  - Quick
+  - R.swift
+  - Sketch
+  - SwiftLint
+  - Swinject
+
+SPEC REPOS:
+  trunk:
+    - Quick
+    - R.swift
+    - R.swift.Library
+    - Sketch
+    - SwiftLint
+    - Swinject
+
+SPEC CHECKSUMS:
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
+  R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  Sketch: 49a4b71f7bc77316ed5f75ee79dedaa2b844d5e7
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
+
+PODFILE CHECKSUM: d30dc091364e89b79884a1e6a2125e0f1ec54313
+
+COCOAPODS: 1.11.2
