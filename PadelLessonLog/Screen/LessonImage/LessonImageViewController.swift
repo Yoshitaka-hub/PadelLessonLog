@@ -11,8 +11,10 @@ import Combine
 final class LessonImageViewController: BaseViewController {
 
     @IBOutlet private weak var customToolbar: UIToolbar!
-    @IBOutlet private weak var allBarButton: UIBarButtonItem!
-    @IBOutlet private weak var favoriteBarButton: UIBarButtonItem!
+    // swiftlint:disable private_outlet
+    @IBOutlet private(set) weak var allBarButton: UIBarButtonItem!
+    @IBOutlet private(set) weak var favoriteBarButton: UIBarButtonItem!
+    // swiftlint:anable private_outlet
     @IBOutlet private weak var arBarButton: UIBarButtonItem!
     @IBOutlet private weak var detailButton: UIButton!
     
@@ -36,7 +38,6 @@ final class LessonImageViewController: BaseViewController {
         customCollectionView.dataSource = self
         
         customCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         customCollectionView.setCollectionViewLayout(layout, animated: true)
@@ -121,13 +122,14 @@ final class LessonImageViewController: BaseViewController {
         viewModel.addLessonButtonPressed.send()
     }
     
-    @IBAction private func allButtonPressed(_ sender: UIBarButtonItem) {
+    // swiftlint:disable private_action
+    @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.allButtonPressed.send()
     }
-    
-    @IBAction private func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
+    // swiftlint:anable private_action
     
     @IBAction private func arButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.arButtonPressed.send()

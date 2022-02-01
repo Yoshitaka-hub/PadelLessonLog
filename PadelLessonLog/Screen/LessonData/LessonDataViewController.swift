@@ -11,11 +11,12 @@ final class LessonDataViewController: BaseViewController {
     
     @IBOutlet private weak var customTableView: UITableView!
     @IBOutlet private weak var customToolbar: UIToolbar!
-    @IBOutlet private weak var allBarButton: UIBarButtonItem!
-    @IBOutlet private weak var favoriteBarButton: UIBarButtonItem!
-    @IBOutlet private weak var searchBar: UISearchBar!
-    @IBOutlet private weak var searchButton: UIBarButtonItem!
-    
+    // swiftlint:disable private_outlet
+    @IBOutlet private(set) weak var allBarButton: UIBarButtonItem!
+    @IBOutlet private(set) weak var favoriteBarButton: UIBarButtonItem!
+    @IBOutlet private(set) weak var searchBar: UISearchBar!
+    @IBOutlet private(set) weak var searchButton: UIBarButtonItem!
+    // swiftlint:anable private_outlet
     private let viewModel = LessonDataViewModel()
     
     override func viewDidLoad() {
@@ -113,20 +114,21 @@ final class LessonDataViewController: BaseViewController {
     override func addNewLesson() {
         viewModel.addLessonButtonPressed.send()
     }
-    
-    @IBAction private func searchButtonPressed(_ sender: UIBarButtonItem) {
+    // swiftlint:disable private_action
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchBar.isHidden.toggle()
         searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
         if searchBar.isHidden {
             viewModel.dataReload.send()
         }
     }
-    @IBAction private func allButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func allButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.allButtonPressed.send()
     }
-    @IBAction private func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
+    // swiftlint:anable private_action
 }
 
 extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
