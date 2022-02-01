@@ -74,7 +74,9 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="versionLabel" destination="Bkq-97-5uo" id="ddh-Ak-0Ck"/>
+                        <outlet property="licenseLabel" destination="W7R-61-5g3" id="6N8-hQ-E2r"/>
+                        <outlet property="versionLabel" destination="Bkq-97-5uo" id="QKN-5I-dAF"/>
+                        <outlet property="versionTitleLabel" destination="TNe-xC-lW9" id="3ta-DR-R2d"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCP-PC-gpz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

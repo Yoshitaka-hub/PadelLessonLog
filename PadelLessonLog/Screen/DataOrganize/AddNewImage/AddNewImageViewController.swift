@@ -136,7 +136,6 @@ final class AddNewImageViewController: BaseViewController {
     @objc
     func back() {
         viewModel.backButtonPressed.send()
-        navigationController?.popViewController(animated: true)
     }
     @objc
     func save() {

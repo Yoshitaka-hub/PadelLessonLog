@@ -149,18 +149,11 @@
 		E41F34C926BF9FBA001B24A2 /* AddNewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewController.swift; sourceTree = "<group>"; };
 		E41F34CE26BF9FFF001B24A2 /* AddNewImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewImageViewModel.swift; sourceTree = "<group>"; };
 		E41F34DD26BFB5EA001B24A2 /* LessonImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonImageViewController.swift; sourceTree = "<group>"; };
-		E422AB0C26F55E06008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
-		E422AB1026F55E07008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LessonData.strings; sourceTree = "<group>"; };
 		E422AB1B26F55E8A008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E422AB2A26F571A1008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/NewLesson.storyboard; sourceTree = "<group>"; };
 		E422AB2C26F571CA008F395B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewLesson.storyboard; sourceTree = "<group>"; };
 		E422AB4326F57AEE008F395B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		E422AB4A26F57B66008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		E422AB4F26F57B9E008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/DataTableViewCell.xib; sourceTree = "<group>"; };
 		E422AB5426F57BA3008F395B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DataTableViewCell.xib; sourceTree = "<group>"; };
-		E422AB5926F57EF6008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Detail.storyboard; sourceTree = "<group>"; };
 		E422AB5E26F57EFB008F395B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Detail.storyboard; sourceTree = "<group>"; };
-		E422AB6326F586E9008F395B /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		E422AB6526F586EE008F395B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		E422AB6926F58FE3008F395B /* PadelLessonLogDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PadelLessonLogDebug.entitlements; sourceTree = "<group>"; };
 		E422AB6D26F58FED008F395B /* PadelLessonLog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PadelLessonLog.entitlements; sourceTree = "<group>"; };
@@ -1016,7 +1009,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E41F345226BE67A8001B24A2 /* Base */,
-				E422AB0C26F55E06008F395B /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1033,7 +1025,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E41F34B926BE7CAA001B24A2 /* Base */,
-				E422AB1026F55E07008F395B /* ja */,
 			);
 			name = LessonData.storyboard;
 			sourceTree = "<group>";
@@ -1049,7 +1040,6 @@
 		E422AB2B26F571A1008F395B /* NewLesson.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E422AB2A26F571A1008F395B /* ja */,
 				E422AB2C26F571CA008F395B /* Base */,
 			);
 			name = NewLesson.storyboard;
@@ -1059,7 +1049,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E422AB4326F57AEE008F395B /* Base */,
-				E422AB4A26F57B66008F395B /* ja */,
 			);
 			name = ImageCollectionViewCell.xib;
 			sourceTree = "<group>";
@@ -1067,7 +1056,6 @@
 		E422AB5026F57B9E008F395B /* DataTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E422AB4F26F57B9E008F395B /* ja */,
 				E422AB5426F57BA3008F395B /* Base */,
 			);
 			name = DataTableViewCell.xib;
@@ -1076,7 +1064,6 @@
 		E422AB5A26F57EF6008F395B /* Detail.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E422AB5926F57EF6008F395B /* ja */,
 				E422AB5E26F57EFB008F395B /* Base */,
 			);
 			name = Detail.storyboard;
@@ -1085,7 +1072,6 @@
 		E422AB6426F586E9008F395B /* Setting.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E422AB6326F586E9008F395B /* ja */,
 				E422AB6526F586EE008F395B /* Base */,
 			);
 			name = Setting.storyboard;

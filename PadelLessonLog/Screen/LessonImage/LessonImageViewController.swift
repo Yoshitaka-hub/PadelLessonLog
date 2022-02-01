@@ -72,33 +72,27 @@ final class LessonImageViewController: BaseViewController {
             guard let self = self else { return }
             switch transition {
             case .setting:
-                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "Setting")
+                guard let vc = R.storyboard.setting.setting() else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
             case let .lesson(lessonData, isNew):
-                let storyboard = UIStoryboard(name: "NewLesson", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "NewLesson")
-                guard let newLessonVC = vc as? NewLessonViewController else { return }
+                guard let newLessonVC = R.storyboard.newLesson.newLesson() else { return }
                 newLessonVC.lessonData = lessonData
                 newLessonVC.delegate = self
-                
                 if isNew {
                     newLessonVC.navigationItem.title = R.string.localizable.createNewData()
                 } else {
                     newLessonVC.navigationItem.title = R.string.localizable.editData()
                 }
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(newLessonVC, animated: true)
             case .arView:
                 guard let vc = R.storyboard.padelAR.padelAR() else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
             case let .detail(lessonData):
-                let storyboard = UIStoryboard(name: "Detail", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "Detail")
-                guard let detailVC = vc as? DetailViewController else { return }
+                guard let detailVC = R.storyboard.detail.detail() else { return }
                 detailVC.lessonData = lessonData
                 detailVC.delegate = self
                 
-                let nvc = UINavigationController(rootViewController: vc)
+                let nvc = UINavigationController(rootViewController: detailVC)
                 self.present(nvc, animated: true)
             }
         }.store(in: &subscriptions)

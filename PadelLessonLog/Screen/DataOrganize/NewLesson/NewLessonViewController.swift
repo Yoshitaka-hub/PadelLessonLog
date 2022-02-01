@@ -13,7 +13,10 @@ protocol NewLessonViewControllerDelegate: AnyObject {
 }
 
 final class NewLessonViewController: BaseViewController {
-
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var imageLabel: UILabel!
+    @IBOutlet private weak var stepLabel: UILabel!
+    
     @IBOutlet private weak var lessonNameTextField: UITextField!
     @IBOutlet private weak var addImageButton: UIButton!
     @IBOutlet private weak var editImageButton: UIButton!
@@ -32,6 +35,7 @@ final class NewLessonViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeLabels()
         lessonNameTextField.delegate = self
         mainTableView.delegate = self
         mainTableView.dataSource = self
@@ -139,6 +143,18 @@ final class NewLessonViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }.store(in: &subscriptions)
+    }
+    private func localizeLabels() {
+        titleLabel.text = R.string.localizable.title()
+        imageLabel.text = R.string.localizable.image()
+        stepLabel.text = R.string.localizable.steps()
+        addImageButton.setTitle(R.string.localizable.addImage(), for: .normal)
+        addImageButton.setTitle(R.string.localizable.delete(), for: .selected)
+        editImageButton.setTitle(R.string.localizable.editImage(), for: .normal)
+        addStepButton.setTitle(R.string.localizable.addStep(), for: .normal)
+        editStepButton.setTitle(R.string.localizable.edit(), for: .normal)
+        editStepButton.setTitle(R.string.localizable.done(), for: .selected)
+        lessonNameTextField.placeholder = R.string.localizable.pleaseEnterATitle()
     }
 
     @IBAction private func addImageButtonPressed(_ sender: UIButton) {
