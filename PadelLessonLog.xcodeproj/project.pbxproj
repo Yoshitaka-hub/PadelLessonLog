@@ -27,7 +27,6 @@
 		E4103C81278E347000E12348 /* LessonDataViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4103C80278E347000E12348 /* LessonDataViewTest.swift */; };
 		E41F344C26BE67A8001B24A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344B26BE67A8001B24A2 /* AppDelegate.swift */; };
 		E41F344E26BE67A8001B24A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */; };
-		E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F344F26BE67A8001B24A2 /* MainViewController.swift */; };
 		E41F345326BE67A8001B24A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F345126BE67A8001B24A2 /* Main.storyboard */; };
 		E41F345626BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E41F345426BE67A8001B24A2 /* PadelLessonLog.xcdatamodeld */; };
 		E41F345826BE67B3001B24A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41F345726BE67B3001B24A2 /* Assets.xcassets */; };
@@ -82,6 +81,7 @@
 		E4D0F4F92783D46900690B99 /* LessonDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4F82783D46900690B99 /* LessonDataViewModel.swift */; };
 		E4D0F4FB2783D4D500690B99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */; };
 		E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */; };
+		E4D131DE27B114C30034B2D0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D131DD27B114C30034B2D0 /* MainTabBarController.swift */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
 		E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */; };
 		E4EBEEF427888D1000798481 /* StubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF327888D1000798481 /* StubManager.swift */; };
@@ -132,7 +132,6 @@
 		E41F344826BE67A8001B24A2 /* PadelLessonLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PadelLessonLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41F344B26BE67A8001B24A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E41F344D26BE67A8001B24A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E41F344F26BE67A8001B24A2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E41F345226BE67A8001B24A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E41F345526BE67A8001B24A2 /* PadelLessonLog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PadelLessonLog.xcdatamodel; sourceTree = "<group>"; };
 		E41F345726BE67B3001B24A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		E4D0F4F82783D46900690B99 /* LessonDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDataViewModel.swift; sourceTree = "<group>"; };
 		E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		E4D131DD27B114C30034B2D0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
 		E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModelTest.swift; sourceTree = "<group>"; };
 		E4EBEEF327888D1000798481 /* StubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubManager.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				E41F345126BE67A8001B24A2 /* Main.storyboard */,
-				E41F344F26BE67A8001B24A2 /* MainViewController.swift */,
+				E4D131DD27B114C30034B2D0 /* MainTabBarController.swift */,
 				E41F34BF26BF8A7C001B24A2 /* LessonImage */,
 				E41F34BE26BF8A6D001B24A2 /* LessonData */,
 				E445D0D026E2F1BD005B6FCB /* DataOrganize */,
@@ -920,8 +920,8 @@
 				E4320C6026EE04FD00BE2FD4 /* DetailViewModel.swift in Sources */,
 				E48E65BF26C2172100A88860 /* ColorTableViewController.swift in Sources */,
 				E41F34CA26BF9FBA001B24A2 /* AddNewImageViewController.swift in Sources */,
-				E41F345026BE67A8001B24A2 /* MainViewController.swift in Sources */,
 				E403D61426D74FB200C36429 /* NSPresistentContainerExtension.swift in Sources */,
+				E4D131DE27B114C30034B2D0 /* MainTabBarController.swift in Sources */,
 				E46B665E26E38865008247DC /* ImageViewController.swift in Sources */,
 				E465FC31274E7C3D00503FC8 /* ARPlaneAnchor+Visualize.swift in Sources */,
 				E4AD673A26F417DD009DD686 /* UIColorExtension.swift in Sources */,
