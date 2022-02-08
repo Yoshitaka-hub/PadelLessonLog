@@ -82,6 +82,7 @@
 		E4D0F4FB2783D4D500690B99 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */; };
 		E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */; };
 		E4D131DE27B114C30034B2D0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D131DD27B114C30034B2D0 /* MainTabBarController.swift */; };
+		E4D131E527B13E750034B2D0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E4D131E427B13E750034B2D0 /* Settings.bundle */; };
 		E4E83BB6274DE4FB0050FE48 /* PadelARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */; };
 		E4EBEEF22787EFD700798481 /* NewLessonViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */; };
 		E4EBEEF427888D1000798481 /* StubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBEEF327888D1000798481 /* StubManager.swift */; };
@@ -194,6 +195,7 @@
 		E4D0F4FA2783D4D500690B99 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		E4D0F4FC2783D8C900690B99 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		E4D131DD27B114C30034B2D0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E4D131E427B13E750034B2D0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E4E83BB5274DE4FB0050FE48 /* PadelARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadelARViewController.swift; sourceTree = "<group>"; };
 		E4EBEEF12787EFD700798481 /* NewLessonViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLessonViewModelTest.swift; sourceTree = "<group>"; };
 		E4EBEEF327888D1000798481 /* StubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubManager.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 		E41F34A026BE6D7A001B24A2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E4D131E427B13E750034B2D0 /* Settings.bundle */,
 				E41F345926BE67B3001B24A2 /* LaunchScreen.storyboard */,
 				E41F345726BE67B3001B24A2 /* Assets.xcassets */,
 				E465FC2A274E7B2200503FC8 /* art.scnassets */,
@@ -620,6 +623,7 @@
 				E41F344626BE67A8001B24A2 /* Resources */,
 				7A8DAFDACA7338864BD051C1 /* [CP] Embed Pods Frameworks */,
 				E4474742279A3D0200FDA36B /* ShellScript */,
+				E4D131E727B14DD60034B2D0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -719,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41F34BA26BE7CAA001B24A2 /* LessonData.storyboard in Resources */,
+				E4D131E527B13E750034B2D0 /* Settings.bundle in Resources */,
 				E465FC2B274E7B2200503FC8 /* art.scnassets in Resources */,
 				E41F34C526BF9862001B24A2 /* AddNewImage.storyboard in Resources */,
 				E422AB6226F586E9008F395B /* Setting.storyboard in Resources */,
@@ -908,6 +913,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		E4D131E727B14DD60034B2D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n/opt/homebrew/bin/license-plist --output-path $PRODUCT_NAME/Settings.bundle --github-token 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\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

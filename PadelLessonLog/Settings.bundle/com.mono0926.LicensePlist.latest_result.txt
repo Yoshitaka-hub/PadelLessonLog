@@ -1,0 +1,48 @@
+name: Quick, nameSpecified: 
+body: Apache License
+     …
+version: 4.0.0
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.3.0
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.3.0
+
+name: Sketch, nameSpecified: 
+body: Copyright (c) 2018 d…
+version: 3.0
+
+name: Sketch, nameSpecified: 
+body: Copyright (c) 2018 d…
+version: 3.0
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.45.1
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.45.1
+
+name: Swinject, nameSpecified: 
+body: The MIT License (MIT…
+version: 2.8.1
+
+name: Swinject, nameSpecified: 
+body: The MIT License (MIT…
+version: 2.8.1
+
+add-version-numbers: false
+
+LicensePlist Version: 3.17.0
