@@ -48,7 +48,7 @@ final class NewLessonViewModel: BaseViewModel {
     private(set) var transiton = PassthroughSubject<NewLessonTransition, Never>()
     
     let coreDataMangaer = CoreDataManager.shared
-    let validateManager = ValidateManager.shared
+    let validation = CharacterCountValidation()
     
     override init() {
         super.init()
@@ -74,7 +74,7 @@ final class NewLessonViewModel: BaseViewModel {
             self.lessonTitleText.send(inputText)
             guard let text = inputText else { return }
             let maxCount = 40
-            let result: ValidateResult = self.validateManager.validate(word: text, maxCount: maxCount)
+            let result: ValidateResult = self.validation.validate(word: text, maxCount: maxCount)
             if result == .countOverError {
                 let dif = text.count - maxCount
                 let dropedText = text.dropLast(dif)
@@ -164,7 +164,7 @@ final class NewLessonViewModel: BaseViewModel {
                 return
             }
             let trinmingTitle = title.trimmingCharacters(in: .whitespaces)
-            let result: ValidateResult = self.validateManager.validate(word: trinmingTitle, maxCount: 0)
+            let result: ValidateResult = self.validation.validate(word: trinmingTitle, maxCount: 0)
             guard result == .valid else {
                 self.titleEmptyAlert.send()
                 return
