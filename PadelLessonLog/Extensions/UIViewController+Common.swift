@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Swinject
 
 extension UIViewController: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

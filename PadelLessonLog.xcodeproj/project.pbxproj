@@ -929,7 +929,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n/opt/homebrew/bin/license-plist --output-path $PRODUCT_NAME/Settings.bundle --github-token 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\nfi\n";
+			shellScript = "if [ $CONFIGURATION = \"Debug\" ]; then\n${PODS_ROOT}/LicensePlist/license-plist --output-path $PRODUCT_NAME/Resources/Settings.bundle --github-token YOUR_GITHUB_TOKEN\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
