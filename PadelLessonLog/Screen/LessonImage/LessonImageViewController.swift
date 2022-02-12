@@ -16,7 +16,7 @@ final class LessonImageViewController: BaseViewController {
         // swiftlint:disable force_unwrapping
         let viewController = R.storyboard.lessonImage.lessonImage()!
         // swiftlint:anable force_unwrapping
-        viewController.viewModel = LessonImageViewModel(dependency: .init(coreDataProtocol: CoreDataManager.shared))
+        viewController.viewModel = dependency.viewModel
         return viewController
     }
 

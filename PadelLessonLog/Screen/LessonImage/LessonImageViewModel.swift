@@ -15,7 +15,6 @@ final class LessonImageViewModel: LessonViewModel {
     init(dependency: Dependency) {
         coreDataMangaer = dependency.coreDataProtocol
         super.init()
-        mutate()
     }
     let coreDataMangaer: CoreDataProtocol
     
