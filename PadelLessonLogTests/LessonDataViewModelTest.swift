@@ -85,7 +85,7 @@ class LessonDataViewModelTest: QuickSpec {
                 context("設定画面に遷移") {
                     beforeEach {
                         subscriptions.removeAll()
-                        lessonDataViewModel.transiton.sink { value in
+                        lessonDataViewModel.transition.sink { value in
                             switch value {
                             case .setting:
                                 flag = true
@@ -105,7 +105,7 @@ class LessonDataViewModelTest: QuickSpec {
                     beforeEach {
                         subscriptions.removeAll()
                         lessonDataViewModel.lessonsArray.send([stubManager.createStubLessonData(),stubManager.createStubDummmyLessonData()])
-                        lessonDataViewModel.transiton.sink { value in
+                        lessonDataViewModel.transition.sink { value in
                             switch value {
                             case .detail(_):
                                 flag = true

@@ -45,7 +45,7 @@ final class AddNewImageViewModel: BaseViewModel {
     
     private(set) var action = PassthroughSubject<AddNewImageViewAction, Never>()
     
-    private var coreDataMangaer = CoreDataManager.shared
+    private var coreDataManager = CoreDataManager.shared
     
     override init() {
         super.init()
@@ -78,7 +78,7 @@ final class AddNewImageViewModel: BaseViewModel {
             guard let self = self else { return }
             guard let id = self.lessonID.value else { return }
             guard let image = savingImage else { return }
-            let isSaved = self.coreDataMangaer.updateLessonImage(lessonID: id, image: image)
+            let isSaved = self.coreDataManager.updateLessonImage(lessonID: id, image: image)
             if isSaved {
                 self.action.send(.saved)
             } else {

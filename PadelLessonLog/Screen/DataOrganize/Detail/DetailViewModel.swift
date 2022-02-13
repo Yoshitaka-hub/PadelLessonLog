@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 enum DetailTransition {
-    case imgaeView(Lesson)
+    case imageView(Lesson)
     case editView(Lesson)
     case back
 }
@@ -24,7 +24,7 @@ final class DetailViewModel: BaseViewModel {
     var tableViewCellData = CurrentValueSubject<[LessonStep], Never>([])
     
     private(set) var loadView = PassthroughSubject<Lesson, Never>()
-    private(set) var transiton = PassthroughSubject<DetailTransition, Never>()
+    private(set) var transition = PassthroughSubject<DetailTransition, Never>()
     
     override init() {
         super.init()
@@ -35,18 +35,18 @@ final class DetailViewModel: BaseViewModel {
         imageViewButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
-            self.transiton.send(.imgaeView(lesson))
+            self.transition.send(.imageView(lesson))
         }.store(in: &subscriptions)
         
         editViewButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
-            self.transiton.send(.editView(lesson))
+            self.transition.send(.editView(lesson))
         }.store(in: &subscriptions)
         
         backButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
-            self.transiton.send(.back)
+            self.transition.send(.back)
         }.store(in: &subscriptions)
         
         lessonData.sink { [weak self] lessonData in

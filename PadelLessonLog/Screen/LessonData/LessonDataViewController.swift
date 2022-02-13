@@ -14,7 +14,7 @@ final class LessonDataViewController: BaseViewController {
     static func makeInstance(dependency: Dependency) -> LessonDataViewController {
         // swiftlint:disable force_unwrapping
         let viewController = R.storyboard.lessonData.lessonData()!
-        // swiftlint:anable force_unwrapping
+        // swiftlint:enable force_unwrapping
         viewController.viewModel = dependency.viewModel
         return viewController
     }
@@ -26,7 +26,7 @@ final class LessonDataViewController: BaseViewController {
     @IBOutlet private(set) weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var searchBar: UISearchBar!
     @IBOutlet private(set) weak var searchButton: UIBarButtonItem!
-    // swiftlint:anable private_outlet
+    // swiftlint:enable private_outlet
     private var viewModel: LessonDataViewModel!
     
     override func viewDidLoad() {
@@ -71,7 +71,7 @@ final class LessonDataViewController: BaseViewController {
             self.favoriteBarButton.tintColor = isOn ? .colorButtonOn : .colorButtonOff
         }.store(in: &subscriptions)
         
-        viewModel.transiton.sink { [weak self] transition in
+        viewModel.transition.sink { [weak self] transition in
             guard let self = self else { return }
             switch transition {
             case .setting:
@@ -132,7 +132,7 @@ final class LessonDataViewController: BaseViewController {
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
-    // swiftlint:anable private_action
+    // swiftlint:enable private_action
 }
 
 extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {

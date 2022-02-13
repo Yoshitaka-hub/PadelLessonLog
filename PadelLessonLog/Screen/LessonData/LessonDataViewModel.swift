@@ -13,11 +13,13 @@ final class LessonDataViewModel: LessonViewModel {
         let coreDataProtocol: CoreDataProtocol
     }
     init (dependency: Dependency) {
-        coreDataMangaer = dependency.coreDataProtocol
+        coreDataManager = dependency.coreDataProtocol
         super.init()
     }
-    let coreDataMangaer: CoreDataProtocol
-    
+    let coreDataManager: CoreDataProtocol
+        
+    let addLessonButtonPressed = PassthroughSubject<Void, Never>()
+    let pushBackFromNewLessonView = PassthroughSubject<Void, Never>()
     let didSelectRowAt = PassthroughSubject<IndexPath, Never>()
     let reorderData = PassthroughSubject<(from: IndexPath, to: IndexPath), Never>()
     let searchAndFilterData = PassthroughSubject<String, Never>()
@@ -28,23 +30,23 @@ final class LessonDataViewModel: LessonViewModel {
         addLessonButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let courtImg = R.image.img_court(compatibleWith: .current) else { return }
-            let newLessonData = self.coreDataMangaer.createNewLesson(image: courtImg, steps: [""])
-            self.transiton.send(.lesson(newLessonData, true))
+            let newLessonData = self.coreDataManager.createNewLesson(image: courtImg, steps: [""])
+            self.transition.send(.lesson(newLessonData, true))
         }.store(in: &subscriptions)
         
         dataReload.sink { [weak self] _ in
             guard let self = self else { return }
             if self.tableMode.value == .allTableView {
-                self.lessonsArray.send(self.coreDataMangaer.loadAllLessonData())
+                self.lessonsArray.send(self.coreDataManager.loadAllLessonData())
             } else {
-                self.lessonsArray.send(self.coreDataMangaer.loadAllFavoriteLessonData())
+                self.lessonsArray.send(self.coreDataManager.loadAllFavoriteLessonData())
             }
         }.store(in: &subscriptions)
         
         didSelectRowAt.sink { [weak self] indexPath in
             guard let self = self else { return }
             let lessonData = self.lessonsArray.value[indexPath.row]
-            self.transiton.send(.detail(lessonData))
+            self.transition.send(.detail(lessonData))
         }.store(in: &subscriptions)
         
         reorderData.sink { [weak self] from, to in
@@ -53,16 +55,16 @@ final class LessonDataViewModel: LessonViewModel {
             let lessonData = self.lessonsArray.value[from.row]
             self.lessonsArray.value.remove(at: from.row)
             self.lessonsArray.value.insert(lessonData, at: to.row)
-            self.coreDataMangaer.updateLessonOrder(lessonArray: self.lessonsArray.value)
+            self.coreDataManager.updateLessonOrder(lessonArray: self.lessonsArray.value)
         }.store(in: &subscriptions)
         
         searchAndFilterData.sink { [weak self] text in
             guard let self = self else { return }
-            let filterdData = self.lessonsArray.value.filter {
-                guard let titel = $0.title else { return false }
-                return titel.contains(text)
+            let filteredData = self.lessonsArray.value.filter {
+                guard let title = $0.title else { return false }
+                return title.contains(text)
             }
-            self.lessonsArray.send(filterdData)
+            self.lessonsArray.send(filteredData)
         }.store(in: &subscriptions)
         
         pushBackFromNewLessonView.sink { [weak self] _ in

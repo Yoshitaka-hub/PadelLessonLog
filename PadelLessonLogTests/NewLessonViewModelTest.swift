@@ -80,7 +80,7 @@ class NewLessonViewModelTest: QuickSpec {
                 context("画像追加ボタンタップ") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.transiton.sink { value in
+                        newLessonViewModel.transition.sink { value in
                             switch value {
                             case .addEditImage(_):
                                 flag = true
@@ -113,7 +113,7 @@ class NewLessonViewModelTest: QuickSpec {
                 context("編集ボタンタップ") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.transiton.sink { value in
+                        newLessonViewModel.transition.sink { value in
                             switch value {
                             case .addEditImage(_):
                                 flag = true

@@ -100,7 +100,7 @@ final class NewLessonViewController: BaseViewController {
         viewModel.dataDeleted.sink { [weak self] _ in
             guard let self = self else { return }
             self.infoAlertViewWithTitle(title: R.string.localizable.dataDeleted(), message: "") {
-                self.viewModel.transiton.send(.deleted)
+                self.viewModel.transition.send(.deleted)
             }
         }.store(in: &subscriptions)
         
@@ -117,16 +117,16 @@ final class NewLessonViewController: BaseViewController {
         viewModel.dataSaved.sink { [weak self] _ in
             guard let self = self else { return }
             self.infoAlertViewWithTitle(title: R.string.localizable.dataSaved(), message: "") {
-                self.viewModel.transiton.send(.saved)
+                self.viewModel.transition.send(.saved)
             }
         }.store(in: &subscriptions)
         
-        viewModel.scrolStepTable.sink { [weak self] _ in
+        viewModel.scrollStepTable.sink { [weak self] _ in
             guard let self = self else { return }
             self.mainTableView.scrollToRow(at: IndexPath(row: self.viewModel.lessonStepData.value.count - 1, section: 0), at: .top, animated: true)
         }.store(in: &subscriptions)
         
-        viewModel.transiton.sink { [weak self] transition in
+        viewModel.transition.sink { [weak self] transition in
             guard let self = self else { return }
             switch transition {
             case let .addEditImage(lesson):

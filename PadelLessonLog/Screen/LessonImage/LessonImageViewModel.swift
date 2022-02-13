@@ -13,11 +13,13 @@ final class LessonImageViewModel: LessonViewModel {
         let coreDataProtocol: CoreDataProtocol
     }
     init(dependency: Dependency) {
-        coreDataMangaer = dependency.coreDataProtocol
+        coreDataManager = dependency.coreDataProtocol
         super.init()
     }
-    let coreDataMangaer: CoreDataProtocol
-    
+    let coreDataManager: CoreDataProtocol
+        
+    let addLessonButtonPressed = PassthroughSubject<Void, Never>()
+    let pushBackFromNewLessonView = PassthroughSubject<Void, Never>()
     let arButtonPressed = PassthroughSubject<Void, Never>()
     
     let scrollViewDidTouch = PassthroughSubject<CGPoint, Never>()
@@ -26,7 +28,7 @@ final class LessonImageViewModel: LessonViewModel {
     
     private(set) var detailButtonIsHidden = CurrentValueSubject<Bool, Never>(false)
     
-    private(set) var scrollBeginingPoint = CurrentValueSubject<CGPoint, Never>(CGPoint.zero)
+    private(set) var scrollBeginningPoint = CurrentValueSubject<CGPoint, Never>(CGPoint.zero)
     private(set) var scrollDirection = CurrentValueSubject<Bool, Never>(true)
     private(set) var scrollToCellIndex = PassthroughSubject<Int, Never>()
     
@@ -35,16 +37,16 @@ final class LessonImageViewModel: LessonViewModel {
         addLessonButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let courtImg = R.image.img_court(compatibleWith: .current) else { return }
-            let newLessonData = self.coreDataMangaer.createNewLesson(image: courtImg, steps: [""])
-            self.transiton.send(.lesson(newLessonData, true))
+            let newLessonData = self.coreDataManager.createNewLesson(image: courtImg, steps: [""])
+            self.transition.send(.lesson(newLessonData, true))
         }.store(in: &subscriptions)
         
         dataReload.sink { [weak self] _ in
             guard let self = self else { return }
             if self.tableMode.value == .allTableView {
-                self.lessonsArray.send(self.coreDataMangaer.loadAllLessonDataWithImage())
+                self.lessonsArray.send(self.coreDataManager.loadAllLessonDataWithImage())
             } else {
-                self.lessonsArray.send(self.coreDataMangaer.loadAllFavoriteLessonDataWithImage())
+                self.lessonsArray.send(self.coreDataManager.loadAllFavoriteLessonDataWithImage())
             }
             
             self.detailButtonIsHidden.send(self.lessonsArray.value.isEmpty)
@@ -52,7 +54,7 @@ final class LessonImageViewModel: LessonViewModel {
         
         arButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
-            self.transiton.send(.arView)
+            self.transition.send(.arView)
         }.store(in: &subscriptions)
         
         pushBackFromNewLessonView.sink { [weak self] _ in
@@ -63,13 +65,13 @@ final class LessonImageViewModel: LessonViewModel {
         
         scrollViewDidTouch.sink { [weak self] point in
             guard let self = self else { return }
-            self.scrollBeginingPoint.send(point)
+            self.scrollBeginningPoint.send(point)
             self.detailButtonIsHidden.send(true)
         }.store(in: &subscriptions)
         
         scrollViewDidScroll.sink { [weak self] currentPoint in
             guard let self = self else { return }
-            if self.scrollBeginingPoint.value.x < currentPoint.x {
+            if self.scrollBeginningPoint.value.x < currentPoint.x {
                 self.scrollDirection.send(true)
             } else {
                 self.scrollDirection.send(false)

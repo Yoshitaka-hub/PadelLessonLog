@@ -45,10 +45,10 @@ final class DetailViewController: BaseViewController {
             self.stepTableView.reloadData()
         }.store(in: &subscriptions)
         
-        viewModel.transiton.sink { [weak self] transition in
+        viewModel.transition.sink { [weak self] transition in
             guard let self = self else { return }
             switch transition {
-            case let .imgaeView(_lessonData):
+            case let .imageView(_lessonData):
                 guard let vc = R.storyboard.imageView.imageView() else { return }
                 vc.lesson = _lessonData
                 self.navigationController?.pushViewController(vc, animated: true)

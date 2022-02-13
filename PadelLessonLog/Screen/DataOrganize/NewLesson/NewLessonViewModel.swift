@@ -44,10 +44,10 @@ final class NewLessonViewModel: BaseViewModel {
     private(set) var editImageButtonIsHidden = CurrentValueSubject<Bool, Never>(false)
     private(set) var editStepButtonIsOn = CurrentValueSubject<Bool, Never>(false)
     private(set) var loadView = PassthroughSubject<Lesson, Never>()
-    private(set) var scrolStepTable = PassthroughSubject<Void, Never>()
-    private(set) var transiton = PassthroughSubject<NewLessonTransition, Never>()
+    private(set) var scrollStepTable = PassthroughSubject<Void, Never>()
+    private(set) var transition = PassthroughSubject<NewLessonTransition, Never>()
     
-    let coreDataMangaer = CoreDataManager.shared
+    let coreDataManager = CoreDataManager.shared
     let validation = CharacterCountValidation()
     
     override init() {
@@ -87,7 +87,7 @@ final class NewLessonViewModel: BaseViewModel {
             guard let self = self else { return }
             if !isSelected {
                 guard let lesson = self.lessonData.value else { return }
-                self.transiton.send(.addEditImage(lesson))
+                self.transition.send(.addEditImage(lesson))
             } else {
                 self.deleteImageAlert.send()
             }
@@ -98,8 +98,8 @@ final class NewLessonViewModel: BaseViewModel {
             guard let lesson = self.lessonData.value else { return }
             guard let id = lesson.id else { return }
             guard let courtImage = R.image.img_court(compatibleWith: .current) else { return }
-            if self.coreDataMangaer.resetLessonImage(lessonID: id.uuidString, image: courtImage) {
-                self.lessonData.send(self.coreDataMangaer.loadLessonData(lessonID: id.uuidString))
+            if self.coreDataManager.resetLessonImage(lessonID: id.uuidString, image: courtImage) {
+                self.lessonData.send(self.coreDataManager.loadLessonData(lessonID: id.uuidString))
                 self.imageDeleted.send()
             } else {
                 fatalError("画像が更新できない")
@@ -109,15 +109,15 @@ final class NewLessonViewModel: BaseViewModel {
         editImageButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
-            self.transiton.send(.addEditImage(lesson))
+            self.transition.send(.addEditImage(lesson))
         }.store(in: &subscriptions)
         
         addStepButtonPressed.sink { [weak self] _ in
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
-            self.coreDataMangaer.createStep(lesson: lesson)
+            self.coreDataManager.createStep(lesson: lesson)
             self.lessonData.send(lesson)
-            self.scrolStepTable.send()
+            self.scrollStepTable.send()
         }.store(in: &subscriptions)
         
         editStepButtonPressed.sink { [weak self] isSelected in
@@ -140,7 +140,7 @@ final class NewLessonViewModel: BaseViewModel {
                 deleteStep = step
             }
             guard let step = deleteStep else { return }
-            self.coreDataMangaer.deleteStep(lesson: lesson, step: step, stpes: self.lessonStepData.value)
+            self.coreDataManager.deleteStep(lesson: lesson, step: step, steps: self.lessonStepData.value)
             self.lessonData.send(lesson)
         }.store(in: &subscriptions)
         
@@ -148,7 +148,7 @@ final class NewLessonViewModel: BaseViewModel {
             guard let self = self else { return }
             guard let lesson = self.lessonData.value else { return }
             guard let id = lesson.id else { return }
-            if self.coreDataMangaer.deleteLessonData(lessonID: id.uuidString) {
+            if self.coreDataManager.deleteLessonData(lessonID: id.uuidString) {
                 self.dataDeleted.send()
             } else {
                 fatalError("データ削除失敗")
@@ -170,7 +170,7 @@ final class NewLessonViewModel: BaseViewModel {
                 return
             }
             
-            if self.coreDataMangaer.updateLessonTitle(lessonID: id.uuidString, title: title) {
+            if self.coreDataManager.updateLessonTitle(lessonID: id.uuidString, title: title) {
                 self.dataSaved.send()
             } else {
                 fatalError("データ保存失敗")

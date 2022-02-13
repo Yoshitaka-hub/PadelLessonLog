@@ -49,7 +49,7 @@ final class CoreDataManager: CoreDataProtocol {
 extension CoreDataManager {
     // MARK: - Lesson - create
     func createNewLesson(image: UIImage, steps: [String]) -> Lesson {
-        let lesson = createNewObject(objecteType: .lesson) as! Lesson
+        let lesson = createNewObject(objectType: .lesson) as! Lesson
         lesson.id = UUID()
         lesson.timeStamp = Date()
         // UIImageをNSDataに変換
@@ -68,7 +68,7 @@ extension CoreDataManager {
     
         if !steps.isEmpty {
             for (index, step) in steps.enumerated() {
-                let lessonStep = createNewObject(objecteType: .lessonStep) as! LessonStep
+                let lessonStep = createNewObject(objectType: .lessonStep) as! LessonStep
                 lessonStep.lessonID = lesson.id
                 lessonStep.orderNum = Int16(index)
                 lessonStep.explication = step
@@ -81,7 +81,7 @@ extension CoreDataManager {
     
     // MARK: - Lesson - read
     func loadLessonData(lessonID: String) -> Lesson? {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return nil }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -94,7 +94,7 @@ extension CoreDataManager {
     }
     
     func loadAllFavoriteLessonData() -> [Lesson] {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         let predicate = NSPredicate(format: "%K == %@", "favorite", NSNumber(value: true))
         fetchRequest.predicate = predicate
         let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
@@ -108,7 +108,7 @@ extension CoreDataManager {
         }
     }
     func loadAllFavoriteLessonDataWithImage() -> [Lesson] {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         let predicate = NSPredicate(format: "%K == %@", "favorite", NSNumber(value: true))
         fetchRequest.predicate = predicate
         let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
@@ -124,7 +124,7 @@ extension CoreDataManager {
     }
     
     func loadAllLessonData() -> [Lesson] {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
         let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         fetchRequest.sortDescriptors = [orderSort, timeSort]
@@ -137,7 +137,7 @@ extension CoreDataManager {
     }
     
     func loadAllLessonDataWithImage() -> [Lesson] {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
         let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         fetchRequest.sortDescriptors = [orderSort, timeSort]
@@ -152,7 +152,7 @@ extension CoreDataManager {
     
     // MARK: - Lesson - update
     func resetLessonImage(lessonID: String, image: UIImage) -> Bool {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return false }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -182,7 +182,7 @@ extension CoreDataManager {
     }
     
     func updateLessonImage(lessonID: String, image: UIImage) -> Bool {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return false }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -211,7 +211,7 @@ extension CoreDataManager {
     }
     
     func updateLessonTitle(lessonID: String, title: String) -> Bool {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return false }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -227,7 +227,7 @@ extension CoreDataManager {
     }
     
     func updateLessonFavorite(lessonID: String, favorite: Bool) {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -250,7 +250,7 @@ extension CoreDataManager {
     
     // MARK: - Lesson - delete
     func deleteLessonData(lessonID: String) -> Bool {
-        let fetchRequest = createRequest(objecteType: .lesson)
+        let fetchRequest = createRequest(objectType: .lesson)
         guard let uuid = NSUUID(uuidString: lessonID) else { return false }
         let predicate = NSPredicate(format: "%K == %@", "id", uuid)
         fetchRequest.predicate = predicate
@@ -268,7 +268,7 @@ extension CoreDataManager {
     
     // MARK: - Steps - fetch
     func featchSteps(lessonID: String) -> [LessonStep] {
-        let fetchRequest = createRequest(objecteType: .lessonStep)
+        let fetchRequest = createRequest(objectType: .lessonStep)
         guard let uuid = NSUUID(uuidString: lessonID) else { return Array() }
         let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid)
         fetchRequest.predicate = predicate
@@ -288,7 +288,7 @@ extension CoreDataManager {
         let steps = lesson.steps?.allObjects as! [LessonStep]
         var numbers: [Int16] = []
         steps.forEach { numbers.append($0.orderNum) }
-        let lessonStep = createNewObject(objecteType: .lessonStep) as! LessonStep
+        let lessonStep = createNewObject(objectType: .lessonStep) as! LessonStep
         lessonStep.lessonID = lesson.id
         lessonStep.orderNum = (numbers.max() ?? 0) + 1
         lessonStep.explication = ""
@@ -298,7 +298,7 @@ extension CoreDataManager {
     
     // MARK: - Steps - delete
     func deleteAllSteps(lessonID: String) {
-        let fetchRequest = createRequest(objecteType: .lessonStep)
+        let fetchRequest = createRequest(objectType: .lessonStep)
         guard let uuid = NSUUID(uuidString: lessonID) else { return }
         let predicate = NSPredicate(format: "%K == %@", "lessonID", uuid)
         fetchRequest.predicate = predicate
@@ -316,8 +316,8 @@ extension CoreDataManager {
         }
     }
     
-    func deleteStep(lesson: Lesson, step: LessonStep, stpes: [LessonStep]) {
-        stpes.forEach {
+    func deleteStep(lesson: Lesson, step: LessonStep, steps: [LessonStep]) {
+        steps.forEach {
             if $0.orderNum > step.orderNum {
                 $0.orderNum -= 1
             }
@@ -327,11 +327,11 @@ extension CoreDataManager {
         saveContext()
     }
     
-    func createRequest(objecteType: CoreDataObjectType) -> NSFetchRequest<NSFetchRequestResult> {
-        NSFetchRequest<NSFetchRequestResult>(entityName: objecteType.rawValue)
+    func createRequest(objectType: CoreDataObjectType) -> NSFetchRequest<NSFetchRequestResult> {
+        NSFetchRequest<NSFetchRequestResult>(entityName: objectType.rawValue)
     }
-    func createNewObject(objecteType: CoreDataObjectType) -> NSManagedObject {
-        return NSEntityDescription.insertNewObject(forEntityName: objecteType.rawValue, into: managerObjectContext)
+    func createNewObject(objectType: CoreDataObjectType) -> NSManagedObject {
+        return NSEntityDescription.insertNewObject(forEntityName: objectType.rawValue, into: managerObjectContext)
     }
     
     func saveContext() {
@@ -355,8 +355,8 @@ extension CoreDataManager {
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                let NSError = error as NSError
+                fatalError("Unresolved error \(NSError), \(NSError.userInfo)")
             }
         }
     }

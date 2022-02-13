@@ -15,7 +15,7 @@ final class LessonImageViewController: BaseViewController {
     static func makeInstance(dependency: Dependency) -> LessonImageViewController {
         // swiftlint:disable force_unwrapping
         let viewController = R.storyboard.lessonImage.lessonImage()!
-        // swiftlint:anable force_unwrapping
+        // swiftlint:enable force_unwrapping
         viewController.viewModel = dependency.viewModel
         return viewController
     }
@@ -24,7 +24,7 @@ final class LessonImageViewController: BaseViewController {
     // swiftlint:disable private_outlet
     @IBOutlet private(set) weak var allBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var favoriteBarButton: UIBarButtonItem!
-    // swiftlint:anable private_outlet
+    // swiftlint:enable private_outlet
     @IBOutlet private weak var arBarButton: UIBarButtonItem!
     @IBOutlet private weak var detailButton: UIButton!
     @IBOutlet private weak var customCollectionView: UICollectionView!
@@ -77,7 +77,7 @@ final class LessonImageViewController: BaseViewController {
             .assign(to: \.isHidden, on: detailButton)
             .store(in: &subscriptions)
         
-        viewModel.transiton.sink { [weak self] transition in
+        viewModel.transition.sink { [weak self] transition in
             guard let self = self else { return }
             switch transition {
             case .setting:
@@ -132,7 +132,7 @@ final class LessonImageViewController: BaseViewController {
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.favoriteButtonPressed.send()
     }
-    // swiftlint:anable private_action
+    // swiftlint:enable private_action
     
     @IBAction private func arButtonPressed(_ sender: UIBarButtonItem) {
         viewModel.arButtonPressed.send()
