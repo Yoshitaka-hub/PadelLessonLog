@@ -46,7 +46,7 @@ final class LessonImageViewController: BaseViewController {
         customCollectionView.delegate = self
         customCollectionView.dataSource = self
         
-        customCollectionView.register(UINib(nibName: "ImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
+        customCollectionView.register(R.nib.imageCollectionViewCell)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         customCollectionView.setCollectionViewLayout(layout, animated: true)
@@ -152,10 +152,9 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath)
-        guard let imageCell = customCell as? ImageCollectionViewCell else { return customCell }
-        imageCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row], row: indexPath.row)
-        return imageCell
+        let customCell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.imageCollectionViewCell, for: indexPath)! // swiftlint:disable:this force_unwrapping
+        customCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row], row: indexPath.row)
+        return customCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

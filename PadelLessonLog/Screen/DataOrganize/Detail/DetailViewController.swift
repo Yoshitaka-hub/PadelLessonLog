@@ -81,7 +81,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.detailCell, for: indexPath)! // swiftlint:disable:this force_unwrapping
         let stepLabel = cell.contentView.viewWithTag(1) as! UILabel
         for step in viewModel.tableViewCellData.value where step.orderNum == indexPath.row {
             stepLabel.text = step.explication

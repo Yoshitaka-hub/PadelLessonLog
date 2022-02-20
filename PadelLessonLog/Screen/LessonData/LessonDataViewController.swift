@@ -44,7 +44,7 @@ final class LessonDataViewController: BaseViewController {
         allBarButton.style = .done
         favoriteBarButton.style = .done
         
-        customTableView.register(UINib(nibName: "DataTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
+        customTableView.register(R.nib.dataTableViewCell)
         
         if let tabBarCon = parent as? UITabBarController {
             tabBarCon.navigationItem.leftBarButtonItem = self.createBarButtonItem(image: UIImage.gearshape, select: #selector(setting))
@@ -141,7 +141,7 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let customCell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! DataTableViewCell
+        let customCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.dataTableViewCellId, for: indexPath)! // swiftlint:disable:this force_unwrapping
         customCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row])
         return customCell
     }

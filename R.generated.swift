@@ -511,12 +511,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 4 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `DataTableViewCellId`.
+    static let dataTableViewCellId: Rswift.ReuseIdentifier<DataTableViewCell> = Rswift.ReuseIdentifier(identifier: "DataTableViewCellId")
     /// Reuse identifier `DetailCell`.
     static let detailCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "DetailCell")
-    /// Reuse identifier `StepTableViewCellIdentifier`.
-    static let stepTableViewCellIdentifier: Rswift.ReuseIdentifier<StepTableViewCell> = Rswift.ReuseIdentifier(identifier: "StepTableViewCellIdentifier")
+    /// Reuse identifier `ImageCollectionViewCell`.
+    static let imageCollectionViewCell: Rswift.ReuseIdentifier<ImageCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "ImageCollectionViewCell")
+    /// Reuse identifier `StepTableViewCell`.
+    static let stepTableViewCell: Rswift.ReuseIdentifier<StepTableViewCell> = Rswift.ReuseIdentifier(identifier: "StepTableViewCell")
 
     fileprivate init() {}
   }
@@ -1056,8 +1060,11 @@ struct _R: Rswift.Validatable {
       try _ImageCollectionViewCell.validate()
     }
 
-    struct _DataTableViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _DataTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = DataTableViewCell
+
       let bundle = R.hostingBundle
+      let identifier = "DataTableViewCellId"
       let name = "DataTableViewCell"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DataTableViewCell? {
@@ -1074,8 +1081,11 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct _ImageCollectionViewCell: Rswift.NibResourceType, Rswift.Validatable {
+    struct _ImageCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = ImageCollectionViewCell
+
       let bundle = R.hostingBundle
+      let identifier = "ImageCollectionViewCell"
       let name = "ImageCollectionViewCell"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ImageCollectionViewCell? {
@@ -1095,7 +1105,7 @@ struct _R: Rswift.Validatable {
       typealias ReusableType = StepTableViewCell
 
       let bundle = R.hostingBundle
-      let identifier = "StepTableViewCellIdentifier"
+      let identifier = "StepTableViewCell"
       let name = "StepTableViewCell"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> StepTableViewCell? {

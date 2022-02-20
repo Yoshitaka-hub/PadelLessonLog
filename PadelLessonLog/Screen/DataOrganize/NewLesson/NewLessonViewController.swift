@@ -39,7 +39,7 @@ final class NewLessonViewController: BaseViewController {
         lessonNameTextField.delegate = self
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        mainTableView.register(UINib(nibName: "StepTableViewCell", bundle: nil), forCellReuseIdentifier: "StepTableViewCellIdentifier")
+        mainTableView.register(R.nib.stepTableViewCell)
         
         mainTableView.tableFooterView = UIView()
         addImageButton.isSelected = false
@@ -209,7 +209,7 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StepTableViewCellIdentifier", for: indexPath) as! StepTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.stepTableViewCell, for: indexPath)! // swiftlint:disable:this force_unwrapping
         for step in viewModel.lessonStepData.value where step.orderNum == indexPath.row {
             cell.delegate = self
             cell.setup(index: indexPath.row, stepData: step)
