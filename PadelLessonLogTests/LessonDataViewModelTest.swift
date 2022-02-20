@@ -13,7 +13,7 @@ import Combine
 class LessonDataViewModelTest: QuickSpec {
     override func spec() {
         describe("LessonDataViewModel") {
-            let lessonDataViewModel = LessonDataViewModel(dependency: <#LessonDataViewModel.Dependency#>)
+            let lessonDataViewModel = LessonDataViewModel(dependency: LessonDataViewModel.Dependency.init(coreDataProtocol: CoreDataManager.shared))
             let stubManager = StubManager()
             var subscriptions = Set<AnyCancellable>()
             

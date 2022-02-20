@@ -40,8 +40,10 @@ class NewLessonViewModelTest: QuickSpec {
                 context("タイトル入力_40文字以上") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.titleStringCountOverAlert.sink { _ in
-                            flag = true
+                        newLessonViewModel.showAlert.sink { alert in
+                            if alert == .titleStringCountOver {
+                                flag = true
+                            }
                         }.store(in: &subscriptions)
                         flag = nil
                         newLessonViewModel.textFieldDidEndEditing.send("TEST TITLE OVER 40 CHARACTORS IT WILL BE OUT OF MAX COOUNT")
@@ -53,8 +55,10 @@ class NewLessonViewModelTest: QuickSpec {
                 context("タイトル入力_20文字前後") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.titleStringCountOverAlert.sink { _ in
-                            flag = true
+                        newLessonViewModel.showAlert.sink { alert in
+                            if alert == .titleStringCountOver {
+                                flag = true
+                            }
                         }.store(in: &subscriptions)
                         flag = false
                         newLessonViewModel.textFieldDidEndEditing.send("TEST TITLE OVER 20 CHARACTORS")
@@ -66,8 +70,10 @@ class NewLessonViewModelTest: QuickSpec {
                 context("タイトル入力_空文字") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.titleStringCountOverAlert.sink { _ in
-                            flag = true
+                        newLessonViewModel.showAlert.sink { alert in
+                            if alert == .titleEmpty {
+                                flag = true
+                            }
                         }.store(in: &subscriptions)
                         flag = false
                         newLessonViewModel.textFieldDidEndEditing.send("")
@@ -99,8 +105,10 @@ class NewLessonViewModelTest: QuickSpec {
                 context("画像削除ボタンタップ") {
                     beforeEach {
                         subscriptions.removeAll()
-                        newLessonViewModel.deleteImageAlert.sink { _ in
-                            flag = true
+                        newLessonViewModel.showAlert.sink { alert in
+                            if alert == .deleteImage {
+                                flag = true
+                            }
                         }.store(in: &subscriptions)
                         
                         flag = nil
