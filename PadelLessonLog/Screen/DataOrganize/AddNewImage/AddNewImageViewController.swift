@@ -100,6 +100,11 @@ final class AddNewImageViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }.store(in: &subscriptions)
+        
+        viewModel.imageSaveError.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.warningAlertView(withTitle: R.string.localizable.dataProcessingError())
+        }.store(in: &subscriptions)
     }
     
     func configureToolbar() {

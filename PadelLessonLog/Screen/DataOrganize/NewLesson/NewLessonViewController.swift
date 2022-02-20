@@ -85,10 +85,19 @@ final class NewLessonViewController: BaseViewController {
             self.mainTableView.setEditing(isOn, animated: true)
         }.store(in: &subscriptions)
         
-        viewModel.deleteImageAlert.sink { [weak self] _ in
+        viewModel.showAlert.sink { [weak self] alert in
             guard let self = self else { return }
-            self.destructiveAlertView(withTitle: R.string.localizable.areYouSure(), cancelString: R.string.localizable.cancel(), destructiveString: R.string.localizable.delete()) {
-                self.viewModel.deleteImageConfirmed.send()
+            switch alert {
+            case .deleteImage:
+                self.destructiveAlertView(withTitle: R.string.localizable.areYouSure(), cancelString: R.string.localizable.cancel(), destructiveString: R.string.localizable.delete()) {
+                    self.viewModel.deleteImageConfirmed.send()
+                }
+            case .titleEmpty:
+                self.warningAlertView(withTitle: R.string.localizable.theTitleIsBlank())
+            case .titleStringCountOver:
+                self.warningAlertView(withTitle: R.string.localizable.theNumberOfCharactersIsExceeded())
+            case .dataProcessingError:
+                self.warningAlertView(withTitle: R.string.localizable.dataProcessingError())
             }
         }.store(in: &subscriptions)
         
@@ -102,16 +111,6 @@ final class NewLessonViewController: BaseViewController {
             self.infoAlertViewWithTitle(title: R.string.localizable.dataDeleted(), message: "") {
                 self.viewModel.transition.send(.deleted)
             }
-        }.store(in: &subscriptions)
-        
-        viewModel.titleEmptyAlert.sink { [weak self] _ in
-            guard let self = self else { return }
-            self.warningAlertView(withTitle: R.string.localizable.theTitleIsBlank())
-        }.store(in: &subscriptions)
-        
-        viewModel.titleStringCountOverAlert.sink { [weak self] _ in
-            guard let self = self else { return }
-            self.warningAlertView(withTitle: R.string.localizable.theNumberOfCharactersIsExceeded())
         }.store(in: &subscriptions)
         
         viewModel.dataSaved.sink { [weak self] _ in

@@ -527,7 +527,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 26 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 27 localization keys.
     struct localizable {
       /// ja translation: アプリ詳細
       ///
@@ -577,6 +577,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja
       static let dataWillBeDeleted = Rswift.StringResource(key: "Data will be deleted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: データ処理異常が発生しました
+      ///
+      /// Locales: ja
+      static let dataProcessingError = Rswift.StringResource(key: "Data processing error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: データ編集
       ///
       /// Locales: ja
@@ -812,6 +816,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Data will be deleted", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: データ処理異常が発生しました
+      ///
+      /// Locales: ja
+      static func dataProcessingError(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Data processing error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Data processing error"
+        }
+
+        return NSLocalizedString("Data processing error", bundle: bundle, comment: "")
       }
 
       /// ja translation: データ編集

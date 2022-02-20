@@ -45,6 +45,8 @@ final class AddNewImageViewModel: BaseViewModel {
     
     private(set) var action = PassthroughSubject<AddNewImageViewAction, Never>()
     
+    private(set) var imageSaveError = PassthroughSubject<Void, Never>()
+    
     private var coreDataManager = CoreDataManager.shared
     
     override init() {
@@ -82,7 +84,8 @@ final class AddNewImageViewModel: BaseViewModel {
             if isSaved {
                 self.action.send(.saved)
             } else {
-                fatalError("画像が更新できない")
+                assertionFailure("画像が更新できない")
+                self.imageSaveError.send()
             }
         }.store(in: &subscriptions)
         

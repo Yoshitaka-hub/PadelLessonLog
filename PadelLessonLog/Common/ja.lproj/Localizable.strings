@@ -17,6 +17,8 @@
 "The title is blank" = "タイトルが空欄です";
 "The number of characters is exceeded" = "入力文字数が\n上限を超えています";
 
+"Data processing error" = "データ処理異常が発生しました";
+
 "Detail" = "データ詳細";
 "Image View" = "イメージ";
 "Edit Data" = "データ編集";

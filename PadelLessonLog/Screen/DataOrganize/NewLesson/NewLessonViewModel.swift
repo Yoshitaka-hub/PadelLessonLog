@@ -13,6 +13,12 @@ enum NewLessonTransition {
     case saved
     case deleted
 }
+enum NewLessonAlert {
+    case deleteImage
+    case titleEmpty
+    case titleStringCountOver
+    case dataProcessingError
+}
 
 final class NewLessonViewModel: BaseViewModel {
     
@@ -34,9 +40,7 @@ final class NewLessonViewModel: BaseViewModel {
     var lessonStepDidEndEditing = PassthroughSubject<(LessonStep, String), Never>()
     var lessonStepDidDelete = PassthroughSubject<IndexPath, Never>()
     
-    private(set) var deleteImageAlert = PassthroughSubject<Void, Never>()
-    private(set) var titleEmptyAlert = PassthroughSubject<Void, Never>()
-    private(set) var titleStringCountOverAlert = PassthroughSubject<Void, Never>()
+    private(set) var showAlert = PassthroughSubject<NewLessonAlert, Never>()
     private(set) var imageDeleted = PassthroughSubject<Void, Never>()
     private(set) var dataDeleted = PassthroughSubject<Void, Never>()
     private(set) var dataSaved = PassthroughSubject<Void, Never>()
@@ -78,7 +82,7 @@ final class NewLessonViewModel: BaseViewModel {
             if result == .countOverError {
                 let dif = text.count - maxCount
                 let dropedText = text.dropLast(dif)
-                self.titleStringCountOverAlert.send()
+                self.showAlert.send(.titleStringCountOver)
                 self.lessonTitleText.send(dropedText.description)
             }
         }.store(in: &subscriptions)
@@ -89,7 +93,7 @@ final class NewLessonViewModel: BaseViewModel {
                 guard let lesson = self.lessonData.value else { return }
                 self.transition.send(.addEditImage(lesson))
             } else {
-                self.deleteImageAlert.send()
+                self.showAlert.send(.deleteImage)
             }
         }.store(in: &subscriptions)
         
@@ -101,7 +105,8 @@ final class NewLessonViewModel: BaseViewModel {
                 self.lessonData.send(self.coreDataManager.loadLessonData(lessonID: id.uuidString))
                 self.imageDeleted.send()
             } else {
-                fatalError("画像が更新できない")
+                assertionFailure("画像が更新できない")
+                self.showAlert.send(.dataProcessingError)
             }
         }.store(in: &subscriptions)
         
@@ -150,7 +155,8 @@ final class NewLessonViewModel: BaseViewModel {
             if self.coreDataManager.deleteLessonData(lessonID: id.uuidString) {
                 self.dataDeleted.send()
             } else {
-                fatalError("データ削除失敗")
+                assertionFailure("データ削除失敗")
+                self.showAlert.send(.dataProcessingError)
             }
         }.store(in: &subscriptions)
         
@@ -159,20 +165,21 @@ final class NewLessonViewModel: BaseViewModel {
             guard let lesson = self.lessonData.value else { return }
             guard let id = lesson.id else { return }
             guard let title = self.lessonTitleText.value else {
-                self.titleEmptyAlert.send()
+                self.showAlert.send(.titleEmpty)
                 return
             }
             let trinmingTitle = title.trimmingCharacters(in: .whitespaces)
             let result: ValidateResult = self.validation.validate(word: trinmingTitle, maxCount: 0)
             guard result == .valid else {
-                self.titleEmptyAlert.send()
+                self.showAlert.send(.titleEmpty)
                 return
             }
             
             if self.coreDataManager.updateLessonTitle(lessonID: id.uuidString, title: title) {
                 self.dataSaved.send()
             } else {
-                fatalError("データ保存失敗")
+                assertionFailure("データ保存失敗")
+                self.showAlert.send(.dataProcessingError)
             }
         }.store(in: &subscriptions)
     }
