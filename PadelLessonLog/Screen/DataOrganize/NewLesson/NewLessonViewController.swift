@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 protocol NewLessonViewControllerDelegate: AnyObject {
-    func pushToLessonView()
+    func didSaveLessonData(_ newLessonViewController: NewLessonViewController)
 }
 
 final class NewLessonViewController: BaseViewController {
@@ -137,7 +137,7 @@ final class NewLessonViewController: BaseViewController {
                 self.navigationController?.pushViewController(addNewImageVC, animated: true)
             case .saved:
                 guard let safeDelegate = self.delegate else { return }
-                safeDelegate.pushToLessonView()
+                safeDelegate.didSaveLessonData(self)
                 self.navigationController?.popViewController(animated: true)
             case .deleted:
                 self.navigationController?.popViewController(animated: true)
@@ -222,17 +222,16 @@ extension NewLessonViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension NewLessonViewController: InputTextTableCellDelegate {
-    func textViewDidBeingEditing(index: Int?) {
-        guard let cellIndex = index else { return }
+extension NewLessonViewController: StepTableViewCellDelegate {
+    func stepTableViewCell(_ stepTableViewCell: StepTableViewCell, willEditTextForRowAt: Int?) {
+        guard let cellIndex = willEditTextForRowAt else { return }
         mainTableView.scrollToRow(at: IndexPath(row: cellIndex, section: 0), at: .top, animated: true)
         guard let view = imageButtonsAreaView else { return }
         view.isHidden = true
     }
-    
-    func textViewDidEndEditing(cell: StepTableViewCell, value: String) {
-        guard let lessonStep = cell.stepData else { return }
-        viewModel.lessonStepDidEndEditing.send((lessonStep, value))
+    func stepTableViewCell(_ stepTableViewCell: StepTableViewCell, didEditText newText: String) {
+        guard let lessonStep = stepTableViewCell.stepData else { return }
+        viewModel.lessonStepDidEndEditing.send((lessonStep, newText))
         guard let view = imageButtonsAreaView else { return }
         view.isHidden = false
     }

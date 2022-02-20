@@ -196,13 +196,13 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension LessonImageViewController: DetailViewControllerDelegate {
-    func pushToEditView(lesson: Lesson) {
+    func detailViewController(_ detailViewController: DetailViewController, didSelectEdit lesson: Lesson) {
         viewModel.pushToEditLessonView.send(lesson)
     }
 }
 
 extension LessonImageViewController: NewLessonViewControllerDelegate {
-    func pushToLessonView() {
+    func didSaveLessonData(_ newLessonViewController: NewLessonViewController) {
         viewModel.pushBackFromNewLessonView.send()
     }
 }

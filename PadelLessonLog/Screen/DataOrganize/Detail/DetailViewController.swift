@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: AnyObject {
-    func pushToEditView(lesson: Lesson)
+    func detailViewController(_ detailViewController: DetailViewController, didSelectEdit lesson: Lesson)
 }
 
 final class DetailViewController: BaseViewController {
@@ -54,7 +54,7 @@ final class DetailViewController: BaseViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             case let .editView(_lessonData):
                 self.dismiss(animated: true) {
-                    self.delegate?.pushToEditView(lesson: _lessonData)
+                    self.delegate?.detailViewController(self, didSelectEdit: _lessonData)
                 }
             case .back:
                 self.dismiss(animated: true)

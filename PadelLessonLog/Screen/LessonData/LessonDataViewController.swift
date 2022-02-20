@@ -176,13 +176,13 @@ extension LessonDataViewController: UISearchBarDelegate {
 }
 
 extension LessonDataViewController: DetailViewControllerDelegate {
-    func pushToEditView(lesson: Lesson) {
+    func detailViewController(_ detailViewController: DetailViewController, didSelectEdit lesson: Lesson) {
         viewModel.pushToEditLessonView.send(lesson)
     }
 }
 
 extension LessonDataViewController: NewLessonViewControllerDelegate {
-    func pushToLessonView() {
+    func didSaveLessonData(_ newLessonViewController: NewLessonViewController) {
         viewModel.pushBackFromNewLessonView.send()
     }
 }
