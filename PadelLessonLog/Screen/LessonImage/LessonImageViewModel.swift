@@ -48,7 +48,6 @@ final class LessonImageViewModel: LessonViewModel {
             } else {
                 self.lessonsArray.send(self.coreDataManager.loadAllFavoriteLessonDataWithImage())
             }
-            
             self.detailButtonIsHidden.send(self.lessonsArray.value.isEmpty)
         }.store(in: &subscriptions)
         

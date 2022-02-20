@@ -81,15 +81,13 @@ final class AddNewImageViewController: BaseViewController {
             guard let self = self else { return }
             switch action {
             case let .colorTableShow(color):
-                let colorTavleVC = R.storyboard.colorTable.colorTable()
-                guard let colorTableVC = colorTavleVC else { return }
+                guard let colorTableVC = R.storyboard.colorTable.colorTable() else { return }
                 colorTableVC.delegate = self
                 colorTableVC.objectColor = color
                 let screenSize = UIScreen.main.bounds.size
                 self.openPopUpController(popUpController: colorTableVC, sourceView: self.customToolbar, rect: CGRect(x: screenSize.width / 3.2, y: 0, width: screenSize.width / 3, height: screenSize.height / 5), arrowDirections: .down, canOverlapSourceViewRect: true)
             case let .objectTableShow(object):
-                let objectTableVC = R.storyboard.objectTable.objectTable()
-                guard let objectTableVC = objectTableVC else { return }
+                guard let objectTableVC = R.storyboard.objectTable.objectTable() else { return }
                 objectTableVC.delegate = self
                 objectTableVC.objectType = object
                 let screenSize = UIScreen.main.bounds.size

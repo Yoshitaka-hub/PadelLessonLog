@@ -95,8 +95,7 @@ final class NewLessonViewModel: BaseViewModel {
         
         deleteImageConfirmed.sink { [weak self] _ in
             guard let self = self else { return }
-            guard let lesson = self.lessonData.value else { return }
-            guard let id = lesson.id else { return }
+            guard let lesson = self.lessonData.value, let id = lesson.id else { return }
             guard let courtImage = R.image.img_court(compatibleWith: .current) else { return }
             if self.coreDataManager.resetLessonImage(lessonID: id.uuidString, image: courtImage) {
                 self.lessonData.send(self.coreDataManager.loadLessonData(lessonID: id.uuidString))

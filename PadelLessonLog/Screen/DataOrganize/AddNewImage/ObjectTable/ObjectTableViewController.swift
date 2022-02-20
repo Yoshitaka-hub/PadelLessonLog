@@ -43,9 +43,7 @@ final class ObjectTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedObject = ObjectType(rawValue: indexPath.row) {
-            if let delegate = self.delegate {
-                delegate.ObjectTableViewController(objectTableViewController: self, didSelectObject: selectedObject)
-            }
+            delegate?.ObjectTableViewController(objectTableViewController: self, didSelectObject: selectedObject)
         }
     }
 }

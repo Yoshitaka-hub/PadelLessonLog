@@ -139,8 +139,7 @@ final class LessonImageViewController: BaseViewController {
     }
     @IBAction private func detailButtonPressed(_ sender: UIButton) {
         let cell = self.customCollectionView.visibleCells.first as? ImageCollectionViewCell
-        guard let safeCell = cell else { return }
-        guard let lesson = safeCell.lesson else { return }
+        guard let safeCell = cell, let lesson = safeCell.lesson else { return }
         viewModel.detailButtonPressed.send(lesson)
     }
 }
@@ -185,11 +184,7 @@ extension LessonImageViewController: UICollectionViewDelegate, UICollectionViewD
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let cells = customCollectionView.visibleCells
-        var indexArray: [Int] = []
-        for cell in cells {
-            guard let safeCell = cell as? ImageCollectionViewCell else { return }
-            indexArray.append(safeCell.row ?? 0)
-        }
+        let indexArray = cells.map { ($0 as? ImageCollectionViewCell)?.row ?? 0 }
         guard !indexArray.isEmpty else { return }
         viewModel.scrollViewDidStop.send(indexArray)
     }
