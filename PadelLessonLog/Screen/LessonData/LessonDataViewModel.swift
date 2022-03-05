@@ -21,8 +21,10 @@ final class LessonDataViewModel: LessonViewModel {
     let addLessonButtonPressed = PassthroughSubject<Void, Never>()
     let pushBackFromNewLessonView = PassthroughSubject<Void, Never>()
     let didSelectRowAt = PassthroughSubject<IndexPath, Never>()
+    let didLongTapRowAt = PassthroughSubject<(IndexPath, String?), Never>()
     let reorderData = PassthroughSubject<(from: IndexPath, to: IndexPath), Never>()
     let searchAndFilterData = PassthroughSubject<String, Never>()
+    private(set) var lessonsArray = CurrentValueSubject<[BaseLesson], Never>([])
     private(set) var scrollToTableIndex = PassthroughSubject<Int, Never>()
     
     override func mutate() {
@@ -37,7 +39,7 @@ final class LessonDataViewModel: LessonViewModel {
         dataReload.sink { [weak self] _ in
             guard let self = self else { return }
             if self.tableMode.value == .allTableView {
-                self.lessonsArray.send(self.coreDataManager.loadAllLessonData())
+                self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
             } else {
                 self.lessonsArray.send(self.coreDataManager.loadAllFavoriteLessonData())
             }
@@ -46,7 +48,17 @@ final class LessonDataViewModel: LessonViewModel {
         didSelectRowAt.sink { [weak self] indexPath in
             guard let self = self else { return }
             let lessonData = self.lessonsArray.value[indexPath.row]
-            self.transition.send(.detail(lessonData))
+            if let lesson = lessonData as? Lesson {
+                self.transition.send(.detail(lesson))
+            }
+        }.store(in: &subscriptions)
+        didLongTapRowAt.sink { [weak self] indexPath, title in
+            guard let self = self else { return }
+            guard let groupTitle = title else { return }
+            let baseLesson = self.lessonsArray.value[indexPath.row]
+            let newGroup = self.coreDataManager.createNewLessonGroup(title: groupTitle, baseLesson: baseLesson)
+            self.lessonsArray.value.insert(newGroup, at: indexPath.row)
+            self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
         }.store(in: &subscriptions)
         
         reorderData.sink { [weak self] from, to in

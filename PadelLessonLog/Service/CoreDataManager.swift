@@ -11,15 +11,18 @@ import CoreData
 enum CoreDataObjectType: String {
     case lesson = "Lesson"
     case lessonStep = "LessonStep"
+    case baseLesson = "BaseLesson"
+    case lessonGroup = "LessonGroup"
  }
 
 protocol CoreDataProtocol {
     func createNewLesson(image: UIImage, steps: [String]) -> Lesson
-    func loadAllLessonData() -> [Lesson]
+    func createNewLessonGroup(title: String, baseLesson: BaseLesson) -> LessonGroup
+    func loadAllBaseLessonData() -> [BaseLesson]
     func loadAllFavoriteLessonData() -> [Lesson]
     func loadAllLessonDataWithImage() -> [Lesson]
     func loadAllFavoriteLessonDataWithImage() -> [Lesson]
-    func updateLessonOrder(lessonArray: [Lesson]) 
+    func updateLessonOrder(lessonArray: [BaseLesson]) 
 }
 
 final class CoreDataManager: CoreDataProtocol {
@@ -43,6 +46,20 @@ final class CoreDataManager: CoreDataProtocol {
     // 管理オブジェクトコンテキスト。NSManagedObject 群を管理するクラス
     var managerObjectContext: NSManagedObjectContext {
         persistentContainer.viewContext
+    }
+    
+    // LightWeightMigrationできるかの確認時に使用する
+    var checkLightWeightMigration: NSMappingModel {
+        let subdirectory = "PadelLessonLog.momd"
+        // swiftlint:disable force_unwrapping
+        let sourceModel = NSManagedObjectModel(contentsOf: Bundle.main.url(forResource: "PadelLessonLog", withExtension: "mom", subdirectory: subdirectory)!)!
+        let destinationModel = NSManagedObjectModel(contentsOf: Bundle.main.url(forResource: "PadelLessonLog 2", withExtension: "mom", subdirectory: subdirectory)!)!
+        // swiftlint:enable force_unwrapping
+        do {
+            return try NSMappingModel.inferredMappingModel(forSourceModel: sourceModel, destinationModel: destinationModel)
+        } catch {
+            fatalError("migrationCheck error \(error)")
+        }
     }
 }
 
@@ -77,6 +94,23 @@ extension CoreDataManager {
         }
         saveContext()
         return lesson
+    }
+    
+    func createNewLessonGroup(title: String, baseLesson: BaseLesson) -> LessonGroup {
+        let lessonGroup = createNewObject(objectType: .lessonGroup) as! LessonGroup
+        lessonGroup.title = title
+        lessonGroup.timeStamp = Date()
+        lessonGroup.groupId = UUID()
+        
+        if let lesson = baseLesson as? Lesson {
+            lessonGroup.orderNum = lesson.orderNum
+            lesson.orderNum = 0
+            lesson.inGroup = lessonGroup.groupId
+        } else if let group = baseLesson as? LessonGroup {
+            lessonGroup.orderNum = group.orderNum
+        }
+        saveContext()
+        return lessonGroup
     }
     
     // MARK: - Lesson - read
@@ -123,13 +157,13 @@ extension CoreDataManager {
         }
     }
     
-    func loadAllLessonData() -> [Lesson] {
-        let fetchRequest = createRequest(objectType: .lesson)
+    func loadAllBaseLessonData() -> [BaseLesson] {
+        let fetchRequest = createRequest(objectType: .baseLesson)
         let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
         let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
         fetchRequest.sortDescriptors = [orderSort, timeSort]
         do {
-            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [BaseLesson]
             return lessons
         } catch {
             fatalError("loadData error")
@@ -241,7 +275,7 @@ extension CoreDataManager {
         }
     }
     
-    func updateLessonOrder(lessonArray: [Lesson]) {
+    func updateLessonOrder(lessonArray: [BaseLesson]) {
         for (index, lesson) in lessonArray.enumerated() {
             lesson.orderNum = Int16(index)
         }

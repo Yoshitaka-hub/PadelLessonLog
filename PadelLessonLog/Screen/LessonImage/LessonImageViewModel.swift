@@ -25,7 +25,7 @@ final class LessonImageViewModel: LessonViewModel {
     let scrollViewDidTouch = PassthroughSubject<CGPoint, Never>()
     let scrollViewDidScroll = PassthroughSubject<CGPoint, Never>()
     let scrollViewDidStop = PassthroughSubject<[Int], Never>()
-    
+    private(set) var lessonsArray = CurrentValueSubject<[Lesson], Never>([])
     private(set) var detailButtonIsHidden = CurrentValueSubject<Bool, Never>(false)
     
     private(set) var scrollBeginningPoint = CurrentValueSubject<CGPoint, Never>(CGPoint.zero)

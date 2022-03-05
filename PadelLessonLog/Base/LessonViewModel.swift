@@ -35,8 +35,6 @@ class LessonViewModel: BaseViewModel {
     
     private(set) var transition = PassthroughSubject<LessonTransition, Never>()
     
-    private(set) var lessonsArray = CurrentValueSubject<[Lesson], Never>([])
-    
     override init() {
         super.init()
         mutate()

@@ -93,6 +93,20 @@ extension UIViewController: UIPopoverPresentationControllerDelegate {
             .show(in: self)
     }
     
+    func textInputAlertView(withTitle: String?,
+                            message: String? = nil,
+                            cancelString: String? = nil,
+                            cancelBlock: (() -> Void)? = nil,
+                            placeholder: String? = nil,
+                            textFieldBlock: ((UITextField) -> Void)? = nil,
+                            confirmString: String? = nil,
+                            confirmBlock: ((UITextField) -> Void)? = nil) {
+        UIAlertController(title: withTitle, message: message, preferredStyle: .alert)
+         .addCancelAction(title: cancelString, handler: cancelBlock)
+         .addTextFieldAction(placeholder: placeholder, handler: textFieldBlock)
+         .addOkActionWithTextField(title: confirmString, handler: confirmBlock)
+         .show(in: self)
+    }
     func warningAlertView(withTitle: String?, message: String? = nil, action: (() -> Void)? = nil) {
         UIAlertController(title: withTitle, message: message, preferredStyle: .alert)
             .addCancelAction(title: "OK", handler: action)

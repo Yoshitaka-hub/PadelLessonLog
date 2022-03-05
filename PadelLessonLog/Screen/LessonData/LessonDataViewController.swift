@@ -53,6 +53,11 @@ final class LessonDataViewController: BaseViewController {
         searchBar.delegate = self
         searchBar.isHidden = true
         searchBar.autocapitalizationType = .none
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellLongPressed))
+        longPressRecognizer.delegate = self
+        longPressRecognizer.minimumPressDuration = 2.0
+        customTableView.addGestureRecognizer(longPressRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +147,7 @@ extension LessonDataViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.dataTableViewCellId, for: indexPath)! // swiftlint:disable:this force_unwrapping
-        customCell.setLessonData(lesson: viewModel.lessonsArray.value[indexPath.row])
+        customCell.setLessonData(baseLesson: viewModel.lessonsArray.value[indexPath.row])
         return customCell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -171,6 +176,18 @@ extension LessonDataViewController: UISearchBarDelegate {
         guard let text = searchBar.text else { return }
         if !text.isEmpty {
             viewModel.searchAndFilterData.send(text)
+        }
+    }
+}
+
+extension LessonDataViewController {
+    @objc
+    func cellLongPressed(recognizer: UITapGestureRecognizer) {
+        let point = recognizer.location(in: customTableView)
+        let indexPath = customTableView.indexPathForRow(at: point)
+        guard let index = indexPath else { return }
+        textInputAlertView(withTitle: "フォルダ作成", cancelString: "キャンセル", placeholder: "フォルダ名を入力してください", confirmString: "作成") { textField in
+            self.viewModel.didLongTapRowAt.send((index, textField.text))
         }
     }
 }

@@ -11,21 +11,26 @@ final class DataTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var starButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
-    var lesson: Lesson?
+    var baseLesson: BaseLesson?
     
-    func setLessonData(lesson: Lesson) {
-        self.lesson = lesson
-        titleLabel.text = lesson.title
-        starButton.isSelected = lesson.favorite
-        starButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
+    func setLessonData(baseLesson: BaseLesson) {
+        starButton.isHidden = false
+        self.baseLesson = baseLesson
+        titleLabel.text = baseLesson.title
+        if let lesson = baseLesson as? Lesson {
+            starButton.isSelected = lesson.favorite
+            starButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
+        } else {
+            starButton.isHidden = true
+        }
     }
     
     @IBAction private func starButtonPressed(_ sender: UIButton) {
-        guard let safeLesson = lesson else { return }
-        safeLesson.favorite = !starButton.isSelected
-        safeLesson.save()
-        
-        starButton.isSelected.toggle()
-        starButton.tintColor = safeLesson.favorite ? .systemYellow : .lightGray
+        if let lesson = baseLesson as? Lesson {
+            lesson.favorite = !starButton.isSelected
+            lesson.save()
+            starButton.isSelected.toggle()
+            starButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
+        }
     }
 }
