@@ -70,6 +70,7 @@
 		E46F651527D350EB00E30284 /* LessonStep+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46F650D27D350EB00E30284 /* LessonStep+CoreDataClass.swift */; };
 		E46F651627D350EB00E30284 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46F650E27D350EB00E30284 /* Lesson+CoreDataClass.swift */; };
 		E46F651727D350EB00E30284 /* LessonStep+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46F650F27D350EB00E30284 /* LessonStep+CoreDataProperties.swift */; };
+		E46F651927D4C48400E30284 /* BaseLesson+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46F651827D4C48400E30284 /* BaseLesson+Additions.swift */; };
 		E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E659E26C2141B00A88860 /* UIViewController+Common.swift */; };
 		E48E65A426C2143E00A88860 /* UIAleartControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */; };
 		E48E65AE26C2154700A88860 /* InfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E65AD26C2154700A88860 /* InfoAlertView.swift */; };
@@ -188,6 +189,7 @@
 		E46F650D27D350EB00E30284 /* LessonStep+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LessonStep+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E46F650E27D350EB00E30284 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E46F650F27D350EB00E30284 /* LessonStep+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LessonStep+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E46F651827D4C48400E30284 /* BaseLesson+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseLesson+Additions.swift"; sourceTree = "<group>"; };
 		E48E659E26C2141B00A88860 /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		E48E65A326C2143E00A88860 /* UIAleartControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAleartControllerExtension.swift; sourceTree = "<group>"; };
 		E48E65AD26C2154700A88860 /* InfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertView.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D0D17F26DE4498006C5A39 /* Lesson+Additions.swift */,
+				E46F651827D4C48400E30284 /* BaseLesson+Additions.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				E46F651327D350EB00E30284 /* LessonGroup+CoreDataClass.swift in Sources */,
 				E46F651027D350EB00E30284 /* LessonGroup+CoreDataProperties.swift in Sources */,
 				E4D0F4FD2783D8C900690B99 /* LessonViewModel.swift in Sources */,
+				E46F651927D4C48400E30284 /* BaseLesson+Additions.swift in Sources */,
 				E48E659F26C2141B00A88860 /* UIViewController+Common.swift in Sources */,
 				E48E65C426C2173500A88860 /* ObjectTableViewController.swift in Sources */,
 				E4AF75E3277DB63B0088110A /* R.generated.swift in Sources */,

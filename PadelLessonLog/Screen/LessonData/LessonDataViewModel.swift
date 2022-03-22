@@ -20,9 +20,13 @@ final class LessonDataViewModel: LessonViewModel {
         
     let addLessonButtonPressed = PassthroughSubject<Void, Never>()
     let pushBackFromNewLessonView = PassthroughSubject<Void, Never>()
-    let didSelectRowAt = PassthroughSubject<IndexPath, Never>()
-    let didLongTapRowAt = PassthroughSubject<(IndexPath, String?), Never>()
-    let reorderData = PassthroughSubject<(from: IndexPath, to: IndexPath), Never>()
+    let didSelectItemAt = PassthroughSubject<Lesson, Never>()
+    let createNewGroup = PassthroughSubject<(IndexPath, String?), Never>()
+    let renameGroup = PassthroughSubject<(BaseLesson, String?), Never>()
+    let deleteGroup = PassthroughSubject<BaseLesson, Never>()
+    let reorderData = PassthroughSubject<(lesson: BaseLesson, from: IndexPath?, to: IndexPath), Never>()
+    let moveIntoGroup = PassthroughSubject<(lesson: Lesson, group: LessonGroup), Never>()
+    let reorderInsideOfGroup = PassthroughSubject<(lesson: Lesson, nextTo: Lesson), Never>()
     let searchAndFilterData = PassthroughSubject<String, Never>()
     private(set) var lessonsArray = CurrentValueSubject<[BaseLesson], Never>([])
     private(set) var scrollToTableIndex = PassthroughSubject<Int, Never>()
@@ -45,14 +49,12 @@ final class LessonDataViewModel: LessonViewModel {
             }
         }.store(in: &subscriptions)
         
-        didSelectRowAt.sink { [weak self] indexPath in
+        didSelectItemAt.sink { [weak self] lesson in
             guard let self = self else { return }
-            let lessonData = self.lessonsArray.value[indexPath.row]
-            if let lesson = lessonData as? Lesson {
-                self.transition.send(.detail(lesson))
-            }
+            self.transition.send(.detail(lesson))
         }.store(in: &subscriptions)
-        didLongTapRowAt.sink { [weak self] indexPath, title in
+        
+        createNewGroup.sink { [weak self] indexPath, title in
             guard let self = self else { return }
             guard let groupTitle = title else { return }
             let baseLesson = self.lessonsArray.value[indexPath.row]
@@ -61,13 +63,42 @@ final class LessonDataViewModel: LessonViewModel {
             self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
         }.store(in: &subscriptions)
         
-        reorderData.sink { [weak self] from, to in
+        renameGroup.sink { [weak self] baseLesson, title in
             guard let self = self else { return }
-            guard from.row != to.row else { return }
-            let lessonData = self.lessonsArray.value[from.row]
-            self.lessonsArray.value.remove(at: from.row)
-            self.lessonsArray.value.insert(lessonData, at: to.row)
-            self.coreDataManager.updateLessonOrder(lessonArray: self.lessonsArray.value)
+            guard let groupTitle = title else { return }
+            guard let group = baseLesson as? LessonGroup, let id = group.groupId else { return }
+            if self.coreDataManager.updateLessonGroupTitle(groupID: id.uuidString, title: groupTitle) {
+                self.dataReload.send()
+            }
+        }.store(in: &subscriptions)
+        
+        deleteGroup.sink { [weak self] baseLesson in
+            guard let self = self else { return }
+            guard let group = baseLesson as? LessonGroup, let id = group.groupId else { return }
+            if self.coreDataManager.deleteLessonGroup(groupID: id.uuidString) {
+                self.dataReload.send()
+            }
+        }.store(in: &subscriptions)
+        
+        reorderData.sink { [weak self] baseLesson, from, to in
+            guard let self = self else { return }
+            if let fromIndex = from {
+                guard fromIndex.row != to.row else { return }
+            }
+            self.coreDataManager.updateBaseLessonOrder(from: from, to: to, baseLesson: baseLesson)
+            self.dataReload.send()
+        }.store(in: &subscriptions)
+        
+        moveIntoGroup.sink { [weak self] lesson, group in
+            guard let self = self else { return }
+            self.coreDataManager.updateBaseLessonGrouping(orderNum: 1, lesson: lesson, groupId: group.groupId)
+            self.dataReload.send()
+        }.store(in: &subscriptions)
+        
+        reorderInsideOfGroup.sink { [weak self] dragLesson, nextToLesson in
+            guard let self = self else { return }
+            self.coreDataManager.updateBaseLessonGrouping(orderNum: nextToLesson.orderNum, lesson: dragLesson, groupId: nextToLesson.inGroup)
+            self.dataReload.send()
         }.store(in: &subscriptions)
         
         searchAndFilterData.sink { [weak self] text in

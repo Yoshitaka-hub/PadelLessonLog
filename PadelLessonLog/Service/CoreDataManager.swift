@@ -22,7 +22,11 @@ protocol CoreDataProtocol {
     func loadAllFavoriteLessonData() -> [Lesson]
     func loadAllLessonDataWithImage() -> [Lesson]
     func loadAllFavoriteLessonDataWithImage() -> [Lesson]
-    func updateLessonOrder(lessonArray: [BaseLesson]) 
+    func updateLessonGroupTitle(groupID: String, title: String) -> Bool
+    func updateLessonOrder(lessonArray: [BaseLesson])
+    func updateBaseLessonOrder(from: IndexPath?, to: IndexPath, baseLesson: BaseLesson)
+    func updateBaseLessonGrouping(orderNum: Int16, lesson: Lesson, groupId: UUID?)
+    func deleteLessonGroup(groupID: String) -> Bool
 }
 
 final class CoreDataManager: CoreDataProtocol {
@@ -256,7 +260,23 @@ extension CoreDataManager {
             saveContext()
             return true
         } catch {
-            fatalError("loadData error")
+            fatalError("updateData error")
+        }
+    }
+    
+    func updateLessonGroupTitle(groupID: String, title: String) -> Bool {
+        let fetchRequest = createRequest(objectType: .lessonGroup)
+        guard let uuid = NSUUID(uuidString: groupID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "groupId", uuid)
+        fetchRequest.predicate = predicate
+        do {
+            let groups = try managerObjectContext.fetch(fetchRequest) as! [LessonGroup]
+            guard let group = groups.first else { return false }
+            group.title = title
+            saveContext()
+            return true
+        } catch {
+            fatalError("updateData error")
         }
     }
     
@@ -281,6 +301,62 @@ extension CoreDataManager {
         }
         saveContext()
     }
+    func updateBaseLessonOrder() {
+        let baseLessons = loadAllBaseLessonData().filter { !$0.isGroupedLesson() }
+        for (index, baseLesson) in baseLessons.enumerated() {
+            baseLesson.orderNum = Int16(index)
+            if let lesson = baseLesson.isLesson() {
+                lesson.inGroup = nil
+            }
+        }
+        
+        let inGroupLessons: [Lesson] = loadAllBaseLessonData()
+            .filter { $0.isGroupedLesson() }
+            .map { return $0.isLesson()}
+            .compactMap { $0 }
+        
+        var data = [UUID: [Lesson]]()
+        data = Dictionary(grouping: inGroupLessons, by: { lesson in
+            return lesson.inGroup ?? UUID()
+        })
+        
+        data.forEach { (key: UUID, value: [Lesson]) in
+            let sortedArray = value.sorted(by: {
+                if $0.orderNum == $1.orderNum {
+                    return $0.timeStamp! < $1.timeStamp!
+                } else {
+                    return $0.orderNum < $1.orderNum
+                }
+            })
+            for (index, groupedLesson) in sortedArray.enumerated() {
+                groupedLesson.orderNum = Int16(index + 1)
+            }
+        }
+        saveContext()
+    }
+    
+    func updateBaseLessonOrder(from: IndexPath?, to: IndexPath, baseLesson: BaseLesson) {
+        var baseLessons = loadAllBaseLessonData().filter { !$0.isGroupedLesson() }
+        if let removeIndex = from {
+            baseLessons.remove(at: removeIndex.item)
+        }
+        baseLessons.insert(baseLesson, at: to.item)
+        for (index, baseLesson) in baseLessons.enumerated() {
+            baseLesson.orderNum = Int16(index)
+            if let lesson = baseLesson.isLesson() {
+                lesson.inGroup = nil
+            }
+        }
+        saveContext()
+    }
+    
+    func updateBaseLessonGrouping(orderNum: Int16, lesson: Lesson, groupId: UUID?) {
+        lesson.inGroup = groupId
+        lesson.orderNum = orderNum - 1
+        saveContext()
+        
+        updateBaseLessonOrder()
+    }
     
     // MARK: - Lesson - delete
     func deleteLessonData(lessonID: String) -> Bool {
@@ -296,7 +372,23 @@ extension CoreDataManager {
             saveContext()
             return true
         } catch {
-            fatalError("loadData error")
+            fatalError("deleteData error")
+        }
+    }
+    
+    func deleteLessonGroup(groupID: String) -> Bool {
+        let fetchRequest = createRequest(objectType: .lessonGroup)
+        guard let uuid = NSUUID(uuidString: groupID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "groupId", uuid)
+        fetchRequest.predicate = predicate
+        do {
+            let groups = try managerObjectContext.fetch(fetchRequest) as! [LessonGroup]
+            guard let group = groups.first else { return false }
+            managerObjectContext.delete(group)
+            saveContext()
+            return true
+        } catch {
+            fatalError("deleteData error")
         }
     }
     
