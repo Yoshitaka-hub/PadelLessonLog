@@ -22,6 +22,7 @@ protocol CoreDataProtocol {
     func loadAllFavoriteLessonData() -> [Lesson]
     func loadAllLessonDataWithImage() -> [Lesson]
     func loadAllFavoriteLessonDataWithImage() -> [Lesson]
+    func updateLessonFavorite(lessonID: String) -> Bool
     func updateLessonGroupTitle(groupID: String, title: String) -> Bool
     func updateLessonOrder(lessonArray: [BaseLesson])
     func updateBaseLessonOrder(from: IndexPath?, to: IndexPath, baseLesson: BaseLesson)
@@ -264,6 +265,22 @@ extension CoreDataManager {
         }
     }
     
+    func updateLessonFavorite(lessonID: String) -> Bool {
+        let fetchRequest = createRequest(objectType: .lesson)
+        guard let uuid = NSUUID(uuidString: lessonID) else { return false }
+        let predicate = NSPredicate(format: "%K == %@", "id", uuid)
+        fetchRequest.predicate = predicate
+        do {
+            let lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
+            guard let lesson = lessons.first else { return false }
+            lesson.favorite.toggle()
+            saveContext()
+            return true
+        } catch {
+            fatalError("updateData error")
+        }
+    }
+    
     func updateLessonGroupTitle(groupID: String, title: String) -> Bool {
         let fetchRequest = createRequest(objectType: .lessonGroup)
         guard let uuid = NSUUID(uuidString: groupID) else { return false }
@@ -312,7 +329,7 @@ extension CoreDataManager {
         
         let inGroupLessons: [Lesson] = loadAllBaseLessonData()
             .filter { $0.isGroupedLesson() }
-            .map { return $0.isLesson()}
+            .map { return $0.isLesson() }
             .compactMap { $0 }
         
         var data = [UUID: [Lesson]]()
@@ -323,7 +340,7 @@ extension CoreDataManager {
         data.forEach { (key: UUID, value: [Lesson]) in
             let sortedArray = value.sorted(by: {
                 if $0.orderNum == $1.orderNum {
-                    return $0.timeStamp! < $1.timeStamp!
+                    return $0.timeStamp! < $1.timeStamp! // swiftlint:disable:this force_unwrapping
                 } else {
                     return $0.orderNum < $1.orderNum
                 }

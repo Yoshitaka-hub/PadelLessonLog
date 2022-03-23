@@ -197,6 +197,7 @@ final class LessonDataViewController: BaseViewController {
     // swiftlint:enable private_action
 }
 
+// swiftlint:disable unused_closure_parameter
 extension LessonDataViewController: UICollectionViewDelegate {
     func configureCollectionView() {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
@@ -218,8 +219,7 @@ extension LessonDataViewController: UICollectionViewDelegate {
     }
     
     func configureDataSource() {
-        let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { (cell, indexPath, baseLesson) in
-            // Populate the cell with our item description.
+        let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
             var contentConfiguration = cell.defaultContentConfiguration()
             contentConfiguration.text = baseLesson.title
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
@@ -230,14 +230,29 @@ extension LessonDataViewController: UICollectionViewDelegate {
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
-            // Populate the cell with our item description.
             var contentConfiguration = cell.defaultContentConfiguration()
             contentConfiguration.text = baseLesson.title
             cell.contentConfiguration = contentConfiguration
+            
+            if let lesson = baseLesson.baseLesson.isLesson() {
+                let favoriteAction = UIAction(image: lesson.favorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"),
+                                              handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.viewModel.favoriteToggled.send(lesson)
+                })
+                let favoriteButton = UIButton(primaryAction: favoriteAction)
+                favoriteButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
+
+                let favoriteAccessory = UICellAccessory.CustomViewConfiguration(
+                    customView: favoriteButton,
+                    placement: .leading(displayed: .always)
+                )
+                cell.accessories = [.customView(configuration: favoriteAccessory)]
+            }
+            
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
-        dataSource = UICollectionViewDiffableDataSource<Section, LessonItem>(collectionView: modernCollectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, item: LessonItem) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, LessonItem>(collectionView: modernCollectionView) {(collectionView: UICollectionView, indexPath: IndexPath, item: LessonItem) -> UICollectionViewCell? in
             // Return the cell.
             if item.baseLesson.isGroup() != nil {
                 return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
@@ -270,6 +285,7 @@ extension LessonDataViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
+// swiftlint:enable unused_closure_parameter
 
 extension LessonDataViewController: UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
