@@ -306,7 +306,6 @@
 				E41F349726BE6CCA001B24A2 /* Screen */,
 				E41F349F26BE6D63001B24A2 /* ViewParts */,
 				E41F349A26BE6D20001B24A2 /* Service */,
-				E41F349826BE6CDA001B24A2 /* API */,
 				E41F349E26BE6D56001B24A2 /* Entity */,
 				E41F349D26BE6D48001B24A2 /* Extensions */,
 				E41F349B26BE6D28001B24A2 /* Common */,
@@ -355,16 +354,6 @@
 				E40113E126EF5B7F00912EBE /* Setting */,
 			);
 			path = Screen;
-			sourceTree = "<group>";
-		};
-		E41F349826BE6CDA001B24A2 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				E41F34A126BE6E63001B24A2 /* Base */,
-				E41F34A226BE6E6B001B24A2 /* Request */,
-				E41F34A326BE6E7A001B24A2 /* Response */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		E41F349A26BE6D20001B24A2 /* Service */ = {
@@ -432,27 +421,6 @@
 				E465FC2A274E7B2200503FC8 /* art.scnassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		E41F34A126BE6E63001B24A2 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		E41F34A226BE6E6B001B24A2 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		E41F34A326BE6E7A001B24A2 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Response;
 			sourceTree = "<group>";
 		};
 		E41F34A426BE6EB2001B24A2 /* Additions */ = {

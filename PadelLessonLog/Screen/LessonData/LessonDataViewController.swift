@@ -130,7 +130,18 @@ final class LessonDataViewController: BaseViewController {
         viewModel.lessonsArray.sink { [weak self] baseLessons in
             guard let self = self else { return }
             var subItems: [Lesson] = []
-            let lessonData: [LessonItem] = baseLessons.map { baseLesson -> LessonItem? in
+            var baseLessonData = baseLessons
+            if self.viewModel.tableMode.value == .favoriteTableView {
+                baseLessonData = baseLessons.filter { baseLesson in
+                    if let lesson = baseLesson.isLesson() {
+                        return lesson.favorite
+                    } else {
+                        return true
+                    }
+                }
+            }
+            
+            let lessonData: [LessonItem] = baseLessonData.map { baseLesson -> LessonItem? in
                 if let lesson = baseLesson.isLesson() {
                     if lesson.isGroupedLesson() {
                         subItems.append(lesson)
@@ -221,18 +232,35 @@ extension LessonDataViewController: UICollectionViewDelegate {
     func configureDataSource() {
         let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
             var contentConfiguration = cell.defaultContentConfiguration()
-            contentConfiguration.text = baseLesson.title
+            let attributes: NSAttributedString = .init(string: baseLesson.title, attributes: [.foregroundColor: self.viewModel.tableMode.value == .favoriteTableView && baseLesson.subitems.isEmpty ? UIColor.lightGray : .black])
+            contentConfiguration.attributedText = attributes
+            
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfiguration
             
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
-            cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
+            if self.viewModel.tableMode.value == .favoriteTableView {
+                cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
+            } else {
+                if self.searchBar.isHidden {
+                    cell.accessories = [.reorder(displayed: .always, options: .init(isHidden: false, reservedLayoutWidth: .standard, tintColor: .lightGray, showsVerticalSeparator: true)), .outlineDisclosure(options: disclosureOptions)]
+                } else {
+                    cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
+                }
+            }
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
+        
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
-            var contentConfiguration = cell.defaultContentConfiguration()
+            var contentConfiguration = UIListContentConfiguration.valueCell()
             contentConfiguration.text = baseLesson.title
             cell.contentConfiguration = contentConfiguration
+            
+            if self.viewModel.tableMode.value == .allTableView, self.searchBar.isHidden {
+                cell.accessories = [.reorder(displayed: .always, options: .init(isHidden: false, reservedLayoutWidth: .standard, tintColor: .lightGray, showsVerticalSeparator: true))]
+            } else {
+                cell.accessories = []
+            }
             
             if let lesson = baseLesson.baseLesson.isLesson() {
                 let favoriteAction = UIAction(image: lesson.favorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"),
@@ -284,6 +312,14 @@ extension LessonDataViewController: UICollectionViewDelegate {
         viewModel.didSelectItemAt.send(lesson)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
+        if item.isGroup, item.subitems.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 // swiftlint:enable unused_closure_parameter
 
@@ -293,7 +329,7 @@ extension LessonDataViewController: UICollectionViewDragDelegate, UICollectionVi
         let itemProvider = NSItemProvider(object: "\(indexPath)" as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = lessonItem
-        return viewModel.tableMode.value == .allTableView ? [dragItem] : []
+        return viewModel.tableMode.value == .allTableView && searchBar.isHidden ? [dragItem] : []
     }
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         

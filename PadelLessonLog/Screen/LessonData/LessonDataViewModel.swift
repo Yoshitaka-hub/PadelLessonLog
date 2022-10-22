@@ -43,11 +43,7 @@ final class LessonDataViewModel: LessonViewModel {
         
         dataReload.sink { [weak self] _ in
             guard let self = self else { return }
-            if self.tableMode.value == .allTableView {
-                self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
-            } else {
-                self.lessonsArray.send(self.coreDataManager.loadAllFavoriteLessonData())
-            }
+            self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
         }.store(in: &subscriptions)
         
         didSelectItemAt.sink { [weak self] lesson in
@@ -113,6 +109,7 @@ final class LessonDataViewModel: LessonViewModel {
         searchAndFilterData.sink { [weak self] text in
             guard let self = self else { return }
             let filteredData = self.lessonsArray.value.filter {
+                guard $0.isLesson() != nil else { return true }
                 guard let title = $0.title else { return false }
                 return title.contains(text)
             }
