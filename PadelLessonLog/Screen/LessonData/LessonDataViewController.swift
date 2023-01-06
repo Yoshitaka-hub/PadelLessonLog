@@ -239,15 +239,7 @@ extension LessonDataViewController: UICollectionViewDelegate {
             cell.contentConfiguration = contentConfiguration
             
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
-            if self.viewModel.tableMode.value == .favoriteTableView {
-                cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
-            } else {
-                if self.searchBar.isHidden {
-                    cell.accessories = [.reorder(displayed: .always, options: .init(isHidden: false, reservedLayoutWidth: .standard, tintColor: .lightGray, showsVerticalSeparator: true)), .outlineDisclosure(options: disclosureOptions)]
-                } else {
-                    cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
-                }
-            }
+            cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
         
