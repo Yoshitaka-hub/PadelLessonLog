@@ -1,0 +1,70 @@
+format_version: "11"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+trigger_map:
+- pull_request_source_branch: '*'
+  workflow: primary
+  pull_request_target_branch: main
+workflows:
+  add_device:
+    meta:
+      bitrise.io:
+        stack: osx-xcode-14.2.x-ventura
+    steps:
+    - fastlane@3:
+        title: fastlane_add_device
+        inputs:
+        - lane: ios add_device
+        description: fastlane_add_device
+  deploy:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Do anything with Script step
+    - certificate-and-profile-installer@1: {}
+    - cocoapods-install@2: {}
+    - xcode-test@3:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+    - xcode-archive@3:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+        - export_method: $BITRISE_EXPORT_METHOD
+    - deploy-to-bitrise-io@2: {}
+    - cache-push@2: {}
+  primary:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Do anything with Script step
+    - certificate-and-profile-installer@1: {}
+    - cocoapods-install@2: {}
+    - xcode-test@3:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+    - deploy-to-bitrise-io@2: {}
+    - cache-push@2: {}
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: PadelLessonLog.xcworkspace
+  - opts:
+      is_expand: false
+    BITRISE_SCHEME: PadelLessonLog
+  - opts:
+      is_expand: false
+    BITRISE_EXPORT_METHOD: development
+meta:
+  bitrise.io:
+    machine_type_id: g2.4core
+    stack: osx-xcode-13.0.x
