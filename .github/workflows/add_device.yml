@@ -29,6 +29,7 @@ jobs:
         curl -H "Authorization: $bitrise_api_key" "https://api.bitrise.io/v0.1/apps/46e2ad032bd2a10a/builds" -d \
         '{
           "build_params":{
+            "environments":[ {"mapped_to":"DEVICE_NAME","value":"test", "is_expand":false}, {"mapped_to":"DEVICE_UUID","value":"test", "is_expand":false}],
             "workflow_id":"add_device"
           },
           "hook_info":{
