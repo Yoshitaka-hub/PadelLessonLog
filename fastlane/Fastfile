@@ -24,6 +24,6 @@ platform :ios do
       key_content: ENV["ASC_KEY_CONTENT"],
       in_house: false
     )
-    register_devices(devices: {ENV["DEVICE_NAME"] => ENV["DEVICE_UUID"]})
+    register_devices(devices: {ENV["DEVICE_NAME"] => ENV["DEVICE_UDID"]})
   end
 end
