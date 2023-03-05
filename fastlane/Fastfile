@@ -14,7 +14,7 @@
 # update_fastlane
 
 default_platform(:ios)
-ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
 
 
 platform :ios do
