@@ -14,8 +14,6 @@
 # update_fastlane
 
 default_platform(:ios)
-ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
-
 
 platform :ios do
   desc "add_device"
@@ -27,6 +25,5 @@ platform :ios do
       in_house: false
     )
     register_devices(devices: {ENV["DEVICE_NAME"] => ENV["DEVICE_UDID"]})
-    slack( message: "デバイスを追加を完了しました",default_payloads: [] )
   end
 end
