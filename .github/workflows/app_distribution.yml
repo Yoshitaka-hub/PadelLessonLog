@@ -1,7 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: add_device
-
+name: echo
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
@@ -18,4 +17,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: echo
-      run: echo "work_flow_id "${{ inputs.workflow_id }}"
+      run: echo "work_flow_id ${{ github.ref_name }}"
