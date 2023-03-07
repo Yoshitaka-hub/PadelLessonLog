@@ -19,7 +19,6 @@ jobs:
         curl -H "Authorization: $bitrise_api_key" https://api.bitrise.io/v0.1/apps/$bitrise_app_slug/builds -d \
         '{
           "build_params":{
-            "branch":"${{ github.ref_name }}",
             "workflow_id":"primary"
           },
           "hook_info":{
