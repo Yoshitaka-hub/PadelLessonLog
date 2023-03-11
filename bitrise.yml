@@ -21,10 +21,10 @@ workflows:
         - lane: ios add_device
         description: fastlane_add_device
     - slack@3:
-      title: Slack Notification
-      is_always_run: true
-      inputs:
-      - webhook_url: $SLACK_WEBHOOK_URL
+        title: Slack Notification
+        is_always_run: true
+        inputs:
+        - webhook_url: $SLACK_WEBHOOK_URL
   test_debug:
     meta:
       bitrise.io:
@@ -76,10 +76,10 @@ workflows:
         - work_dir: "$FASTLANE_WORK_DIR"
         title: fastlane test_debug
     - slack@3:
-      title: Slack Notification
-      is_always_run: true
-      inputs:
-      - webhook_url: $SLACK_WEBHOOK_URL
+        title: Slack Notification
+        is_always_run: true
+        inputs:
+        - webhook_url: $SLACK_WEBHOOK_URL
     - cache-push@2:
         inputs:
         - cache_paths: |-
