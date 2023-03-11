@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: echo
+name: Test Debug
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
@@ -8,7 +8,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  echo:
+  test_debug:
     runs-on: ubuntu-latest
     steps:
     - name: Trigger bitrise workflow
@@ -19,7 +19,8 @@ jobs:
         curl -H "Authorization: $bitrise_api_key" https://api.bitrise.io/v0.1/apps/$bitrise_app_slug/builds -d \
         '{
           "build_params":{
-            "workflow_id":"primary"
+            "branch":"${{ github.ref_name }}",
+            "workflow_id":"test_debug"
           },
           "hook_info":{
             "type":"bitrise"

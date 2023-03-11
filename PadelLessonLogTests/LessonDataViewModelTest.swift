@@ -115,7 +115,7 @@ class LessonDataViewModelTest: QuickSpec {
                         }.store(in: &subscriptions)
                         
                         flag = nil
-                        lessonDataViewModel.didSelectRowAt.send(IndexPath(row: 0, section: 0))
+                        lessonDataViewModel.didSelectItemAt.send(lessonDataViewModel.lessonsArray.value[0].isLesson()!)
                     }
                     it(".detail(dummyLesson)が流れてくること") {
                         XCTAssertEqual(flag, true)
