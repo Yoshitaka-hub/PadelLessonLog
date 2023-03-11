@@ -26,4 +26,13 @@ platform :ios do
     )
     register_devices(devices: {ENV["DEVICE_NAME"] => ENV["DEVICE_UDID"]})
   end
+  desc "Test Debug App"
+  lane :test_debug do
+    scan(
+      workspace: "PadelLessonLog.xcworkspace",
+      scheme: "PadelLessonLog Debug",
+      devices: ["iPhone 11 (15.2)"],
+      configuration: "Debug",
+    )
+  end
 end
