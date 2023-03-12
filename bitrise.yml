@@ -79,7 +79,40 @@ workflows:
         is_always_run: true
         inputs:
         - webhook_url: $SLACK_WEBHOOK_URL
-        - message: "App Distribution" # 送信するメッセージ
+        - message: |
+            {
+              "text": "ビルドが完了しました！",
+              "attachments": [
+                {
+                  "fallback": "ビルドが完了しました！",
+                  "color": "#36a64f",
+                  "pretext": "ビルド結果の詳細:",
+                  "author_name": "Bitrise",
+                  "author_link": "https://www.bitrise.io/",
+                  "author_icon": "https://cdn3.iconfinder.com/data/icons/line/36/cloud_upload-512.png",
+                  "title": "ビルド情報",
+                  "title_link": "https://app.bitrise.io/build/abcdef123456",
+                  "text": "ビルドが完了しました！",
+                  "fields": [
+                    {
+                      "title": "ビルド番号",
+                      "value": "$BITRISE_BUILD_NUMBER",
+                      "short": true
+                    },
+                    {
+                      "title": "Gitコミット",
+                      "value": "$GIT_CLONE_COMMIT_HASH",
+                      "short": true
+                    },
+                    {
+                      "title": "ビルド日時",
+                      "value": "$BITRISE_BUILD_STARTED_AT",
+                      "short": true
+                    }
+                  ]
+                }
+              ]
+            }
         - message_on_error: "ビルドが失敗しました！" # 失敗時に送信するメッセージ
     - cache-push@2:
         inputs:
