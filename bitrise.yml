@@ -73,13 +73,14 @@ workflows:
     - fastlane@2:
         inputs:
         - lane: ios test_debug
-        - work_dir: "$FASTLANE_WORK_DIR"
         title: fastlane test_debug
     - slack@3:
         title: Slack Notification
         is_always_run: true
         inputs:
         - webhook_url: $SLACK_WEBHOOK_URL
+        - message: "ビルドが成功しました！" # 送信するメッセージ
+        - fail_message: "ビルドが失敗しました！" # 失敗時に送信するメッセージ
     - cache-push@2:
         inputs:
         - cache_paths: |-
