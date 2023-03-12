@@ -79,8 +79,8 @@ workflows:
         is_always_run: true
         inputs:
         - webhook_url: $SLACK_WEBHOOK_URL
-        - message: "ビルドが成功しました！" # 送信するメッセージ
-        - fail_message: "ビルドが失敗しました！" # 失敗時に送信するメッセージ
+        - message: "App Distribution" # 送信するメッセージ
+        - message_on_error: "ビルドが失敗しました！" # 失敗時に送信するメッセージ
     - cache-push@2:
         inputs:
         - cache_paths: |-
