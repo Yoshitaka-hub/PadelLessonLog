@@ -80,7 +80,7 @@ workflows:
         inputs:
         - webhook_url: $SLACK_WEBHOOK_URL
         - title: "App Distribution配布"
-        - message:"App Distributionに配布しました" # 失敗時に送信するメッセージ
+        - message: "App Distributionに配布しました" # 失敗時に送信するメッセージ
         - message_on_error: "App Distributionへの配布に失敗しました" # 失敗時に送信するメッセージ
     - cache-push@2:
         inputs:
