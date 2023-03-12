@@ -50,7 +50,7 @@ class LessonDataViewTest: QuickSpec {
                     }
                     it("UIの状態が期待通りであること") {
                         XCTAssertEqual(lessonDataView.searchButton.tintColor, .colorButtonOn)
-                        XCTAssertEqual(lessonDataView.searchBar.isHidden, true)
+                        XCTAssertEqual(lessonDataView.searchBar.isHidden, false)
                     }
                 }
             }
