@@ -337,7 +337,7 @@ extension CoreDataManager {
             return lesson.inGroup ?? UUID()
         })
         
-        data.forEach { (key: UUID, value: [Lesson]) in
+        data.forEach { (_: UUID, value: [Lesson]) in
             let sortedArray = value.sorted(by: {
                 if $0.orderNum == $1.orderNum {
                     return $0.timeStamp! < $1.timeStamp! // swiftlint:disable:this force_unwrapping
@@ -357,6 +357,7 @@ extension CoreDataManager {
         if let removeIndex = from {
             baseLessons.remove(at: removeIndex.item)
         }
+        guard to.item <= baseLessons.count else { return }
         baseLessons.insert(baseLesson, at: to.item)
         for (index, baseLesson) in baseLessons.enumerated() {
             baseLesson.orderNum = Int16(index)
