@@ -35,4 +35,30 @@ platform :ios do
       configuration: "Debug",
     )
   end
+  desc "Build for Release"
+  lane :build_release do
+    app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      in_house: false
+    )
+    sigh(
+      app_identifier: "com.yoshitaka.PadelLessonLog",
+      adhoc: false,
+    )
+    gym(
+      clean: true,
+      workspace: "PadelLessonLog.xcworkspace",
+      scheme: "PadelLessonLog Release",
+      include_bitcode: false,
+      export_method: "app-store"
+    )
+    deliver(
+      force: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      precheck_include_in_app_purchases: false
+    )
+  end
 end
