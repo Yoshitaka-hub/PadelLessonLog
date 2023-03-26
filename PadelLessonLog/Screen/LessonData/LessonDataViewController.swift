@@ -211,9 +211,9 @@ final class LessonDataViewController: BaseViewController {
 // swiftlint:disable unused_closure_parameter
 extension LessonDataViewController: UICollectionViewDelegate {
     func configureCollectionView() {
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
+        let collectionView = UICollectionView(frame: viewForTable.bounds, collectionViewLayout: generateLayout())
         viewForTable.addSubview(collectionView)
-        collectionView.autoresizingMask = [.flexibleHeight, .flexibleRightMargin]
+        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 //        collectionView.backgroundColor = .appColor
         collectionView.tintColor = .arBlue
         self.modernCollectionView = collectionView
@@ -224,7 +224,7 @@ extension LessonDataViewController: UICollectionViewDelegate {
         collectionView.isSpringLoaded = true
     }
     func generateLayout() -> UICollectionViewLayout {
-        let listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebarPlain)
+        let listConfiguration = UICollectionLayoutListConfiguration(appearance: .plain)
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
         return layout
     }
