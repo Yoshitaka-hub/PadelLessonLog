@@ -8,6 +8,9 @@ Pods/
 ## LicensePlist
 com.mono0926.LicensePlist.Output/
 
+## R.swift
+R.generated.swift
+
 ## Gemfile
 # Do not ignore Gemfile.lock
 !Gemfile.lock
