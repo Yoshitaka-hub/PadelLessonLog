@@ -10,6 +10,7 @@ import UIKit
 extension UIImage {
     static let gearshape = UIImage.named("gearshape")
     static let plusCircle = UIImage.named("plus.circle")
+    static let folderPlus = UIImage.named("folder.badge.plus")
     static let trashCircle = UIImage.named("trash.circle")
     static let checkmarkCircle = UIImage.named("checkmark.circle")
     static let chevronBackwardCircle = UIImage.named("chevron.backward.circle")

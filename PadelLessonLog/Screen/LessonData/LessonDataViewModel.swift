@@ -21,7 +21,7 @@ final class LessonDataViewModel: LessonViewModel {
     let addLessonButtonPressed = PassthroughSubject<Void, Never>()
     let pushBackFromNewLessonView = PassthroughSubject<Void, Never>()
     let didSelectItemAt = PassthroughSubject<Lesson, Never>()
-    let createNewGroup = PassthroughSubject<(IndexPath, String?), Never>()
+    let createNewGroup = PassthroughSubject<String?, Never>()
     let favoriteToggled = PassthroughSubject<Lesson, Never>()
     let renameGroup = PassthroughSubject<(BaseLesson, String?), Never>()
     let deleteGroup = PassthroughSubject<BaseLesson, Never>()
@@ -51,12 +51,11 @@ final class LessonDataViewModel: LessonViewModel {
             self.transition.send(.detail(lesson))
         }.store(in: &subscriptions)
         
-        createNewGroup.sink { [weak self] indexPath, title in
+        createNewGroup.sink { [weak self] title in
             guard let self = self else { return }
             guard let groupTitle = title else { return }
-            let baseLesson = self.lessonsArray.value[indexPath.row]
-            let newGroup = self.coreDataManager.createNewLessonGroup(title: groupTitle, baseLesson: baseLesson)
-            self.lessonsArray.value.insert(newGroup, at: indexPath.row)
+            let newGroup = self.coreDataManager.createNewLessonGroup(title: groupTitle)
+            self.lessonsArray.value.insert(newGroup, at: 0)
             self.lessonsArray.send(self.coreDataManager.loadAllBaseLessonData())
         }.store(in: &subscriptions)
         
