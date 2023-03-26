@@ -17,7 +17,7 @@ enum CoreDataObjectType: String {
 
 protocol CoreDataProtocol {
     func createNewLesson(image: UIImage, steps: [String]) -> Lesson
-    func createNewLessonGroup(title: String, baseLesson: BaseLesson) -> LessonGroup
+    func createNewLessonGroup(title: String) -> LessonGroup
     func loadAllBaseLessonData() -> [BaseLesson]
     func loadAllFavoriteLessonData() -> [Lesson]
     func loadAllLessonDataWithImage() -> [Lesson]
@@ -101,19 +101,13 @@ extension CoreDataManager {
         return lesson
     }
     
-    func createNewLessonGroup(title: String, baseLesson: BaseLesson) -> LessonGroup {
+    func createNewLessonGroup(title: String) -> LessonGroup {
         let lessonGroup = createNewObject(objectType: .lessonGroup) as! LessonGroup
         lessonGroup.title = title
         lessonGroup.timeStamp = Date()
         lessonGroup.groupId = UUID()
-        
-        if let lesson = baseLesson as? Lesson {
-            lessonGroup.orderNum = lesson.orderNum
-            lesson.orderNum = 0
-            lesson.inGroup = lessonGroup.groupId
-        } else if let group = baseLesson as? LessonGroup {
-            lessonGroup.orderNum = group.orderNum
-        }
+        lessonGroup.orderNum = 0
+
         saveContext()
         return lessonGroup
     }

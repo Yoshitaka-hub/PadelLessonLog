@@ -49,6 +49,7 @@ final class LessonDataViewController: BaseViewController {
 
     @IBOutlet private weak var customToolbar: UIToolbar!
     // swiftlint:disable private_outlet
+    @IBOutlet private(set) weak var addFolder: UIBarButtonItem!
     @IBOutlet private(set) weak var allBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet private(set) weak var searchBar: UISearchBar!
@@ -183,7 +184,6 @@ final class LessonDataViewController: BaseViewController {
             self.modernCollectionView.scrollToItem(at: IndexPath(item: tableIndex, section: 0), at: .top, animated: true)
         }.store(in: &subscriptions)
     }
-    
     override func setting() {
         viewModel.settingButtonPressed.send()
     }
@@ -192,6 +192,11 @@ final class LessonDataViewController: BaseViewController {
         viewModel.addLessonButtonPressed.send()
     }
     // swiftlint:disable private_action
+    @IBAction func addFolderButtonPressed(_ sender: Any) {
+        textInputAlertView(withTitle: "フォルダ作成", cancelString: "キャンセル", placeholder: "フォルダ名を入力してください", confirmString: "作成") { textField in
+            self.viewModel.createNewGroup.send(textField.text)
+        }
+    }
     @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         searchBar.isHidden.toggle()
         searchButton.tintColor = searchBar.isHidden ? UIColor.colorButtonOff : UIColor.colorButtonOn
@@ -231,21 +236,70 @@ extension LessonDataViewController: UICollectionViewDelegate {
     
     func configureDataSource() {
         let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
+            guard let targetGroup = baseLesson.baseLesson.isGroup() else {
+                assertionFailure()
+                return
+            }
             var contentConfiguration = cell.defaultContentConfiguration()
             let attributes: NSAttributedString = .init(string: baseLesson.title, attributes: [.foregroundColor: self.viewModel.tableMode.value == .favoriteTableView && baseLesson.subitems.isEmpty ? UIColor.lightGray : .black])
             contentConfiguration.attributedText = attributes
-            
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
+            contentConfiguration.imageProperties.preferredSymbolConfiguration = .init(font: contentConfiguration.textProperties.font, scale: .small)
+            contentConfiguration.image = UIImage(systemName: "folder.fill")
             cell.contentConfiguration = contentConfiguration
             
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
-            cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
+
+            let editTitleAction = UIAction(
+                image: UIImage(systemName: "pencil"),
+                handler: { [weak self] _ in
+                    self?.textInputAlertView(withTitle: "フォルダ名を更新", cancelString: "キャンセル", placeholder: "新しいフォルダ名を入力してください", confirmString: "更新") { [weak self] textField in
+                        self?.viewModel.renameGroup.send((targetGroup, textField.text))
+                    }
+                })
+            let editButton = UIButton(primaryAction: editTitleAction)
+            editButton.tintColor = .lightGray
+
+            let editAccessory = UICellAccessory.CustomViewConfiguration(
+                customView: editButton,
+                placement: .trailing(displayed: .always)
+            )
+
+            if self.viewModel.tableMode.value == .favoriteTableView {
+                cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
+            } else if baseLesson.subitems.isEmpty {
+                let deleteAction = UIAction(
+                    image: UIImage(systemName: "trash"),
+                    handler: { [weak self] _ in
+                        self?.destructiveAlertView(withTitle: "フォルダ削除", message: "空のフォルダを削除しますか？", cancelString: "キャンセル", destructiveString: "削除") { [weak self] in
+                            self?.viewModel.deleteGroup.send(targetGroup)
+                        }
+                    })
+                let deleteButton = UIButton(primaryAction: deleteAction)
+                deleteButton.tintColor = .red
+
+                let deleteAccessory = UICellAccessory.CustomViewConfiguration(
+                    customView: deleteButton,
+                    placement: .trailing(displayed: .always)
+                )
+                cell.accessories = [
+                    .customView(configuration: editAccessory),
+                    .customView(configuration: deleteAccessory)
+                ]
+            } else {
+                cell.accessories = [
+                    .customView(configuration: editAccessory),
+                    .outlineDisclosure(options: disclosureOptions)
+                ]
+            }
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
         
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LessonItem> { cell, indexPath, baseLesson in
             var contentConfiguration = UIListContentConfiguration.valueCell()
+            contentConfiguration.imageProperties.preferredSymbolConfiguration = .init(font: contentConfiguration.textProperties.font, scale: .small)
             contentConfiguration.text = baseLesson.title
+            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .body)
             cell.contentConfiguration = contentConfiguration
             
             if self.viewModel.tableMode.value == .allTableView, self.searchBar.isHidden {
@@ -265,7 +319,8 @@ extension LessonDataViewController: UICollectionViewDelegate {
 
                 let favoriteAccessory = UICellAccessory.CustomViewConfiguration(
                     customView: favoriteButton,
-                    placement: .leading(displayed: .always)
+                    placement: .leading(displayed: .always),
+                    reservedLayoutWidth: .custom(35.0)
                 )
                 cell.accessories = [.customView(configuration: favoriteAccessory)]
             }
@@ -420,28 +475,12 @@ extension LessonDataViewController {
         let indexPath = modernCollectionView.indexPathForItem(at: point)
         guard let index = indexPath else { return }
         guard let targetLessonItem = dataSource.itemIdentifier(for: index) else { return }
-        if let targetLesson = targetLessonItem.baseLesson.isLesson() {
-            if targetLesson.isGroupedLesson() {
-                confirmationAlertView(withTitle: "データ移動", message: "レッスンデータをフォルダ外へ移動します", cancelString: "キャンセル", confirmString: "移動") {
-                    self.viewModel.reorderData.send((targetLesson, nil, IndexPath(item: 0, section: 0)))
-                }
-            } else {
-                textInputAlertView(withTitle: "フォルダ作成", cancelString: "キャンセル", placeholder: "フォルダ名を入力してください", confirmString: "作成") { textField in
-                    self.viewModel.createNewGroup.send((index, textField.text))
-                }
-            }
-        } else if let targetGroup = targetLessonItem.baseLesson.isGroup() {
-            if targetLessonItem.subitems.isEmpty {
-                destructiveAlertView(withTitle: "フォルダ削除", message: "空のフォルダを削除しますか？", cancelString: "キャンセル", destructiveString: "削除") {
-                    self.viewModel.deleteGroup.send(targetGroup)
-                }
-            } else {
-                textInputAlertView(withTitle: "フォルダ名を更新", cancelString: "キャンセル", placeholder: "新しいフォルダ名を入力してください", confirmString: "更新") { textField in
-                    self.viewModel.renameGroup.send((targetGroup, textField.text))
-                }
+        if let targetLesson = targetLessonItem.baseLesson.isLesson(),
+           targetLesson.isGroupedLesson() {
+            confirmationAlertView(withTitle: "データ移動", message: "レッスンデータをフォルダ外へ移動します", cancelString: "キャンセル", confirmString: "移動") {
+                self.viewModel.reorderData.send((targetLesson, nil, IndexPath(item: 0, section: 0)))
             }
         }
-        
     }
 }
 
