@@ -1,5 +1,27 @@
+## User settings
+xcuserdata/
 .DS_Store
-UserInterfaceState.xcuserstate
-*.generated.swift
-Pods
-Podfile.lock
+
+## CocoaPods
+Pods/
+
+## LicensePlist
+com.mono0926.LicensePlist.Output/
+
+## Gemfile
+# Do not ignore Gemfile.lock
+!Gemfile.lock
+vendor
+.bundle
+
+## Fastlane
+#
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+# fastlane specific
+fastlane/report.xml
+# deliver temporary files
+fastlane/Preview.html
+# snapshot generated screenshots
+fastlane/screenshots
+# scan temporary files
+fastlane/test_output

@@ -1,0 +1,64 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "add_device"
+  lane :add_device do
+    app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      in_house: false
+    )
+    register_devices(devices: {ENV["DEVICE_NAME"] => ENV["DEVICE_UDID"]})
+  end
+  desc "Test Debug App"
+  lane :test_debug do
+    scan(
+      workspace: "PadelLessonLog.xcworkspace",
+      scheme: "PadelLessonLog Debug",
+      devices: ["iPhone 11 (15.2)"],
+      configuration: "Debug",
+    )
+  end
+  desc "Build for Release"
+  lane :build_release do
+    app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY_CONTENT"],
+      in_house: false
+    )
+    sigh(
+      app_identifier: "com.yoshitaka.PadelLessonLog",
+      adhoc: false,
+    )
+    gym(
+      clean: true,
+      workspace: "PadelLessonLog.xcworkspace",
+      scheme: "PadelLessonLog Release",
+      include_bitcode: false,
+      export_method: "app-store"
+    )
+    deliver(
+      force: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      precheck_include_in_app_purchases: false
+    )
+  end
+end
