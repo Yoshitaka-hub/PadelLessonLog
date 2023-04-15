@@ -65,7 +65,9 @@ final class NewLessonViewModel: BaseViewModel {
             guard let lesson = lessonData else { return }
             let steps = lesson.steps?.allObjects as? [LessonStep]
             guard let safeSteps = steps, !safeSteps.isEmpty else { return }
-            self.lessonTitleText.send(lesson.title)
+            if let title = self.lessonTitleText.value, title.isEmpty {
+                self.lessonTitleText.send(lesson.title)
+            }
             self.lessonStepData.send(safeSteps)
             self.loadView.send(lesson)
             
