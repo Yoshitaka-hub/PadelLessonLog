@@ -265,8 +265,9 @@ extension LessonDataViewController: UICollectionViewDelegate {
                 placement: .trailing(displayed: .always)
             )
 
-            if self.viewModel.tableMode.value == .favoriteTableView {
-                cell.accessories = baseLesson.subitems.isEmpty ? [] : [.outlineDisclosure(options: disclosureOptions)]
+            if self.viewModel.tableMode.value == .favoriteTableView || !self.searchBar.isHidden {
+                cell.accessories = baseLesson.subitems.isEmpty ?
+                [] : [.outlineDisclosure(options: disclosureOptions)]
             } else if baseLesson.subitems.isEmpty {
                 let deleteAction = UIAction(
                     image: UIImage(systemName: "trash"),
@@ -303,17 +304,27 @@ extension LessonDataViewController: UICollectionViewDelegate {
             cell.contentConfiguration = contentConfiguration
             
             if self.viewModel.tableMode.value == .allTableView, self.searchBar.isHidden {
-                cell.accessories = [.reorder(displayed: .always, options: .init(isHidden: false, reservedLayoutWidth: .standard, tintColor: .lightGray, showsVerticalSeparator: true))]
+                cell.accessories = [.reorder(
+                    displayed: .always,
+                    options: .init(
+                        isHidden: false,
+                        reservedLayoutWidth: .standard,
+                        tintColor: .lightGray,
+                        showsVerticalSeparator: true
+                    )
+                )]
             } else {
                 cell.accessories = []
             }
             
             if let lesson = baseLesson.baseLesson.isLesson() {
-                let favoriteAction = UIAction(image: lesson.favorite ? UIImage(systemName: "star.fill") : UIImage(systemName: "star"),
-                                              handler: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.viewModel.favoriteToggled.send(lesson)
-                })
+                let favoriteAction = UIAction(
+                    image: lesson.favorite ?
+                    UIImage(systemName: "star.fill") : UIImage(systemName: "star"),
+                    handler: { [weak self] _ in
+                        guard let self = self else { return }
+                        self.viewModel.favoriteToggled.send(lesson)
+                    })
                 let favoriteButton = UIButton(primaryAction: favoriteAction)
                 favoriteButton.tintColor = lesson.favorite ? .systemYellow : .lightGray
 
