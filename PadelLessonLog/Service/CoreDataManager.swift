@@ -144,9 +144,8 @@ extension CoreDataManager {
         let fetchRequest = createRequest(objectType: .lesson)
         let predicate = NSPredicate(format: "%K == %@", "favorite", NSNumber(value: true))
         fetchRequest.predicate = predicate
-        let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
         let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
-        fetchRequest.sortDescriptors = [orderSort, timeSort]
+        fetchRequest.sortDescriptors = [timeSort]
         do {
             var lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
             lessons = lessons.filter { $0.imageSaved }
@@ -171,9 +170,8 @@ extension CoreDataManager {
     
     func loadAllLessonDataWithImage() -> [Lesson] {
         let fetchRequest = createRequest(objectType: .lesson)
-        let orderSort = NSSortDescriptor(key: "orderNum", ascending: true)
         let timeSort = NSSortDescriptor(key: "timeStamp", ascending: false)
-        fetchRequest.sortDescriptors = [orderSort, timeSort]
+        fetchRequest.sortDescriptors = [timeSort]
         do {
             var lessons = try managerObjectContext.fetch(fetchRequest) as! [Lesson]
             lessons = lessons.filter { $0.imageSaved }
