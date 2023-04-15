@@ -241,7 +241,7 @@ extension LessonDataViewController: UICollectionViewDelegate {
                 return
             }
             var contentConfiguration = cell.defaultContentConfiguration()
-            let attributes: NSAttributedString = .init(string: baseLesson.title, attributes: [.foregroundColor: self.viewModel.tableMode.value == .favoriteTableView && baseLesson.subitems.isEmpty ? UIColor.lightGray : .black])
+            let attributes: NSAttributedString = .init(string: baseLesson.title, attributes: [.foregroundColor: self.viewModel.tableMode.value == .favoriteTableView && baseLesson.subitems.isEmpty ? UIColor.lightGray : UIColor.label])
             contentConfiguration.attributedText = attributes
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
             contentConfiguration.imageProperties.preferredSymbolConfiguration = .init(font: contentConfiguration.textProperties.font, scale: .small)
